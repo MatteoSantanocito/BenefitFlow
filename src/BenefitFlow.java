@@ -63,8 +63,6 @@ public class BenefitFlow {
         }
     }
 
-
-
     private void loadRuoli() {
         Ruolo r1 = new Ruolo("ing01", "dataAnalist", 1);
         Ruolo r2 = new Ruolo("ing02", "dataAnalist", 2);
@@ -86,6 +84,5 @@ public class BenefitFlow {
         this.ruoli.put("ing06", r9);
         System.out.println("Caricamento Ruoli ultimato");
     }
-
-
+    
 }
