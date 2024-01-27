@@ -1,6 +1,4 @@
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class BenefitFlow {
 
@@ -41,6 +39,32 @@ public class BenefitFlow {
         }
     }
 
+    public List<Dipendente> mostraDipendenti(){
+        List<Dipendente> listDipendenti = new ArrayList<>();
+        listDipendenti.addAll(elencoDipendenti.values());
+        return listDipendenti;
+    }
+
+    public void gestisciRuolo(String matricola, String codiceRuolo){
+        Dipendente d = elencoDipendenti.get(matricola);
+        if(d != null){
+            Ruolo r = d.getRuolo();
+            if(r == null){
+                Ruolo ruolo = ruoli.get(codiceRuolo);
+                d.setRuolo(ruolo);
+                System.out.println("Ruolo assegnato correttamente.");
+            }
+        }
+    }
+
+    public void confermaRuolo(){
+        if(dipendenteCorrente != null){
+            System.out.println("Hai modificato correttamente il ruolo del dipendente" + dipendenteCorrente);
+        }
+    }
+
+
+
     private void loadRuoli() {
         Ruolo r1 = new Ruolo("ing01", "dataAnalist", 1);
         Ruolo r2 = new Ruolo("ing02", "dataAnalist", 2);
@@ -62,4 +86,6 @@ public class BenefitFlow {
         this.ruoli.put("ing06", r9);
         System.out.println("Caricamento Ruoli ultimato");
     }
+
+
 }
