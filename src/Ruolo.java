@@ -31,6 +31,6 @@ public class Ruolo {
 
     @Override
     public String toString() {
-        return "Ruolo [codiceRuolo=" + codiceRuolo + ", nome=" + nome + ", livello=" + livello + "]";
+        return "[codiceRuolo: " + codiceRuolo + ", nome: " + nome + ", livello: " + livello + "]";
     }
 }

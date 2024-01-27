@@ -1,18 +1,23 @@
-import java.util.*;
-
 public class Dipendente {
     private String nome;
     private String cognome;
-    private Date dataDiNascita;
+    private String dataDiNascita;
     private String matricola;
     private Ruolo ruolo;
 
-    public Dipendente(String nome, String cognome, Date dataDiNascita, String matricola, Ruolo ruolo) {
+    public Dipendente(String nome, String cognome, String dataDiNascita, String matricola, Ruolo ruolo) {
         this.nome = nome;
         this.cognome = cognome;
         this.dataDiNascita = dataDiNascita;
         this.matricola = matricola;
         this.ruolo = ruolo;
+    }
+
+    public Dipendente(String nome, String cognome, String dataDiNascita, String matricola) {
+        this.nome = nome;
+        this.cognome = cognome;
+        this.dataDiNascita = dataDiNascita;
+        this.matricola = matricola;
     }
 
     public String getNome() {
@@ -27,7 +32,7 @@ public class Dipendente {
     public void setCognome(String cognome) {
         this.cognome = cognome;
     }
-    public Date getDataDiNascita() {
+    public String getDataDiNascita() {
         return dataDiNascita;
     }
     public String getMatricola() {
@@ -42,7 +47,7 @@ public class Dipendente {
 
     @Override
     public String toString() {
-        return "Dipendente [nome=" + nome + ", cognome=" + cognome + ", dataDiNascita=" + dataDiNascita + ", matricola="
-                + matricola + ", ruolo=" + ruolo + "]";
+        return "nome: " + nome + ", cognome: " + cognome + ", data di nascita: " + dataDiNascita + ", matricola: "
+                + matricola + ", ruolo: " + ruolo;
     }
 }

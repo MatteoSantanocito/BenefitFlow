@@ -22,20 +22,27 @@ public class BenefitFlow {
         return benefitFlow;
     }
 
-    public void inserisciNuovoDipendente(String nome, String cognome, Date dataDiNascita, String matricola, String codiceRuolo){
+    public Dipendente inserisciNuovoDipendente(String nome, String cognome, String dataDiNascita, String matricola, String codiceRuolo){
         Ruolo r = ruoli.get(codiceRuolo);
         if(r != null){
             this.dipendenteCorrente = new Dipendente(nome,cognome,dataDiNascita,matricola,r);
-            System.out.println("Dipendente Inserito!");
+            System.out.println("Dipendente inserito correttamente!");
         }else{
-            System.out.println("Dipendente non insertito!");
+            if (codiceRuolo != null) {
+                this.dipendenteCorrente = new Dipendente(nome, cognome, dataDiNascita, matricola);
+                System.out.println("Il ruolo inserito non esiste. Il dipendente è stato comunque inserito senza ruolo.");
+            }else{
+                this.dipendenteCorrente = new Dipendente(nome, cognome, dataDiNascita, matricola);
+                System.out.println("Dipendente insertito correttamente senza ruolo!");
+            }
         }
+        return dipendenteCorrente;
     }
 
     public void confermaInserimento(){
         if(dipendenteCorrente != null){
             this.elencoDipendenti.put(dipendenteCorrente.getMatricola(),dipendenteCorrente);
-            System.out.println("inserimento Dipendente effettuato");
+            System.out.println("Lista dipendenti aggiornata con successo!");
         }
     }
 
@@ -59,11 +66,11 @@ public class BenefitFlow {
 
     public void confermaRuolo(){
         if(dipendenteCorrente != null){
-            System.out.println("Hai modificato correttamente il ruolo del dipendente" + dipendenteCorrente);
+            System.out.println("Il nuovo ruolo assegnato al dipendente " + dipendenteCorrente.getMatricola() + " è: " + dipendenteCorrente.getRuolo());
         }
     }
 
-    private void loadRuoli() {
+    public void loadRuoli() {
         Ruolo r1 = new Ruolo("ing01", "dataAnalist", 1);
         Ruolo r2 = new Ruolo("ing02", "dataAnalist", 2);
         Ruolo r3 = new Ruolo("ing03", "dataAnalist", 3);
