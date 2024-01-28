@@ -22,28 +22,36 @@ public class BenefitFlow {
         return benefitFlow;
     }
 
+    boolean flag = false;
     public Dipendente inserisciNuovoDipendente(String nome, String cognome, String dataDiNascita, String matricola, String codiceRuolo){
         Ruolo r = ruoli.get(codiceRuolo);
-        if(r != null){
-            this.dipendenteCorrente = new Dipendente(nome,cognome,dataDiNascita,matricola,r);
-            System.out.println("Dipendente inserito correttamente!");
-        }else{
-            if (codiceRuolo != null) {
-                this.dipendenteCorrente = new Dipendente(nome, cognome, dataDiNascita, matricola);
-                System.out.println("Il ruolo inserito non esiste. Il dipendente è stato comunque inserito senza ruolo.");
+        Dipendente d = elencoDipendenti.get(matricola);
+        if(d == null){
+            if(r != null){
+                this.dipendenteCorrente = new Dipendente(nome,cognome,dataDiNascita,matricola,r);
+                System.out.println("Dipendente inserito correttamente!");
             }else{
-                this.dipendenteCorrente = new Dipendente(nome, cognome, dataDiNascita, matricola);
-                System.out.println("Dipendente insertito correttamente senza ruolo!");
+                if (codiceRuolo != null) {
+                    this.dipendenteCorrente = new Dipendente(nome, cognome, dataDiNascita, matricola);
+                    System.out.println("Il ruolo inserito non esiste. Il dipendente è stato comunque inserito senza ruolo.");
+                }else{
+                    this.dipendenteCorrente = new Dipendente(nome, cognome, dataDiNascita, matricola);
+                    System.out.println("Dipendente insertito correttamente senza ruolo!");
+                }
             }
+        }else{
+            flag = true;
+            System.out.println("Esiste già un dipendente con matricola " + matricola);
         }
         return dipendenteCorrente;
     }
 
     public void confermaInserimento(){
-        if(dipendenteCorrente != null){
+        if(dipendenteCorrente != null && !flag){
             this.elencoDipendenti.put(dipendenteCorrente.getMatricola(),dipendenteCorrente);
             System.out.println("Lista dipendenti aggiornata con successo!");
         }
+        flag = false;
     }
 
     public List<Dipendente> mostraDipendenti(){
@@ -91,5 +99,4 @@ public class BenefitFlow {
         this.ruoli.put("ing06", r9);
         System.out.println("Caricamento Ruoli ultimato");
     }
-    
 }
