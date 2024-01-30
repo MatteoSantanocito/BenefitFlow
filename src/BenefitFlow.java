@@ -1,17 +1,39 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
+import java.util.List;
 
-public class BenefitFlow {
+public class BenefitFlow extends JFrame {
 
     private static BenefitFlow benefitFlow;
     private Dipendente dipendenteCorrente;
     private Map<String,Ruolo> ruoli;
     private Map<String,Dipendente> elencoDipendenti;
+    private Login login;
 
-    private BenefitFlow(){
+    public BenefitFlow(){
         this.elencoDipendenti = new HashMap<>();
         this.ruoli = new HashMap<>();
         loadRuoli();
+        initComponent();
     }
+
+    private void initComponent() {
+        login  = new Login();
+
+        setLayout(new BorderLayout());
+        setTitle("BenefitFlow");
+
+        add(login,BorderLayout.CENTER);
+
+        setVisible(true);
+        setSize(400, 300);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
 
     public static BenefitFlow getInstance(){
         if(benefitFlow == null){
