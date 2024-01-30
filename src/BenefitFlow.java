@@ -1,3 +1,5 @@
+import ui.InserisciDipendente;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -63,6 +65,13 @@ public class BenefitFlow extends JFrame {
         ammPanel.add(textAmm);
         ammPanel.add(choisePanelAmm);
         ammPanel.add(buttonLogoutPanel);
+
+        inserisciDipendente.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new InserisciDipendente();
+            }
+        });
 
 
         //PANNELLO DIPENDENTE
