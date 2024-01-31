@@ -3,6 +3,11 @@ package ui;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.awt.event.ActionEvent;
 
 public class InserisciDipendente extends JFrame {
 
@@ -97,6 +102,18 @@ public class InserisciDipendente extends JFrame {
         buttonPanel.setBorder(new EmptyBorder(10, 0, 30, 0));
         buttonPanel.add(confermaInserimentoButton);
 
+        confermaInserimentoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try(BufferedWriter writer = new BufferedWriter(new FileWriter("dipendenti_form.txt"))) {
+                    writer.write("Nome: " + nomeField.getText() + ", Cognome: " + cognomeField.getText() + ", Data di nascita: " + dataDiNascitaField.getText() + ", Matricola: " + matricolaField.getText() + ", Codice ruolo: " + codiceRuoloField.getText());
+                    writer.newLine();
+                } catch (IOException er) {
+                    er.printStackTrace();
+                }
+            }
+            
+        });
 
         gbc.gridx = 0;
         gbc.gridy = 0;

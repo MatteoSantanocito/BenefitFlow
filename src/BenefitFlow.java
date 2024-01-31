@@ -46,10 +46,10 @@ public class BenefitFlow extends JFrame {
         textAmm.setHorizontalAlignment(JLabel.CENTER);
 
         JButton inserisciDipendente = new JButton("Inserisci Dipendente");
-        JButton mostraDipendente = new JButton("Mostra Dipendenti");
+        JButton mostraDipendente = new JButton("Visualizza congedi");
         JButton gestisciRuolo = new JButton("Gestisci Ruolo");
         JButton gestisciBenefit = new JButton("Gestisci Benefit");
-        JButton gestisciBP = new JButton("Gestisci Buoni Pasto");
+        JButton gestisciBP = new JButton("Assegna Buoni Pasto");
         choisePanelAmm.add(inserisciDipendente);
         choisePanelAmm.add(mostraDipendente);
         choisePanelAmm.add(gestisciRuolo);
@@ -59,6 +59,18 @@ public class BenefitFlow extends JFrame {
         JButton logoutAmm = new JButton("LogOut");
         buttonLogoutPanelAmm.add(logoutAmm);
         buttonLogoutPanelAmm.setBorder(new EmptyBorder(20, 0, 0, 0));
+
+        logoutAmm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SwingUtilities.invokeLater(() -> {
+                    remove(ammPanel);
+                    add(login, BorderLayout.CENTER);
+                    revalidate();
+                    repaint();
+                });
+            }
+        });
 
         ammPanel.add(textAmm);
         ammPanel.add(choisePanelAmm);
@@ -87,6 +99,18 @@ public class BenefitFlow extends JFrame {
         JButton logoutDip = new JButton("LogOut");
         buttonLogoutPanelDip.add(logoutDip);
         buttonLogoutPanelDip.setBorder(new EmptyBorder(20, 0, 0, 0));
+
+        logoutDip.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SwingUtilities.invokeLater(() -> {
+                    remove(dipPanel);
+                    add(login, BorderLayout.CENTER);
+                    revalidate();
+                    repaint();
+                });
+            }
+        });
 
         dipPanel.add(textDip);
         dipPanel.add(choisePanelDip);

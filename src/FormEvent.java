@@ -11,7 +11,7 @@ public class FormEvent extends EventObject {
     public String getPassword() {
         return password;
     }
-
+    
     public FormEvent(Object source, String username, String password) {
         super(source);
         this.username = username;

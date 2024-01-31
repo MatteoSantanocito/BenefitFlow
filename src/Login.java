@@ -51,8 +51,9 @@ public class Login extends JPanel {
 
                 if(formListener != null && !username.isEmpty() && !password.isEmpty()){
                     formListener.formEventListener(formEvent);
+                    usernameField.setText("");
+                    passwordField.setText("");
                 }
-
             }
         });
 
