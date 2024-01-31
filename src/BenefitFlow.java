@@ -39,7 +39,7 @@ public class BenefitFlow extends JFrame {
         //PANNELLO AMMINISTRATORE
         JPanel ammPanel = new JPanel(new GridLayout(3, 1));
         JPanel choisePanelAmm = new JPanel(new FlowLayout());
-        JPanel buttonLogoutPanel = new JPanel(new FlowLayout());
+        JPanel buttonLogoutPanelAmm = new JPanel(new FlowLayout());
 
         JLabel textAmm = new JLabel("Sezione amministratore. Scegli cosa fare");
         textAmm.setFont(new Font("Arial", Font.BOLD, 15));
@@ -58,13 +58,13 @@ public class BenefitFlow extends JFrame {
         choisePanelAmm.add(gestisciBP);
         choisePanelAmm.setBorder(new EmptyBorder(-8, 0, 0, 0));
 
-        JButton logout = new JButton("LogOut");
-        buttonLogoutPanel.add(logout);
-        buttonLogoutPanel.setBorder(new EmptyBorder(20, 0, 0, 0));
+        JButton logoutAmm = new JButton("LogOut");
+        buttonLogoutPanelAmm.add(logoutAmm);
+        buttonLogoutPanelAmm.setBorder(new EmptyBorder(20, 0, 0, 0));
 
         ammPanel.add(textAmm);
         ammPanel.add(choisePanelAmm);
-        ammPanel.add(buttonLogoutPanel);
+        ammPanel.add(buttonLogoutPanelAmm);
 
         inserisciDipendente.addActionListener(new ActionListener() {
             @Override
@@ -77,6 +77,7 @@ public class BenefitFlow extends JFrame {
         //PANNELLO DIPENDENTE
         JPanel dipPanel = new JPanel(new GridLayout(3, 1));
         JPanel choisePanelDip = new JPanel(new FlowLayout());
+        JPanel buttonLogoutPanelDip = new JPanel(new FlowLayout());
 
         JLabel textDip = new JLabel("Sezione dipendente. Scegli cosa fare");
         textDip.setFont(new Font("Arial", Font.BOLD, 15));
@@ -86,9 +87,13 @@ public class BenefitFlow extends JFrame {
         JButton inserisciBenefit = new JButton("Inserisci Benefit");
         choisePanelDip.add(inserisciBenefit);
 
+        JButton logoutDip = new JButton("LogOut");
+        buttonLogoutPanelDip.add(logoutDip);
+        buttonLogoutPanelDip.setBorder(new EmptyBorder(20, 0, 0, 0));
+
         dipPanel.add(textDip);
         dipPanel.add(choisePanelDip);
-        dipPanel.add(buttonLogoutPanel);
+        dipPanel.add(buttonLogoutPanelDip);
 
 
         login.setFormListener(new FormListener() {

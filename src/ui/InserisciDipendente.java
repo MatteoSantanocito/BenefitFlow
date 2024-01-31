@@ -6,9 +6,9 @@ import java.awt.*;
 
 public class InserisciDipendente extends JFrame {
 
-    private JLabel titolo, nomeLabel, cognomeLabel, dataDiNascitaLabel, matricolaLabel, codiceRuoloLabel;
+    private JLabel titolo;
+    private JLabel nomeLabel, cognomeLabel, dataDiNascitaLabel, matricolaLabel, codiceRuoloLabel;
     private JTextField nomeField, cognomeField, dataDiNascitaField, matricolaField, codiceRuoloField;
-
     private JButton confermaInserimentoButton;
 
     public InserisciDipendente(){
@@ -16,50 +16,104 @@ public class InserisciDipendente extends JFrame {
     }
 
     private void initComponent() {
-        setVisible(true);
-        setTitle("BenefitFlow");
-        setSize(400, 500);
-        setLocationRelativeTo(null);
 
-        setLayout(new GridLayout(5, 1));
+        setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 10, 0, 10);
+
         JPanel titlePanel = new JPanel(new FlowLayout());
-        JPanel formPanel = new JPanel(new GridLayout(3, 1));
+        JPanel formPanel = new JPanel(new GridBagLayout());
         JPanel buttonPanel = new JPanel(new FlowLayout());
+
 
         titolo = new JLabel("Inserisci Dipendente");
         titolo.setFont(new Font("Arial", Font.BOLD, 20));
-        titolo.setHorizontalAlignment(JLabel.LEFT);
         titlePanel.setBorder(new EmptyBorder(30, 0, 0, 0));
         titlePanel.add(titolo);
 
-        JPanel nomePanel = new JPanel(new FlowLayout());
+
         nomeLabel = new JLabel("Nome");
         nomeField = new JTextField(15);
-        nomePanel.add(nomeLabel);
-        nomePanel.add(nomeField);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 0.01;
+        gbc.weighty = 0.01;
+        formPanel.add(nomeLabel, gbc);
+        gbc.gridx = 1;
+        gbc.weightx = 0.01;
+        gbc.weighty = 0.01;
+        formPanel.add(nomeField, gbc);
 
-        JPanel cognomePanel = new JPanel(new FlowLayout());
         cognomeLabel = new JLabel("Cognome");
         cognomeField = new JTextField(15);
-        cognomePanel.add(cognomeLabel);
-        cognomePanel.add(cognomeField);
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.weightx = 0.01;
+        gbc.weighty = 0.01;
+        formPanel.add(cognomeLabel, gbc);
+        gbc.gridx = 1;
+        gbc.weightx = 0.01;
+        gbc.weighty = 0.01;
+        formPanel.add(cognomeField, gbc);
 
-        JPanel dataDiNascitaPanel = new JPanel(new FlowLayout());
         dataDiNascitaLabel = new JLabel("Data di Nascita");
         dataDiNascitaField = new JTextField(15);
-        dataDiNascitaPanel.add(dataDiNascitaLabel);
-        dataDiNascitaPanel.add(dataDiNascitaField);
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.weightx = 0.01;
+        gbc.weighty = 0.01;
+        formPanel.add(dataDiNascitaLabel, gbc);
+        gbc.gridx = 1;
+        gbc.weightx = 0.01;
+        gbc.weighty = 0.01;
+        formPanel.add(dataDiNascitaField, gbc);
 
-        formPanel.add(nomePanel);
-        formPanel.add(cognomePanel);
-        formPanel.add(dataDiNascitaPanel);
+        matricolaLabel = new JLabel("Matricola");
+        matricolaField = new JTextField(15);
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.weightx = 0.01;
+        gbc.weighty = 0.01;
+        formPanel.add(matricolaLabel, gbc);
+        gbc.gridx = 1;
+        gbc.weightx = 0.01;
+        gbc.weighty = 0.01;
+        formPanel.add(matricolaField, gbc);
+
+        codiceRuoloLabel = new JLabel("Codice Ruolo");
+        codiceRuoloField = new JTextField(15);
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.weightx = 0.01;
+        gbc.weighty = 0.01;
+        formPanel.add(codiceRuoloLabel, gbc);
+        gbc.gridx = 1;
+        gbc.weightx = 0.01;
+        gbc.weighty = 0.01;
+        formPanel.add(codiceRuoloField, gbc);
+
 
         confermaInserimentoButton = new JButton("Conferma Inserimento");
+        buttonPanel.setBorder(new EmptyBorder(10, 0, 30, 0));
         buttonPanel.add(confermaInserimentoButton);
 
-        add(titlePanel);
-        add(formPanel);
-        add(buttonPanel);
-    }
 
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 0.1;
+        add(titlePanel,gbc);
+        gbc.gridy = 1;
+        gbc.weighty = 0.8;
+        add(formPanel,gbc);
+        gbc.gridy = 2;
+        gbc.weighty = 0.1;
+        add(buttonPanel,gbc);
+
+
+        setVisible(true);
+        setTitle("BenefitFlow");
+        setSize(400, 400);
+        setLocationRelativeTo(null);
+    }
 }
