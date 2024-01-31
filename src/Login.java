@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.border.EmptyBorder;
 
 public class Login extends JPanel {
@@ -7,6 +9,7 @@ public class Login extends JPanel {
     private JLabel titolo, usernameLabel, passwordLabel;
     private JTextField usernameField, passwordField;
     private JButton login;
+    private FormListener formListener;
 
     public Login() {
         setLayout(new GridLayout(3, 1));
@@ -38,9 +41,28 @@ public class Login extends JPanel {
         login = new JButton("Login");
         buttonPanel.add(login);
 
+        login.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String username = usernameField.getText();
+                String password = passwordField.getText();
+
+                FormEvent formEvent = new FormEvent(this,username,password);
+
+                if(formListener != null && !username.isEmpty() && !password.isEmpty()){
+                    formListener.formEventListener(formEvent);
+                }
+
+            }
+        });
+
         add(titlePanel);
         add(formPanel);
         add(buttonPanel);
 
+    }
+
+    public void setFormListener(FormListener formListener){
+        this.formListener = formListener;
     }
 }

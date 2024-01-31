@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,18 +21,89 @@ public class BenefitFlow extends JFrame {
         initComponent();
     }
 
-    private void initComponent() {
+    public void initComponent() {
         login  = new Login();
 
         setLayout(new BorderLayout());
-        setTitle("BenefitFlow");
-
         add(login,BorderLayout.CENTER);
 
         setVisible(true);
+        setTitle("BenefitFlow");
         setSize(400, 300);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+        //PANNELLO AMMINISTRATORE
+        JPanel ammPanel = new JPanel(new GridLayout(3, 1));
+        JPanel choisePanelAmm = new JPanel(new FlowLayout());
+        JPanel buttonLogoutPanel = new JPanel(new FlowLayout());
+
+        JLabel textAmm = new JLabel("Sezione amministratore. Scegli cosa fare");
+        textAmm.setFont(new Font("Arial", Font.BOLD, 15));
+        textAmm.setHorizontalAlignment(JLabel.CENTER);
+        textAmm.setBorder(new EmptyBorder(0, 10, 30, 0));
+
+        JButton inserisciDipendente = new JButton("Inserisci Dipendente");
+        JButton mostraDipendente = new JButton("Mostra Dipendenti");
+        JButton gestisciRuolo = new JButton("Gestisci Ruolo");
+        JButton gestisciBenefit = new JButton("Gestisci Benefit");
+        JButton gestisciBP = new JButton("Gestisci Buoni Pasto");
+        choisePanelAmm.add(inserisciDipendente);
+        choisePanelAmm.add(mostraDipendente);
+        choisePanelAmm.add(gestisciRuolo);
+        choisePanelAmm.add(gestisciBenefit);
+        choisePanelAmm.add(gestisciBP);
+        choisePanelAmm.setBorder(new EmptyBorder(-8, 0, 0, 0));
+
+        JButton logout = new JButton("LogOut");
+        buttonLogoutPanel.add(logout);
+        buttonLogoutPanel.setBorder(new EmptyBorder(20, 0, 0, 0));
+
+        ammPanel.add(textAmm);
+        ammPanel.add(choisePanelAmm);
+        ammPanel.add(buttonLogoutPanel);
+
+
+        //PANNELLO DIPENDENTE
+        JPanel dipPanel = new JPanel(new GridLayout(3, 1));
+        JPanel choisePanelDip = new JPanel(new FlowLayout());
+
+        JLabel textDip = new JLabel("Sezione dipendente. Scegli cosa fare");
+        textDip.setFont(new Font("Arial", Font.BOLD, 15));
+        textDip.setHorizontalAlignment(JLabel.CENTER);
+        textDip.setBorder(new EmptyBorder(0, 10, 30, 0));
+
+        JButton inserisciBenefit = new JButton("Inserisci Benefit");
+        choisePanelDip.add(inserisciBenefit);
+
+        dipPanel.add(textDip);
+        dipPanel.add(choisePanelDip);
+        dipPanel.add(buttonLogoutPanel);
+
+
+        login.setFormListener(new FormListener() {
+            @Override
+            public void formEventListener(FormEvent fe) {
+                String name = fe.getUsername();
+                String pass = fe.getPassword();
+                if("admin".equals(name) && "admin".equals(pass)){
+                    SwingUtilities.invokeLater(() -> {
+                        remove(login);
+                        add(ammPanel, BorderLayout.CENTER);
+                        revalidate();
+                        repaint();
+                    });
+                }else{
+                    SwingUtilities.invokeLater(() -> {
+                        remove(login);
+                        add(dipPanel, BorderLayout.CENTER);
+                        revalidate();
+                        repaint();
+                    });
+                }
+            }
+        });
     }
 
 
