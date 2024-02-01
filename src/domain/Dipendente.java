@@ -46,6 +46,12 @@ public class Dipendente {
     public void setRuolo(Ruolo ruolo) {
         this.ruolo = ruolo;
     }
+    public String getNomeFromMatricola(String matricola){
+        if (this.matricola.equals(matricola)) {
+            return this.nome;
+        }
+        return null;
+    }
 
     @Override
     public String toString() {

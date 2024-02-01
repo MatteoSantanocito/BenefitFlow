@@ -4,20 +4,29 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.border.EmptyBorder;
+
+import ui.InserisciNuovoDipendente;
 
 public class Login extends JPanel {
 
     private JLabel titolo, usernameLabel, passwordLabel;
     private JTextField usernameField, passwordField;
     private JButton login;
-    private FormListener formListener;
+    private Dipendente dipendente;
+    private JPanel ammPanel, dipPanel, mainPanel;
+
+    private BenefitFlow benefitFlow;
 
     public Login() {
-        setLayout(new GridLayout(3, 1));
+        setLayout(new GridLayout(1, 1));
+        mainPanel = new JPanel(new GridLayout(3, 1));
         JPanel titlePanel = new JPanel(new FlowLayout());
         JPanel formPanel = new JPanel(new GridLayout(2, 1));
-        JPanel buttonPanel = new JPanel(new FlowLayout());
+        JPanel buttonPanel = new JPanel(new FlowLayout()); 
+        ammPanel = ammPanel();
+        dipPanel = dipPanel();
 
         titolo = new JLabel("BenefitFlow");
         titolo.setFont(new Font("Arial", Font.BOLD, 20));
@@ -49,23 +58,117 @@ public class Login extends JPanel {
                 String username = usernameField.getText();
                 String password = passwordField.getText();
 
-                FormEvent formEvent = new FormEvent(this,username,password);
-
-                if(formListener != null && !username.isEmpty() && !password.isEmpty()){
-                    formListener.formEventListener(formEvent);
-                    usernameField.setText("");
-                    passwordField.setText("");
+                if("admin".equals(username) && "admin".equals(password)){
+                    SwingUtilities.invokeLater(() -> {
+                        remove(mainPanel);
+                        add(ammPanel);
+                        revalidate();
+                        repaint();
+                    });
+                }else{
+                    String nome = dipendente.getNomeFromMatricola(password);
+                    if (nome.equals(username)) {
+                        mainPanel.setVisible(false);
+                        dipPanel.setVisible(true);
+                    }else{
+                        System.out.println("Password errata o dipendente non registrato.");
+                    }
                 }
+                
+                usernameField.setText("");
+                passwordField.setText("");
             }
         });
 
-        add(titlePanel);
-        add(formPanel);
-        add(buttonPanel);
-
+        mainPanel.add(titlePanel);
+        mainPanel.add(formPanel);
+        mainPanel.add(buttonPanel);
+        add(mainPanel);
     }
 
-    public void setFormListener(FormListener formListener){
-        this.formListener = formListener;
+    public JPanel ammPanel(){
+        JPanel ammPanel = new JPanel(new GridLayout(3, 1));
+        JPanel choisePanelAmm = new JPanel(new GridLayout(3,2));
+        JPanel buttonLogoutPanelAmm = new JPanel(new FlowLayout());
+
+        JLabel textAmm = new JLabel("Sezione amministratore. Scegli cosa fare");
+        textAmm.setFont(new Font("Arial", Font.BOLD, 15));
+        textAmm.setHorizontalAlignment(JLabel.CENTER);
+
+        JButton inserisciDipendente = new JButton("Inserisci Dipendente");
+        JButton mostraDipendente = new JButton("Visualizza congedi");
+        JButton gestisciRuolo = new JButton("Gestisci Ruolo");
+        JButton gestisciBenefit = new JButton("Gestisci Benefit");
+        JButton gestisciBP = new JButton("Assegna Buoni Pasto");
+        choisePanelAmm.add(inserisciDipendente);
+        choisePanelAmm.add(mostraDipendente);
+        choisePanelAmm.add(gestisciRuolo);
+        choisePanelAmm.add(gestisciBenefit);
+        choisePanelAmm.add(gestisciBP);
+
+        JButton logoutAmm = new JButton("LogOut");
+        buttonLogoutPanelAmm.add(logoutAmm);
+        buttonLogoutPanelAmm.setBorder(new EmptyBorder(20, 0, 0, 0));
+
+        logoutAmm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SwingUtilities.invokeLater(() -> {
+                    remove(ammPanel);
+                    add(mainPanel);
+                    revalidate();
+                    repaint();
+                });
+            }
+        });
+
+        ammPanel.add(textAmm);
+        ammPanel.add(choisePanelAmm);
+        ammPanel.add(buttonLogoutPanelAmm);
+
+
+        inserisciDipendente.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new InserisciNuovoDipendente(benefitFlow);
+            }
+        });
+
+        return ammPanel;
+    }
+
+    public JPanel dipPanel(){
+        JPanel dipPanel = new JPanel(new GridLayout(3, 1));
+        JPanel choisePanelDip = new JPanel(new FlowLayout());
+        JPanel buttonLogoutPanelDip = new JPanel(new FlowLayout());
+
+        JLabel textDip = new JLabel("Sezione dipendente. Scegli cosa fare");
+        textDip.setFont(new Font("Arial", Font.BOLD, 15));
+        textDip.setHorizontalAlignment(JLabel.CENTER);
+
+        JButton inserisciBenefit = new JButton("Inserisci Benefit");
+        choisePanelDip.add(inserisciBenefit);
+
+        JButton logoutDip = new JButton("LogOut");
+        buttonLogoutPanelDip.add(logoutDip);
+        buttonLogoutPanelDip.setBorder(new EmptyBorder(20, 0, 0, 0));
+
+        logoutDip.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SwingUtilities.invokeLater(() -> {
+                    remove(dipPanel);
+                    add(mainPanel);
+                    revalidate();
+                    repaint();
+                });
+            }
+        });
+
+        dipPanel.add(textDip);
+        dipPanel.add(choisePanelDip);
+        dipPanel.add(buttonLogoutPanelDip);
+        
+        return dipPanel;
     }
 }
