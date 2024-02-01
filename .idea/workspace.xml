@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a60ab205-e48e-458a-b714-77e9ceaa1b87" name="Changes" comment="implementazione login con accesso ai dati del login">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="a60ab205-e48e-458a-b714-77e9ceaa1b87" name="Changes" comment="modifica interfaccia classe InserisciDipendente">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BenefitFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BenefitFlow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/InserisciDipendente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/InserisciDipendente.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +122,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706584010014</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="modifica interfaccia classe InserisciDipendente">
+      <option name="closed" value="true" />
+      <created>1706684756014</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1706684756014</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,6 +141,7 @@
     <MESSAGE value="classe BenefitFlow,con annessi metodi, creata" />
     <MESSAGE value="controllo su matricola per inserimento dipendente" />
     <MESSAGE value="implementazione login" />
-    <option name="LAST_COMMIT_MESSAGE" value="implementazione login" />
+    <MESSAGE value="modifica interfaccia classe InserisciDipendente" />
+    <option name="LAST_COMMIT_MESSAGE" value="modifica interfaccia classe InserisciDipendente" />
   </component>
 </project>

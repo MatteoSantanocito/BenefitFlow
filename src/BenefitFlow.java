@@ -38,13 +38,12 @@ public class BenefitFlow extends JFrame {
 
         //PANNELLO AMMINISTRATORE
         JPanel ammPanel = new JPanel(new GridLayout(3, 1));
-        JPanel choisePanelAmm = new JPanel(new FlowLayout());
+        JPanel choisePanelAmm = new JPanel(new GridLayout(3,2));
         JPanel buttonLogoutPanelAmm = new JPanel(new FlowLayout());
 
         JLabel textAmm = new JLabel("Sezione amministratore. Scegli cosa fare");
         textAmm.setFont(new Font("Arial", Font.BOLD, 15));
         textAmm.setHorizontalAlignment(JLabel.CENTER);
-        textAmm.setBorder(new EmptyBorder(0, 10, 30, 0));
 
         JButton inserisciDipendente = new JButton("Inserisci Dipendente");
         JButton mostraDipendente = new JButton("Mostra Dipendenti");
@@ -56,7 +55,6 @@ public class BenefitFlow extends JFrame {
         choisePanelAmm.add(gestisciRuolo);
         choisePanelAmm.add(gestisciBenefit);
         choisePanelAmm.add(gestisciBP);
-        choisePanelAmm.setBorder(new EmptyBorder(-8, 0, 0, 0));
 
         JButton logoutAmm = new JButton("LogOut");
         buttonLogoutPanelAmm.add(logoutAmm);
@@ -82,7 +80,6 @@ public class BenefitFlow extends JFrame {
         JLabel textDip = new JLabel("Sezione dipendente. Scegli cosa fare");
         textDip.setFont(new Font("Arial", Font.BOLD, 15));
         textDip.setHorizontalAlignment(JLabel.CENTER);
-        textDip.setBorder(new EmptyBorder(0, 10, 30, 0));
 
         JButton inserisciBenefit = new JButton("Inserisci Benefit");
         choisePanelDip.add(inserisciBenefit);
