@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.swing.border.EmptyBorder;
 
+import ui.GestisciRuolo;
 import ui.InserisciNuovoDipendente;
 
 public class Login extends JPanel {
@@ -145,6 +146,13 @@ public class Login extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new InserisciNuovoDipendente(benefitFlow);
+            }
+        });
+
+        gestisciRuolo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new GestisciRuolo(benefitFlow);
             }
         });
 

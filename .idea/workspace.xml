@@ -5,12 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a60ab205-e48e-458a-b714-77e9ceaa1b87" name="Changes" comment="prova inserimento dati su file">
+      <change afterPath="$PROJECT_DIR$/src/ui/GestisciRuolo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domain/BenefitFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/BenefitFlow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domain/Dipendente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Dipendente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domain/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domain/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/InserisciNuovoDipendente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/InserisciNuovoDipendente.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,11 +81,14 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ui" />
+    </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.1-openjdk-21.0.1-f644763e9732-2f79fb23" />
+        <option value="jdk-17.0.9-corretto-17.0.9-3183f394aec4-5f3ff201" />
       </set>
     </attachedChunks>
   </component>
@@ -152,6 +156,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="eliminato commenti" />

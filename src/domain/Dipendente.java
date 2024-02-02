@@ -50,7 +50,11 @@ public class Dipendente {
 
     @Override
     public String toString() {
+        if(this.getRuolo() == null) {
+            return "nome: " + nome + ", cognome: " + cognome + ", data di nascita: " + dataDiNascita + ", matricola: "
+                    + matricola + "\n    ruolo: non assegnato";
+        }
         return "nome: " + nome + ", cognome: " + cognome + ", data di nascita: " + dataDiNascita + ", matricola: "
-                + matricola + ", ruolo: " + ruolo;
+                + matricola + "\n    ruolo: " + ruolo;
     }
 }

@@ -56,7 +56,7 @@ public class BenefitFlow extends JFrame {
                     System.out.println("Il ruolo inserito non esiste. Il dipendente è stato comunque inserito senza ruolo.");
                 }else{
                     this.dipendenteCorrente = new Dipendente(nome, cognome, dataDiNascita, matricola);
-                    System.out.println("Dipendente insertito correttamente senza ruolo!");
+                    System.out.println("Dipendente inserito correttamente senza ruolo!");
                 }
             }
         }else{
@@ -79,7 +79,7 @@ public class BenefitFlow extends JFrame {
         return listDipendenti;
     }
 
-    public void gestisciRuolo(String matricola, String codiceRuolo){
+    public void confermaRuolo(String matricola, String codiceRuolo){
         Dipendente d = elencoDipendenti.get(matricola);
         if(d != null){
             Ruolo r = d.getRuolo();
@@ -95,11 +95,12 @@ public class BenefitFlow extends JFrame {
         }
     }
 
-    public void confermaRuolo(){
-        if(dipendenteCorrente != null){
-            System.out.println("Il nuovo ruolo assegnato al dipendente " + dipendenteCorrente.getMatricola() + " è: " + dipendenteCorrente.getRuolo());
-        }
-    }
+
+//    public void confermaRuolo(){
+//        if(dipendenteCorrente != null){
+//            System.out.println("Il nuovo ruolo assegnato al dipendente " + dipendenteCorrente.getMatricola() + " è: " + dipendenteCorrente.getRuolo());
+//        }
+//    }
 
     public void loadRuoli() {
         Ruolo r1 = new Ruolo("ing01", "dataAnalist", 1);

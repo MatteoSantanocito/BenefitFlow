@@ -4,12 +4,14 @@ public class Main {
     public static void main(String[] args) {
         BenefitFlow benefitFlow = BenefitFlow.getInstance();
         benefitFlow.initComponent();
-//
-//        System.out.println("\n\nInserimento nuovo dipendente...");
-//        Dipendente d1 = benefitFlow.inserisciNuovoDipendente("Giorgio", "Di Bartolo", "29/09/2000", "GDB0001", null);
-//        benefitFlow.confermaInserimento();
-//        Dipendente d2 = benefitFlow.inserisciNuovoDipendente("Silvia", "Di Bartolo", "29/09/2000", "SDB0002", "inf01");
-//        benefitFlow.confermaInserimento();
+
+        System.out.println("\n\nInserimento nuovo dipendente...");
+        benefitFlow.inserisciNuovoDipendente("Giorgio", "Di Bartolo", "29/09/2000", "GDB001", null);
+        benefitFlow.confermaInserimento();
+        benefitFlow.inserisciNuovoDipendente("Silvia", "Garozzo", "29/09/2000", "SGZ0002", "inf01");
+        benefitFlow.confermaInserimento();
+        benefitFlow.inserisciNuovoDipendente("Matteo", "Santanocito", "24/09/2000", "MSN0003", "inf03");
+        benefitFlow.confermaInserimento();
 //
 //
 //        List<Dipendente> listDipendenti = new ArrayList<>();
@@ -26,6 +28,5 @@ public class Main {
 //
 //        listDipendenti = benefitFlow.mostraDipendenti();
 //        System.out.println("\n\nStampo la lista completa dei dipendenti aggiornata...\n" + listDipendenti + "\n\n");
-//        new BenefitFlow();
     }
 }
