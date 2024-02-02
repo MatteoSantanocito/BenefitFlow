@@ -48,7 +48,7 @@ public class GestisciRuolo extends JFrame {
         JScrollPane scrollPane = new JScrollPane(textArea);
         textAreaPanel.add(scrollPane);
         textArea.setRows(13);
-        textArea.setColumns(46);
+        textArea.setColumns(48);
         textArea.setEditable(false);
         textArea.setMargin(new Insets(10,12,0,10));
 

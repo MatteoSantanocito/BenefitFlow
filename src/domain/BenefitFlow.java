@@ -89,8 +89,12 @@ public class BenefitFlow extends JFrame {
                 System.out.println("Ruolo assegnato correttamente.");
             } else {
                 Ruolo ruolo = ruoli.get(codiceRuolo);
-                d.setRuolo(ruolo);
-                System.out.println("Ruolo modificato correttamente.");
+                if (ruolo != null) {
+                    d.setRuolo(ruolo);
+                    System.out.println("Ruolo modificato correttamente.");
+                }else{
+                    System.out.println("Il codice ruolo inserito non esiste. Mantengo il precedente ruolo.");
+                }
             }
         }
     }

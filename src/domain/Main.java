@@ -8,9 +8,9 @@ public class Main {
         System.out.println("\n\nInserimento nuovo dipendente...");
         benefitFlow.inserisciNuovoDipendente("Giorgio", "Di Bartolo", "29/09/2000", "GDB001", null);
         benefitFlow.confermaInserimento();
-        benefitFlow.inserisciNuovoDipendente("Silvia", "Garozzo", "29/09/2000", "SGZ0002", "inf01");
+        benefitFlow.inserisciNuovoDipendente("Silvia", "Garozzo", "29/09/2000", "SGZ002", "inf01");
         benefitFlow.confermaInserimento();
-        benefitFlow.inserisciNuovoDipendente("Matteo", "Santanocito", "24/09/2000", "MSN0003", "inf03");
+        benefitFlow.inserisciNuovoDipendente("Matteo", "Santanocito", "24/09/2000", "MSN003", "inf03");
         benefitFlow.confermaInserimento();
 //
 //
