@@ -107,16 +107,15 @@ public class InserisciNuovoDipendente extends JFrame {
         confermaInserimentoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                benefitFlow.inserisciNuovoDipendente(nomeField.getText(), cognomeField.getText(), dataDiNascitaField.getText(), matricolaField.getText(), codiceRuoloField.getText());
+                benefitFlow.confermaInserimento();
                 nomeField.setText("");
                 cognomeField.setText("");
                 dataDiNascitaField.setText("");
                 matricolaField.setText("");
                 codiceRuoloField.setText("");
                 InserisciNuovoDipendente.this.dispose();
-                benefitFlow.inserisciNuovoDipendente(nomeField.getText(), cognomeField.getText(), dataDiNascitaField.getText(), matricolaField.getText(), codiceRuoloField.getText());
-                benefitFlow.confermaInserimento();
             }
-            
         });
 
         gbc.gridx = 0;

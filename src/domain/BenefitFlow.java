@@ -17,11 +17,10 @@ public class BenefitFlow extends JFrame {
         this.elencoDipendenti = new HashMap<>();
         this.ruoli = new HashMap<>();
         loadRuoli();
-        initComponent();
     }
 
     public void initComponent() {
-        login  = new Login();
+        login  = new Login(this);
 
         setLayout(new BorderLayout());
         add(login,BorderLayout.CENTER);
@@ -44,7 +43,7 @@ public class BenefitFlow extends JFrame {
     }
 
     boolean flag = false;
-    public Dipendente inserisciNuovoDipendente(String nome, String cognome, String dataDiNascita, String matricola, String codiceRuolo){
+    public void inserisciNuovoDipendente(String nome, String cognome, String dataDiNascita, String matricola, String codiceRuolo){
         Ruolo r = ruoli.get(codiceRuolo);
         Dipendente d = elencoDipendenti.get(matricola);
         if(d == null){
@@ -64,7 +63,6 @@ public class BenefitFlow extends JFrame {
             flag = true;
             System.out.println("Esiste già un dipendente con matricola " + matricola);
         }
-        return dipendenteCorrente;
     }
 
     public void confermaInserimento(){

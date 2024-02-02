@@ -2,8 +2,8 @@ package domain;
 
 public class Main {
     public static void main(String[] args) {
-//        BenefitFlow benefitFlow = BenefitFlow.getInstance();
-//        benefitFlow.loadRuoli();
+        BenefitFlow benefitFlow = BenefitFlow.getInstance();
+        benefitFlow.initComponent();
 //
 //        System.out.println("\n\nInserimento nuovo dipendente...");
 //        Dipendente d1 = benefitFlow.inserisciNuovoDipendente("Giorgio", "Di Bartolo", "29/09/2000", "GDB0001", null);
@@ -26,6 +26,6 @@ public class Main {
 //
 //        listDipendenti = benefitFlow.mostraDipendenti();
 //        System.out.println("\n\nStampo la lista completa dei dipendenti aggiornata...\n" + listDipendenti + "\n\n");
-        new BenefitFlow();
+//        new BenefitFlow();
     }
 }

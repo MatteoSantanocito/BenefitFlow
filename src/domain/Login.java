@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.border.EmptyBorder;
 
@@ -14,12 +15,12 @@ public class Login extends JPanel {
     private JLabel titolo, usernameLabel, passwordLabel;
     private JTextField usernameField, passwordField;
     private JButton login;
-    private Dipendente dipendente;
     private JPanel ammPanel, dipPanel, mainPanel;
 
     private BenefitFlow benefitFlow;
 
-    public Login() {
+    public Login(BenefitFlow b) {
+        this.benefitFlow = b;
         setLayout(new GridLayout(1, 1));
         mainPanel = new JPanel(new GridLayout(3, 1));
         JPanel titlePanel = new JPanel(new FlowLayout());
@@ -66,10 +67,23 @@ public class Login extends JPanel {
                         repaint();
                     });
                 }else{
-                    String nome = dipendente.getNomeFromMatricola(password);
+                    List<Dipendente> d = benefitFlow.mostraDipendenti();
+                    String nome = "";
+                    for (Dipendente dipendente : d){
+                        String matricola = dipendente.getMatricola();
+                        if(matricola.equals(password)){
+                           nome = dipendente.getNome();
+                           break;
+                        }
+                    }
+                    System.out.println(nome);
                     if (nome.equals(username)) {
-                        mainPanel.setVisible(false);
-                        dipPanel.setVisible(true);
+                        SwingUtilities.invokeLater(() -> {
+                            remove(mainPanel);
+                            add(dipPanel);
+                            revalidate();
+                            repaint();
+                        });
                     }else{
                         System.out.println("Password errata o dipendente non registrato.");
                     }

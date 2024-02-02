@@ -4,17 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a60ab205-e48e-458a-b714-77e9ceaa1b87" name="Changes" comment="modifiche interfaccia utente">
+    <list default="true" id="a60ab205-e48e-458a-b714-77e9ceaa1b87" name="Changes" comment="prova inserimento dati su file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BenefitFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/BenefitFlow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dipendente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Dipendente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FormEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/FormEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FormListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/FormListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ruolo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Ruolo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dipendenti_form.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/InserisciDipendente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/InserisciNuovoDipendente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/BenefitFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/BenefitFlow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/Dipendente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Dipendente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/InserisciNuovoDipendente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/InserisciNuovoDipendente.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,28 +54,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.InserisciDipendente.executor": "Run",
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "/Users/matteo/IdeaProjects/BenefitFlow/src/Main.java",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.InserisciDipendente.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/matteo/IdeaProjects/BenefitFlow/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
