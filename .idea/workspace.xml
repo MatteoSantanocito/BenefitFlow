@@ -4,9 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a60ab205-e48e-458a-b714-77e9ceaa1b87" name="Changes" comment="modifica interfaccia classe InserisciDipendente">
+    <list default="true" id="a60ab205-e48e-458a-b714-77e9ceaa1b87" name="Changes" comment="modifiche interfaccia utente">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BenefitFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BenefitFlow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BenefitFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/BenefitFlow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dipendente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Dipendente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FormEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/FormEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FormListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/FormListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ruolo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Ruolo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dipendenti_form.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/InserisciDipendente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/InserisciNuovoDipendente.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +80,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -130,7 +143,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706684756014</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="modifiche interfaccia utente">
+      <option name="closed" value="true" />
+      <created>1706754984984</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1706754984984</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,6 +163,7 @@
     <MESSAGE value="controllo su matricola per inserimento dipendente" />
     <MESSAGE value="implementazione login" />
     <MESSAGE value="modifica interfaccia classe InserisciDipendente" />
-    <option name="LAST_COMMIT_MESSAGE" value="modifica interfaccia classe InserisciDipendente" />
+    <MESSAGE value="modifiche interfaccia utente" />
+    <option name="LAST_COMMIT_MESSAGE" value="modifiche interfaccia utente" />
   </component>
 </project>

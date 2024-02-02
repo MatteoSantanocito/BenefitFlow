@@ -1,0 +1,3 @@
+Nome: Giorgio, Cognome: Di Bartolo, Data di nascita: 29/09/2000, Matricola: GDB001, Ruolo: [codiceRuolo: inf01, nome: javaDev, livello: 1]
+Nome: Ste, Cognome: mac, Data di nascita: 20/10/2000, Matricola: SM003, Ruolo: [codiceRuolo: ing04, nome: softwareDev, livello: 1]
+Nome: Silvia, Cognome: Garozzo, Data di nascita: 30/04/2001, Matricola: SG002, Ruolo: [codiceRuolo: ing03, nome: dataAnalist, livello: 3]

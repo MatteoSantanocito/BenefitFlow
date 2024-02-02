@@ -1,5 +1,6 @@
-import java.util.ArrayList;
-import java.util.List;
+package domain;
+
+import domain.*;
 
 public class Main {
     public static void main(String[] args) {

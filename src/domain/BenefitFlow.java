@@ -1,10 +1,15 @@
-import ui.InserisciDipendente;
+package domain;
+
+import ui.InserisciNuovoDipendente;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
@@ -12,8 +17,8 @@ public class BenefitFlow extends JFrame {
 
     private static BenefitFlow benefitFlow;
     private Dipendente dipendenteCorrente;
-    private Map<String,Ruolo> ruoli;
-    private Map<String,Dipendente> elencoDipendenti;
+    private Map<String, Ruolo> ruoli;
+    private Map<String, Dipendente> elencoDipendenti;
     private Login login;
 
     public BenefitFlow(){
@@ -79,7 +84,7 @@ public class BenefitFlow extends JFrame {
         inserisciDipendente.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new InserisciDipendente();
+                new InserisciNuovoDipendente(ruoli,benefitFlow);
             }
         });
 
@@ -130,12 +135,35 @@ public class BenefitFlow extends JFrame {
                         repaint();
                     });
                 }else{
-                    SwingUtilities.invokeLater(() -> {
-                        remove(login);
-                        add(dipPanel, BorderLayout.CENTER);
-                        revalidate();
-                        repaint();
-                    });
+                    try (BufferedReader reader = new BufferedReader(new FileReader("src/fileTesto/dipendenti.txt"))) {
+                        String line;
+
+                        while ((line = reader.readLine()) != null) {
+                            String[] campi = line.split(", ");
+
+                            String nome = null;
+                            String matricola = null;
+
+                            for (String campo : campi) {
+                                if (campo.startsWith("Nome")) {
+                                    nome = campo.split(":")[1].trim();
+                                } else if (campo.startsWith("Matricola")) {
+                                    matricola = campo.split(":")[1].trim();
+                                }
+                            }
+
+                            if (name.equals(nome) && pass.equals(matricola)) {
+                                SwingUtilities.invokeLater(() -> {
+                                    remove(login);
+                                    add(dipPanel, BorderLayout.CENTER);
+                                    revalidate();
+                                    repaint();
+                                });
+                            }
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });

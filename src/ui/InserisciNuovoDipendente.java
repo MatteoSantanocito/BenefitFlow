@@ -1,5 +1,8 @@
 package ui;
 
+
+import domain.BenefitFlow;
+import domain.Ruolo;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -8,15 +11,21 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
+import java.util.Map;
 
-public class InserisciDipendente extends JFrame {
+public class InserisciNuovoDipendente extends JFrame {
 
     private JLabel titolo;
     private JLabel nomeLabel, cognomeLabel, dataDiNascitaLabel, matricolaLabel, codiceRuoloLabel;
     private JTextField nomeField, cognomeField, dataDiNascitaField, matricolaField, codiceRuoloField;
     private JButton confermaInserimentoButton;
 
-    public InserisciDipendente(){
+    private Map<String,Ruolo> ruoli;
+    private BenefitFlow benefitFlow;
+
+    public InserisciNuovoDipendente(Map<String,Ruolo> r, BenefitFlow b){
+        this.ruoli = r;
+        this.benefitFlow = b;
         initComponent();
     }
 
@@ -105,9 +114,21 @@ public class InserisciDipendente extends JFrame {
         confermaInserimentoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try(BufferedWriter writer = new BufferedWriter(new FileWriter("dipendenti_form.txt"))) {
-                    writer.write("Nome: " + nomeField.getText() + ", Cognome: " + cognomeField.getText() + ", Data di nascita: " + dataDiNascitaField.getText() + ", Matricola: " + matricolaField.getText() + ", Codice ruolo: " + codiceRuoloField.getText());
+                try(BufferedWriter writer = new BufferedWriter(new FileWriter("src/fileTesto/dipendenti.txt", true))) {
+                    String codiceRuolo = codiceRuoloField.getText();
+                    Ruolo ruolo = ruoli.get(codiceRuolo);
+                    writer.write("Nome: " + nomeField.getText() +
+                            ", Cognome: " + cognomeField.getText() +
+                            ", Data di nascita: " + dataDiNascitaField.getText() +
+                            ", Matricola: " + matricolaField.getText() +
+                            ", Ruolo: " + ruolo.toString());
+                    nomeField.setText("");
+                    cognomeField.setText("");
+                    dataDiNascitaField.setText("");
+                    matricolaField.setText("");
+                    codiceRuoloField.setText("");
                     writer.newLine();
+                    InserisciNuovoDipendente.this.dispose();
                 } catch (IOException er) {
                     er.printStackTrace();
                 }
@@ -127,10 +148,11 @@ public class InserisciDipendente extends JFrame {
         gbc.weighty = 0.1;
         add(buttonPanel,gbc);
 
-
+        setResizable(false);
         setVisible(true);
         setTitle("BenefitFlow");
         setSize(400, 400);
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 }

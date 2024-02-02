@@ -1,3 +1,5 @@
+package domain;
+
 public class Ruolo {
     private String codiceRuolo;
     private String nome;
