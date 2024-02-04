@@ -6,7 +6,7 @@ public class Main {
         benefitFlow.initComponent();
 
         System.out.println("\n\nInserimento nuovo dipendente...");
-        benefitFlow.inserisciNuovoDipendente("Giorgio", "Di Bartolo", "29/09/2000", "GDB001", null);
+        benefitFlow.inserisciNuovoDipendente("Giorgio", "Di Bartolo", "29/09/2000", "GDB001", "ing03");
         benefitFlow.confermaInserimento();
         benefitFlow.inserisciNuovoDipendente("Silvia", "Garozzo", "29/09/2000", "SGZ002", "inf01");
         benefitFlow.confermaInserimento();

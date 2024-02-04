@@ -99,13 +99,6 @@ public class BenefitFlow extends JFrame {
         }
     }
 
-
-//    public void confermaRuolo(){
-//        if(dipendenteCorrente != null){
-//            System.out.println("Il nuovo ruolo assegnato al dipendente " + dipendenteCorrente.getMatricola() + " è: " + dipendenteCorrente.getRuolo());
-//        }
-//    }
-
     public void loadRuoli() {
         Ruolo r1 = new Ruolo("ing01", "dataAnalist", 1);
         Ruolo r2 = new Ruolo("ing02", "dataAnalist", 2);
