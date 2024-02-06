@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import ui.GestisciRuolo;
 import ui.InserisciNuovoDipendente;
 import ui.ScegliBenefit;
+import ui.VisualizzaCongedi;
 
 public class Login extends JPanel {
 
@@ -111,12 +112,12 @@ public class Login extends JPanel {
         textAmm.setHorizontalAlignment(JLabel.CENTER);
 
         JButton inserisciDipendente = new JButton("Inserisci Dipendente");
-        JButton mostraDipendente = new JButton("Visualizza congedi");
+        JButton mostraCongedi = new JButton("Visualizza congedi");
         JButton gestisciRuolo = new JButton("Gestisci Ruolo");
         JButton gestisciBenefit = new JButton("Gestisci Benefit");
         JButton gestisciBP = new JButton("Assegna Buoni Pasto");
         choisePanelAmm.add(inserisciDipendente);
-        choisePanelAmm.add(mostraDipendente);
+        choisePanelAmm.add(mostraCongedi);
         choisePanelAmm.add(gestisciRuolo);
         choisePanelAmm.add(gestisciBenefit);
         choisePanelAmm.add(gestisciBP);
@@ -156,6 +157,13 @@ public class Login extends JPanel {
             }
         });
 
+        mostraCongedi.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new VisualizzaCongedi(benefitFlow);
+            }
+        });
+
         return ammPanel;
     }
 
@@ -190,7 +198,7 @@ public class Login extends JPanel {
         inserisciBenefit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ScegliBenefit();
+                new ScegliBenefit(benefitFlow);
             }
         });
 

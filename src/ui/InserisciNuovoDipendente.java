@@ -6,6 +6,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 
 public class InserisciNuovoDipendente extends JFrame {
@@ -107,14 +109,30 @@ public class InserisciNuovoDipendente extends JFrame {
         confermaInserimentoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                benefitFlow.inserisciNuovoDipendente(nomeField.getText(), cognomeField.getText(), dataDiNascitaField.getText(), matricolaField.getText(), codiceRuoloField.getText());
-                benefitFlow.confermaInserimento();
-                nomeField.setText("");
-                cognomeField.setText("");
-                dataDiNascitaField.setText("");
-                matricolaField.setText("");
-                codiceRuoloField.setText("");
-                InserisciNuovoDipendente.this.dispose();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+                if (!nomeField.getText().isEmpty() && !cognomeField.getText().isEmpty() && !dataDiNascitaField.getText().isEmpty() && !matricolaField.getText().isEmpty()) {
+                    try {
+                        LocalDate dataDiNascitaFormatted = LocalDate.parse(dataDiNascitaField.getText(), formatter);
+                        benefitFlow.inserisciNuovoDipendente(nomeField.getText(), cognomeField.getText(), dataDiNascitaFormatted, matricolaField.getText(), codiceRuoloField.getText());
+                        benefitFlow.confermaInserimento();
+                        nomeField.setText("");
+                        cognomeField.setText("");
+                        dataDiNascitaField.setText("");
+                        matricolaField.setText("");
+                        codiceRuoloField.setText("");
+                        InserisciNuovoDipendente.this.dispose();
+                    } catch (Exception ex) {
+                        System.err.println("Inserimento nuovo dipendente fallito. Formato data non valido.");
+                        nomeField.setText("");
+                        cognomeField.setText("");
+                        dataDiNascitaField.setText("");
+                        matricolaField.setText("");
+                        codiceRuoloField.setText("");
+                    }
+                } else {
+                    System.out.println("Compilare tutti i campi");
+                } 
             }
         });
 

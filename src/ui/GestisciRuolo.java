@@ -84,10 +84,14 @@ public class GestisciRuolo extends JFrame {
         confermaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                benefitFlow.confermaRuolo(matricolaField.getText(), codiceRuoloField.getText());
-                matricolaField.setText("");
-                codiceRuoloField.setText("");
-                GestisciRuolo.this.dispose();
+                if (!matricolaField.getText().isEmpty() && !codiceRuoloField.getText().isEmpty()) {
+                    benefitFlow.confermaRuolo(matricolaField.getText(), codiceRuoloField.getText());
+                    matricolaField.setText("");
+                    codiceRuoloField.setText("");
+                    GestisciRuolo.this.dispose();
+                } else {
+                    System.out.println("Compilare tutti i campi.");
+                }
             }
         });
 
@@ -106,7 +110,7 @@ public class GestisciRuolo extends JFrame {
         gbc.weighty = 0.1;
         add(buttonPanel, gbc);
 
-        setResizable(true);
+        setResizable(false);
         setVisible(true);
         setTitle("BenefitFlow");
         setSize(850, 515);

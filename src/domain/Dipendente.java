@@ -1,14 +1,16 @@
 package domain;
 
+import java.time.LocalDate;
+
 public class Dipendente {
     private String nome;
     private String cognome;
-    private String dataDiNascita;
+    private LocalDate dataDiNascita;
     private String matricola;
     private Ruolo ruolo;
 
 
-    public Dipendente(String nome, String cognome, String dataDiNascita, String matricola, Ruolo ruolo) {
+    public Dipendente(String nome, String cognome, LocalDate dataDiNascita, String matricola, Ruolo ruolo) {
         this.nome = nome;
         this.cognome = cognome;
         this.dataDiNascita = dataDiNascita;
@@ -16,7 +18,7 @@ public class Dipendente {
         this.ruolo = ruolo;
     }
 
-    public Dipendente(String nome, String cognome, String dataDiNascita, String matricola) {
+    public Dipendente(String nome, String cognome, LocalDate dataDiNascita, String matricola) {
         this.nome = nome;
         this.cognome = cognome;
         this.dataDiNascita = dataDiNascita;
@@ -35,7 +37,7 @@ public class Dipendente {
     public void setCognome(String cognome) {
         this.cognome = cognome;
     }
-    public String getDataDiNascita() {
+    public LocalDate getDataDiNascita() {
         return dataDiNascita;
     }
     public String getMatricola() {

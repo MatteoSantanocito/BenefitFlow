@@ -3,9 +3,7 @@ package domain;
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.List;
 
@@ -17,7 +15,7 @@ public class BenefitFlow extends JFrame {
     private Map<String, Dipendente> elencoDipendenti;
     private Login login;
 
-    private Benefit benefit;
+    //private Benefit benefit;
     private Ferie ferie;
     private Permesso permesso;
     private Map<Integer, Ferie> elencoFerie;
@@ -56,9 +54,10 @@ public class BenefitFlow extends JFrame {
     }
 
     boolean flag = false;
-    public void inserisciNuovoDipendente(String nome, String cognome, String dataDiNascita, String matricola, String codiceRuolo){
+    public void inserisciNuovoDipendente(String nome, String cognome, LocalDate dataDiNascita, String matricola, String codiceRuolo){
         Ruolo r = ruoli.get(codiceRuolo);
         Dipendente d = elencoDipendenti.get(matricola);
+
         if(d == null){
             if(r != null){
                 this.dipendenteCorrente = new Dipendente(nome,cognome,dataDiNascita,matricola,r);
@@ -136,22 +135,15 @@ public class BenefitFlow extends JFrame {
 
 
     int counter = 0;
-    public void inserisciFerie(String matricola, String motivazione, String dataInizio, String dataFine){
+    public void inserisciFerie(String matricola, String motivazione, LocalDate dataInizio, LocalDate dataFine){
         counter += 1;
         Dipendente d = elencoDipendenti.get(matricola);
         String stato = "in elaborazione";
         int codice = counter;
         String tipo = "F";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        try {
-            LocalDate dataInizioFormatted = LocalDate.parse(dataInizio, formatter);
-            LocalDate dataFineFormatted = LocalDate.parse(dataFine, formatter);
-            if(d != null){
-                this.ferie = new Ferie(motivazione, stato, tipo, codice, matricola, dataInizioFormatted, dataFineFormatted);
-            }
-        } catch (Exception e) {
-            System.err.println("Inserimento ferie fallito. Formato data non valido.");
+        if(d != null){
+            this.ferie = new Ferie(motivazione, stato, tipo, codice, matricola, dataInizio, dataFine);
         }
     }
 
@@ -164,25 +156,15 @@ public class BenefitFlow extends JFrame {
         }
     }
 
-    public void inserisciPermesso(String matricola, String motivazione, String data, String oraInizio, String oraFine){
+    public void inserisciPermesso(String matricola, String motivazione, LocalDate data, LocalTime oraInizio, LocalTime oraFine){
         counter += 1;
         Dipendente d = elencoDipendenti.get(matricola);
         String stato = "in elaborazione";
         int codice = counter;
         String tipo = "P";
-        DateTimeFormatter formatterTimeI = DateTimeFormatter.ofPattern("HH:mm");
-        DateTimeFormatter formatterTimeF = DateTimeFormatter.ofPattern("HH:mm");
-        DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        try {
-            LocalTime oraInizioFormatted = LocalTime.parse(oraInizio, formatterTimeI);
-            LocalTime oraFineFormatted = LocalTime.parse(oraFine, formatterTimeF);
-            LocalDate dataFormatted = LocalDate.parse(data, formatterData);
-            if(d != null){
-                this.permesso = new Permesso(motivazione, stato, tipo, codice, matricola, dataFormatted, oraInizioFormatted, oraFineFormatted);
-            }
-        } catch (Exception e) {
-            System.err.println("Inserimento permesso fallito. Formato data non valido.");
+        if(d != null){
+            this.permesso = new Permesso(motivazione, stato, tipo, codice, matricola, data, oraInizio, oraFine);
         }
     }
 
@@ -195,4 +177,19 @@ public class BenefitFlow extends JFrame {
         }
     }
 
+    public List<Benefit> visualizzaCongediComplessivi(String tipo){
+        if (tipo.equals("F")) {
+            List<Benefit> listFerie = new ArrayList<>();
+            listFerie.addAll(elencoFerie.values());
+            return listFerie;
+        }
+
+        if (tipo.equals("P")) {
+            List<Benefit> listPermessi = new ArrayList<>();
+            listPermessi.addAll(elencoPermessi.values());
+            return listPermessi;
+        }
+
+        return null;
+    }
 }

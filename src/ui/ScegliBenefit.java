@@ -3,15 +3,22 @@ package ui;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import domain.BenefitFlow;
+
 public class ScegliBenefit extends JFrame{
 
-    public ScegliBenefit(){
+    private BenefitFlow benefitFlow;
+
+    public ScegliBenefit(BenefitFlow b){
+        this.benefitFlow = b;
         initComponent();
     }
 
@@ -29,6 +36,20 @@ public class ScegliBenefit extends JFrame{
 
         JButton inserisciPermesso = new JButton("Inserisci Permesso");
         buttonPanel.add(inserisciPermesso);
+
+        inserisciFerie.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new InserisciFerie(benefitFlow);
+            }
+        });
+
+        inserisciPermesso.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new InserisciPermesso(benefitFlow);
+            }
+        });
 
         add(textDip);
         add(choisePanel);
