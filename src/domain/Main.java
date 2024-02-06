@@ -28,5 +28,16 @@ public class Main {
 //
 //        listDipendenti = benefitFlow.mostraDipendenti();
 //        System.out.println("\n\nStampo la lista completa dei dipendenti aggiornata...\n" + listDipendenti + "\n\n");
+
+
+        System.out.println("\n\nInserimento nuova ferie...");
+        benefitFlow.inserisciFerie("GDB001", "viaggio", "30/07/2024", "05/08/2024");
+        benefitFlow.confermaFerie();
+        System.out.println("\n");
+        benefitFlow.inserisciPermesso("GDB001", "spesa", "30/07/2024", "10:15", "10:30");
+        benefitFlow.confermaPermesso();
+        System.out.println("\n");
+        benefitFlow.inserisciFerie("SGZ002", "viaggio", "30/08/2024", "05/09/2024");
+        benefitFlow.confermaFerie();
     }
 }

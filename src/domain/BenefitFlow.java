@@ -2,6 +2,10 @@ package domain;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.List;
 
@@ -13,10 +17,19 @@ public class BenefitFlow extends JFrame {
     private Map<String, Dipendente> elencoDipendenti;
     private Login login;
 
+    private Benefit benefit;
+    private Ferie ferie;
+    private Permesso permesso;
+    private Map<Integer, Ferie> elencoFerie;
+    private Map<Integer, Permesso> elencoPermessi;
+
     public BenefitFlow(){
         this.elencoDipendenti = new HashMap<>();
         this.ruoli = new HashMap<>();
         loadRuoli();
+
+        this.elencoFerie = new HashMap<>();
+        this.elencoPermessi = new HashMap<>();
     }
 
     public void initComponent() {
@@ -120,4 +133,66 @@ public class BenefitFlow extends JFrame {
         this.ruoli.put("ing06", r9);
         System.out.println("Caricamento Ruoli ultimato");
     }
+
+
+    int counter = 0;
+    public void inserisciFerie(String matricola, String motivazione, String dataInizio, String dataFine){
+        counter += 1;
+        Dipendente d = elencoDipendenti.get(matricola);
+        String stato = "in elaborazione";
+        int codice = counter;
+        String tipo = "F";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        try {
+            LocalDate dataInizioFormatted = LocalDate.parse(dataInizio, formatter);
+            LocalDate dataFineFormatted = LocalDate.parse(dataFine, formatter);
+            if(d != null){
+                this.ferie = new Ferie(motivazione, stato, tipo, codice, matricola, dataInizioFormatted, dataFineFormatted);
+            }
+        } catch (Exception e) {
+            System.err.println("Inserimento ferie fallito. Formato data non valido.");
+        }
+    }
+
+    public void confermaFerie(){
+        if(this.ferie != null){
+            Ferie f = this.ferie;
+            int codice = f.getCodice();
+            this.elencoFerie.put(codice,f);
+            System.out.println("Ferie inserita correttamente: \n" + f);
+        }
+    }
+
+    public void inserisciPermesso(String matricola, String motivazione, String data, String oraInizio, String oraFine){
+        counter += 1;
+        Dipendente d = elencoDipendenti.get(matricola);
+        String stato = "in elaborazione";
+        int codice = counter;
+        String tipo = "P";
+        DateTimeFormatter formatterTimeI = DateTimeFormatter.ofPattern("HH:mm");
+        DateTimeFormatter formatterTimeF = DateTimeFormatter.ofPattern("HH:mm");
+        DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        try {
+            LocalTime oraInizioFormatted = LocalTime.parse(oraInizio, formatterTimeI);
+            LocalTime oraFineFormatted = LocalTime.parse(oraFine, formatterTimeF);
+            LocalDate dataFormatted = LocalDate.parse(data, formatterData);
+            if(d != null){
+                this.permesso = new Permesso(motivazione, stato, tipo, codice, matricola, dataFormatted, oraInizioFormatted, oraFineFormatted);
+            }
+        } catch (Exception e) {
+            System.err.println("Inserimento permesso fallito. Formato data non valido.");
+        }
+    }
+
+    public void confermaPermesso(){
+        if(this.permesso != null){
+            Permesso p = this.permesso;
+            int codice = p.getCodice();
+            this.elencoPermessi.put(codice,p);
+            System.out.println("Permesso inserito correttamente: \n" + p);
+        }
+    }
+
 }

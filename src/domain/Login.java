@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import ui.GestisciRuolo;
 import ui.InserisciNuovoDipendente;
+import ui.ScegliBenefit;
 
 public class Login extends JPanel {
 
@@ -77,7 +78,6 @@ public class Login extends JPanel {
                            break;
                         }
                     }
-                    System.out.println(nome);
                     if (nome.equals(username)) {
                         SwingUtilities.invokeLater(() -> {
                             remove(mainPanel);
@@ -184,6 +184,13 @@ public class Login extends JPanel {
                     revalidate();
                     repaint();
                 });
+            }
+        });
+
+        inserisciBenefit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ScegliBenefit();
             }
         });
 
