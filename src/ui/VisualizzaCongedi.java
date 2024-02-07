@@ -1,6 +1,5 @@
 package ui;
 
-
 import domain.Benefit;
 import domain.BenefitFlow;
 import domain.Ferie;
@@ -10,6 +9,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableColumn;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -37,26 +37,26 @@ public class VisualizzaCongedi extends JFrame{
 
         titolo = new JLabel("Visualizza Congedi");
         titolo.setFont(new Font("Arial", Font.BOLD, 20));
-        titlePanel.setBorder(new EmptyBorder(30, 0, 0, 0));
+        titlePanel.setBorder(new EmptyBorder(20, 0, 0, 0));
         titlePanel.add(titolo);
 
         JButton visualizzaFerie = new JButton("Visualizza Ferie");
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.weightx = 1.0;
-        gbc.weighty = 0.8;
+        gbc.weightx = 0;
+        gbc.weighty = 0;
         buttonPanel.add(visualizzaFerie);
 
         JButton visualizzaPermesso = new JButton("Visualizza Permesso");
         gbc.gridx = 1;
         gbc.gridy = 0;
-        gbc.weightx = 1.0;
-        gbc.weighty = 0.8;
+        gbc.weightx = 0;
+        gbc.weighty = 0;
         buttonPanel.add(visualizzaPermesso);
+        //buttonPanel.setBorder(new EmptyBorder(0, 0, 30, 0));
 
         contenitore.setPreferredSize(new Dimension(700,200));
         contenitore.setBackground(Color.WHITE);
-
 
         HeaderRenderer headerRenderer = new HeaderRenderer();
 
@@ -65,8 +65,18 @@ public class VisualizzaCongedi extends JFrame{
         tableF.getTableHeader().setDefaultRenderer(headerRenderer);
         JScrollPane scrollPaneF = new JScrollPane(tableF);
         scrollPaneF.setBorder(null);
-        // TableColumn colonnaMotivazioneF = tableF.getColumnModel().getColumn(3);
-        // colonnaMotivazioneF.setPreferredWidth(180);
+        TableColumn colonnaCodiceF = tableF.getColumnModel().getColumn(0);
+        colonnaCodiceF.setMaxWidth(65);
+        TableColumn colonnaDataInizioF = tableF.getColumnModel().getColumn(2);
+        colonnaDataInizioF.setMinWidth(95);
+        colonnaDataInizioF.setMaxWidth(95);
+        TableColumn colonnaDataFineF = tableF.getColumnModel().getColumn(3);
+        colonnaDataFineF.setMinWidth(95);
+        colonnaDataFineF.setMaxWidth(95);
+        TableColumn colonnaMotivazioneF = tableF.getColumnModel().getColumn(4);
+        colonnaMotivazioneF.setPreferredWidth(220);
+        TableColumn colonnaStatoF = tableF.getColumnModel().getColumn(5);
+        colonnaStatoF.setPreferredWidth(100);
         tableF.setSelectionBackground(new Color(119, 119, 119, 255));
 
         List<Benefit> listaP = benefitFlow.visualizzaCongediComplessivi("P");
@@ -74,23 +84,36 @@ public class VisualizzaCongedi extends JFrame{
         tableP.getTableHeader().setDefaultRenderer(headerRenderer);
         JScrollPane scrollPaneP = new JScrollPane(tableP);
         scrollPaneP.setBorder(null);
-        // TableColumn colonnaMotivazioneP = tableP.getColumnModel().getColumn(3);
-        // colonnaMotivazioneP.setPreferredWidth(180);
+        TableColumn colonnaCodiceP = tableP.getColumnModel().getColumn(0);
+        colonnaCodiceP.setMaxWidth(65);
+        TableColumn colonnaMotivazioneP = tableP.getColumnModel().getColumn(5);
+        colonnaMotivazioneP.setPreferredWidth(180);
+        TableColumn colonnaDataP = tableP.getColumnModel().getColumn(2);
+        colonnaDataP.setMinWidth(95);
+        colonnaDataP.setMaxWidth(95);
+        TableColumn colonnaOraInizioP = tableP.getColumnModel().getColumn(3);
+        colonnaOraInizioP.setMinWidth(70);
+        colonnaOraInizioP.setMaxWidth(70);
+        TableColumn colonnaOraFineP = tableP.getColumnModel().getColumn(4);
+        colonnaOraFineP.setMinWidth(70);
+        colonnaOraFineP.setMaxWidth(70);
+        TableColumn colonnaStatoP = tableP.getColumnModel().getColumn(6);
+        colonnaStatoP.setPreferredWidth(100);
         tableP.setSelectionBackground(new Color(119, 119, 119, 255));
 
 
         gbc.gridx = 0;
-        gbc.gridy = 0;
+        gbc.gridy = 0; 
         gbc.weightx = 0;
-        gbc.weighty = 0;
+        gbc.weighty = 0.2;
         add(titlePanel, gbc);
         gbc.gridy = 1;
         gbc.weightx = 0;
-        gbc.weighty = 1;
+        gbc.weighty = 0;
         add(buttonPanel, gbc);
         gbc.gridy = 2;
         gbc.weightx = 0;
-        gbc.weighty = 1;
+        gbc.weighty = 0.8;
         add(contenitore, gbc);
 
         visualizzaFerie.addActionListener(new ActionListener() {
@@ -120,7 +143,7 @@ public class VisualizzaCongedi extends JFrame{
         setResizable(true);
         setVisible(true);
         setTitle("BenefitFlow");
-        setSize(850, 515);
+        setSize(850, 450);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
@@ -128,7 +151,7 @@ public class VisualizzaCongedi extends JFrame{
 
     static class TabellaFerie extends AbstractTableModel {
         private final List<Benefit> lista;
-        private final String[] colonne = {"Matricola", "Data Inizio", "Data Fine", "Motivazione", "Tipo", "Codice", "Stato"};
+        private final String[] colonne = {"Codice", "Matricola", "Data Inizio", "Data Fine", "Motivazione", "Stato"};
 
         public TabellaFerie(List<Benefit> lista) {
             this.lista = lista;
@@ -150,18 +173,16 @@ public class VisualizzaCongedi extends JFrame{
 
             switch (columnIndex) {
                 case 0:
-                    return ferie.getMatricola();
-                case 1:
-                    return ferie.getDataInizio();
-                case 2:
-                    return ferie.getDataFine();
-                case 3:
-                    return ferie.getMotivazione();
-                case 4:
-                    return ferie.getTipo();
-                case 5:
                     return ferie.getCodice();
-                case 6:
+                case 1:
+                    return ferie.getMatricola();
+                case 2:
+                    return ferie.getDataInizio();
+                case 3:
+                    return ferie.getDataFine();
+                case 4:
+                    return ferie.getMotivazione();
+                case 5:
                     return ferie.getStato();
                 default:
                     return null;
@@ -176,7 +197,7 @@ public class VisualizzaCongedi extends JFrame{
 
     static class TabellaPermessi extends AbstractTableModel {
         private final List<Benefit> lista;
-        private final String[] colonne = {"Matricola", "Data", "Ora Inizio", "Ora Fine", "Motivazione", "Tipo", "Codice", "Stato"};
+        private final String[] colonne = {"Codice", "Matricola", "Data", "Ora Inizio", "Ora Fine", "Motivazione", "Stato"};
 
         public TabellaPermessi(List<Benefit> lista) {
             this.lista = lista;
@@ -198,20 +219,18 @@ public class VisualizzaCongedi extends JFrame{
 
             switch (columnIndex) {
                 case 0:
-                    return permesso.getMatricola();
-                case 1:
-                    return permesso.getData();
-                case 2:
-                    return permesso.getOraInizio();
-                case 3:
-                    return permesso.getOraFine();
-                case 4:
-                    return permesso.getMotivazione();
-                case 5:
-                    return permesso.getTipo();
-                case 6:
                     return permesso.getCodice();
-                case 7:
+                case 1:
+                    return permesso.getMatricola();
+                case 2:
+                    return permesso.getData();
+                case 3:
+                    return permesso.getOraInizio();
+                case 4:
+                    return permesso.getOraFine();
+                case 5:
+                    return permesso.getMotivazione();
+                case 6:
                     return permesso.getStato();
                 default:
                     return null;

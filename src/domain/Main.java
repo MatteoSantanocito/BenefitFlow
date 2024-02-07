@@ -35,10 +35,10 @@ public class Main {
 
         System.out.println("\n\nInserimento nuova ferie...");
         LocalDate d1 = LocalDate.of(2024, 7, 30);
-        benefitFlow.inserisciFerie("GDB001", "viaggio in un paese bellissimo ma immaginario perché devo studiare vaffanculo al mondo :)", d1, LocalDate.of(2024, 8, 5));
+        benefitFlow.inserisciFerie("GDB001", "Vacanza", d1, LocalDate.of(2024, 8, 5));
         benefitFlow.confermaFerie();
         System.out.println("\n");
-        benefitFlow.inserisciPermesso("GDB001", "spesa", d1, LocalTime.of(10, 15), LocalTime.of(10, 45));
+        benefitFlow.inserisciPermesso("GDB001", "Visita medica", d1, LocalTime.of(10, 15), LocalTime.of(10, 45));
         benefitFlow.confermaPermesso();
         System.out.println("\n");
         // benefitFlow.inserisciFerie("SGZ002", "viaggio", "30/08/2024", "05/09/2024");

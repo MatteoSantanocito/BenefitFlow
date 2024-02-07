@@ -37,6 +37,7 @@ public class BenefitFlow extends JFrame {
         add(login,BorderLayout.CENTER);
 
         setVisible(true);
+        setResizable(false);
         setTitle("BenefitFlow");
         setSize(400, 300);
         setLocationRelativeTo(null);

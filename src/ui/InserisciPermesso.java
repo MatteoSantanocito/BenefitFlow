@@ -1,6 +1,5 @@
 package ui;
 
-
 import domain.BenefitFlow;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -15,7 +14,7 @@ public class InserisciPermesso extends JFrame {
 
     private JLabel titolo;
     private JLabel motivazioneLabel, matricolaLabel, dataLabel, oraInizioLabel, oraFineLabel;
-    private JTextField matricolaField, dataField, oraInizioField, oraFineField;
+    private JTextField matricolaField, dataField, oraInizioField, oraFineField, errorField;
     private JTextArea motivazioneField;
     private JButton confermaPermessoButton;
 
@@ -39,7 +38,7 @@ public class InserisciPermesso extends JFrame {
 
         titolo = new JLabel("Inserisci Permesso");
         titolo.setFont(new Font("Arial", Font.BOLD, 20));
-        titlePanel.setBorder(new EmptyBorder(30, 0, 0, 0));
+        titlePanel.setBorder(new EmptyBorder(30, 0, 20, 0));
         titlePanel.add(titolo);
 
 
@@ -108,6 +107,14 @@ public class InserisciPermesso extends JFrame {
         gbc.weighty = 0.01;
         formPanel.add(scrollPane, gbc);
 
+        JPanel errorPanel = new JPanel(new FlowLayout());
+        errorField = new JTextField(28);
+        errorField.setBorder(null);
+        errorField.setBackground(new Color(238, 238, 238));
+        errorField.setFont(new Font("Arial", Font.ITALIC, 12));
+        errorField.setEnabled(false);
+        errorField.setDisabledTextColor(Color.RED);
+        errorPanel.add(errorField);
 
         confermaPermessoButton = new JButton("Conferma");
         buttonPanel.setBorder(new EmptyBorder(10, 0, 30, 0));
@@ -134,14 +141,14 @@ public class InserisciPermesso extends JFrame {
                         InserisciPermesso.this.dispose();
                     } catch (Exception ex) {
                         System.err.println("Inserimento ferie fallito. Formato data e/o ora non valido.");
-                        matricolaField.setText("");
-                        motivazioneField.setText("");
+                        errorField.setText("Data e/o ora non valida (dd/MM/yyyy - HH:mm)");
                         dataField.setText("");
                         oraInizioField.setText("");
                         oraFineField.setText("");
                     }
                 } else {
                     System.out.println("Compilare tutti i campi.");
+                    errorField.setText("Compilare tutti i campi");
                 } 
             }
         });
@@ -155,15 +162,17 @@ public class InserisciPermesso extends JFrame {
         gbc.weighty = 0.8;
         add(formPanel,gbc);
         gbc.gridy = 2;
+        gbc.weighty = 0;
+        add(errorPanel,gbc);
+        gbc.gridy = 3;
         gbc.weighty = 0.1;
         add(buttonPanel,gbc);
 
-        setResizable(false);
+        setResizable(true);
         setVisible(true);
         setTitle("BenefitFlow");
-        setSize(400, 400);
+        setSize(400, 420);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 }
-

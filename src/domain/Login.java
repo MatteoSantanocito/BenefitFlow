@@ -16,7 +16,7 @@ import ui.VisualizzaCongedi;
 public class Login extends JPanel {
 
     private JLabel titolo, usernameLabel, passwordLabel;
-    private JTextField usernameField, passwordField;
+    private JTextField usernameField, passwordField, errorField;
     private JButton login;
     private JPanel ammPanel, dipPanel, mainPanel;
 
@@ -27,7 +27,7 @@ public class Login extends JPanel {
         setLayout(new GridLayout(1, 1));
         mainPanel = new JPanel(new GridLayout(3, 1));
         JPanel titlePanel = new JPanel(new FlowLayout());
-        JPanel formPanel = new JPanel(new GridLayout(2, 1));
+        JPanel formPanel = new JPanel(new GridLayout(3, 1));
         JPanel buttonPanel = new JPanel(new FlowLayout()); 
         ammPanel = ammPanel();
         dipPanel = dipPanel();
@@ -50,10 +50,22 @@ public class Login extends JPanel {
         passwordPanel.add(passwordLabel);
         passwordPanel.add(passwordField);
 
+        JPanel errorPanel = new JPanel(new FlowLayout());
+        errorPanel.setBorder(new EmptyBorder(10, 0, 0, 0));
+        errorField = new JTextField(25);
+        errorField.setBorder(null);
+        errorField.setBackground(new Color(238, 238, 238));
+        errorField.setFont(new Font("Arial", Font.ITALIC, 12));
+        errorField.setEnabled(false);
+        errorField.setDisabledTextColor(Color.RED);
+        errorPanel.add(errorField);
+
         formPanel.add(usernamePanel);
         formPanel.add(passwordPanel);
+        formPanel.add(errorPanel);
 
         login = new JButton("Login");
+        buttonPanel.setBorder(new EmptyBorder(10, 0, 0, 0));
         buttonPanel.add(login);
 
         login.addActionListener(new ActionListener() {
@@ -79,7 +91,9 @@ public class Login extends JPanel {
                            break;
                         }
                     }
-                    if (nome.equals(username)) {
+                    if (nome.equals("")) {
+                        errorField.setText("Password errata");
+                    } else if (nome.equals(username)) {
                         SwingUtilities.invokeLater(() -> {
                             remove(mainPanel);
                             add(dipPanel);
@@ -87,7 +101,7 @@ public class Login extends JPanel {
                             repaint();
                         });
                     }else{
-                        System.out.println("Password errata o dipendente non registrato.");
+                        errorField.setText("Username errato");
                     }
                 }
                 
@@ -129,6 +143,7 @@ public class Login extends JPanel {
         logoutAmm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                errorField.setText("");
                 SwingUtilities.invokeLater(() -> {
                     remove(ammPanel);
                     add(mainPanel);
@@ -186,6 +201,7 @@ public class Login extends JPanel {
         logoutDip.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                errorField.setText("");
                 SwingUtilities.invokeLater(() -> {
                     remove(dipPanel);
                     add(mainPanel);

@@ -58,7 +58,7 @@ public class ScegliBenefit extends JFrame{
         setResizable(false);
         setVisible(true);
         setTitle("BenefitFlow");
-        setSize(400, 250);
+        setSize(400, 200);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }

@@ -1,8 +1,6 @@
 package ui;
 
-
 import domain.BenefitFlow;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
@@ -16,7 +14,7 @@ public class InserisciFerie extends JFrame {
 
     private JLabel titolo;
     private JLabel motivazioneLabel, matricolaLabel, dataInizioLabel, dataFineLabel;
-    private JTextField matricolaField, dataInizioField, dataFineField;
+    private JTextField matricolaField, dataInizioField, dataFineField, errorField;
     private JTextArea motivazioneField;
     private JButton confermaFerieButton;
 
@@ -40,7 +38,7 @@ public class InserisciFerie extends JFrame {
 
         titolo = new JLabel("Inserisci Ferie");
         titolo.setFont(new Font("Arial", Font.BOLD, 20));
-        titlePanel.setBorder(new EmptyBorder(30, 0, 0, 0));
+        titlePanel.setBorder(new EmptyBorder(30, 0, 20, 0));
         titlePanel.add(titolo);
 
 
@@ -98,6 +96,15 @@ public class InserisciFerie extends JFrame {
         formPanel.add(scrollPane, gbc);
 
 
+        JPanel errorPanel = new JPanel(new FlowLayout());
+        errorField = new JTextField(28);
+        errorField.setBorder(null);
+        errorField.setBackground(new Color(238, 238, 238));
+        errorField.setFont(new Font("Arial", Font.ITALIC, 12));
+        errorField.setEnabled(false);
+        errorField.setDisabledTextColor(Color.RED);
+        errorPanel.add(errorField);
+
         confermaFerieButton = new JButton("Conferma");
         buttonPanel.setBorder(new EmptyBorder(10, 0, 30, 0));
         buttonPanel.add(confermaFerieButton);
@@ -120,14 +127,13 @@ public class InserisciFerie extends JFrame {
                         InserisciFerie.this.dispose();
                     } catch (Exception ex) {
                         System.err.println("Inserimento ferie fallito. Formato data non valido.");
-                        matricolaField.setText("");
-                        motivazioneField.setText("");
+                        errorField.setText("Data non valida (formato richiesto: dd/MM/yyyy)");
                         dataInizioField.setText("");
                         dataFineField.setText("");
-    
                     } 
                 } else {
                     System.out.println("Compilare tutti i campi.");
+                    errorField.setText("Compilare tutti i campi");
                 }
             }
         });
@@ -141,13 +147,15 @@ public class InserisciFerie extends JFrame {
         gbc.weighty = 0.8;
         add(formPanel,gbc);
         gbc.gridy = 2;
+        add(errorPanel, gbc);
+        gbc.gridy = 3;
         gbc.weighty = 0.1;
         add(buttonPanel,gbc);
 
         setResizable(false);
         setVisible(true);
         setTitle("BenefitFlow");
-        setSize(400, 400);
+        setSize(400, 385);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
