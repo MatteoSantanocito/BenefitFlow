@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a60ab205-e48e-458a-b714-77e9ceaa1b87" name="Changes" comment="modifiche alla UI e risolto bug in gestioneruolo">
-      <change afterPath="$PROJECT_DIR$/src/domain/Benefit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/Ferie.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/Permesso.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/InserisciFerie.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/InserisciPermesso.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/ScegliBenefit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="a60ab205-e48e-458a-b714-77e9ceaa1b87" name="Changes" comment="creazione istanze relative ai benefit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domain/BenefitFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/BenefitFlow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domain/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
