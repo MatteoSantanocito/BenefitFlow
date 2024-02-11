@@ -78,6 +78,7 @@ public class VisualizzaCongedi extends JFrame{
         TableColumn colonnaStatoF = tableF.getColumnModel().getColumn(5);
         colonnaStatoF.setPreferredWidth(100);
         tableF.setSelectionBackground(new Color(119, 119, 119, 255));
+        tableF.setFocusable(false);
 
         List<Benefit> listaP = benefitFlow.visualizzaCongediComplessivi("P");
         JTable tableP = new JTable(new TabellaPermessi(listaP));
@@ -100,6 +101,7 @@ public class VisualizzaCongedi extends JFrame{
         TableColumn colonnaStatoP = tableP.getColumnModel().getColumn(6);
         colonnaStatoP.setPreferredWidth(100);
         tableP.setSelectionBackground(new Color(119, 119, 119, 255));
+        tableP.setFocusable(false);
 
 
         gbc.gridx = 0;

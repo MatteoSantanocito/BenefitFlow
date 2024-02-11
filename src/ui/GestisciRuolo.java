@@ -18,7 +18,7 @@ public class GestisciRuolo extends JFrame {
 
     private JLabel titolo;
     private JLabel matricolaLabel, codiceRuoloLabel;
-    private JTextField matricolaField, codiceRuoloField;
+    private JTextField matricolaField, codiceRuoloField, errorField;
     private JButton confermaButton;
     private BenefitFlow benefitFlow;
 
@@ -37,10 +37,9 @@ public class GestisciRuolo extends JFrame {
         JPanel formPanel = new JPanel(new GridBagLayout());
         JPanel buttonPanel = new JPanel(new FlowLayout());
 
-
         titolo = new JLabel("Gestisci Ruolo");
         titolo.setFont(new Font("Arial", Font.BOLD, 20));
-        titlePanel.setBorder(new EmptyBorder(30, 0, 0, 0));
+        titlePanel.setBorder(new EmptyBorder(30, 0, 20, 0));
         titlePanel.add(titolo);
 
         List<Dipendente> lista = benefitFlow.mostraDipendenti();
@@ -49,14 +48,20 @@ public class GestisciRuolo extends JFrame {
         table.getTableHeader().setDefaultRenderer(headerRenderer);
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setPreferredSize(new Dimension(700,200));
+        //scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+        table.setFocusable(false);
         TableColumn colonnaRuolo = table.getColumnModel().getColumn(4);
-        colonnaRuolo.setPreferredWidth(275);
+        colonnaRuolo.setPreferredWidth(300);
+        TableColumn colonnaData = table.getColumnModel().getColumn(2);
+        colonnaData.setMinWidth(105);
+        colonnaData.setMaxWidth(105);
         table.setSelectionBackground(new Color(119, 119, 119, 255));
+        table.setSelectionForeground(new Color(153, 221, 255));
 
         matricolaLabel = new JLabel("Matricola");
         matricolaField = new JTextField(15);
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 1;
         gbc.weightx = 0.01;
         gbc.weighty = 0.01;
         formPanel.add(matricolaLabel, gbc);
@@ -68,7 +73,7 @@ public class GestisciRuolo extends JFrame {
         codiceRuoloLabel = new JLabel("Codice Ruolo");
         codiceRuoloField = new JTextField(15);
         gbc.gridx = 2;
-        gbc.gridy = 3;
+        gbc.gridy = 1;
         gbc.weightx = 0.01;
         gbc.weighty = 0.01;
         formPanel.add(codiceRuoloLabel, gbc);
@@ -76,6 +81,18 @@ public class GestisciRuolo extends JFrame {
         gbc.weightx = 0.01;
         gbc.weighty = 0.01;
         formPanel.add(codiceRuoloField, gbc);
+
+        formPanel.setBorder(new EmptyBorder(20, 0, 5, 0));
+
+        JPanel errorPanel = new JPanel(new FlowLayout());
+        errorField = new JTextField(28);
+        errorField.setBorder(null);
+        errorField.setBackground(new Color(238, 238, 238));
+        errorField.setFont(new Font("Arial", Font.ITALIC, 12));
+        errorField.setHorizontalAlignment(SwingConstants.CENTER);
+        errorField.setEnabled(false);
+        errorField.setDisabledTextColor(Color.RED);
+        errorPanel.add(errorField);
 
         confermaButton = new JButton("Conferma");
         buttonPanel.setBorder(new EmptyBorder(10, 0, 30, 0));
@@ -91,6 +108,7 @@ public class GestisciRuolo extends JFrame {
                     GestisciRuolo.this.dispose();
                 } else {
                     System.out.println("Compilare tutti i campi.");
+                    errorField.setText("Compilare tutti i campi");
                 }
             }
         });
@@ -104,16 +122,19 @@ public class GestisciRuolo extends JFrame {
         gbc.weighty = 0.5;
         add(scrollPane, gbc);
         gbc.gridy = 2;
-        gbc.weighty = 0.8;
+        gbc.weighty = 0;
         add(formPanel, gbc);
         gbc.gridy = 3;
+        gbc.weighty = 0;
+        add(errorPanel, gbc);
+        gbc.gridy = 4;
         gbc.weighty = 0.1;
         add(buttonPanel, gbc);
 
         setResizable(false);
         setVisible(true);
         setTitle("BenefitFlow");
-        setSize(850, 515);
+        setSize(850, 500);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
@@ -121,7 +142,7 @@ public class GestisciRuolo extends JFrame {
 
     static class TabellaModello extends AbstractTableModel {
         private final List<Dipendente> lista;
-        private final String[] colonne = {"Nome", "Cognome", "Data di Nascita", "Matricola", "Ruolo"};
+        private final String[] colonne = {"NOME", "COGNOME", "DATA DI NASCITA", "MATRICOLA", "RUOLO"};
 
         public TabellaModello(List<Dipendente> lista) {
             this.lista = lista;
