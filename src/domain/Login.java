@@ -8,10 +8,7 @@ import java.util.List;
 
 import javax.swing.border.EmptyBorder;
 
-import ui.GestisciRuolo;
-import ui.InserisciNuovoDipendente;
-import ui.ScegliBenefit;
-import ui.VisualizzaCongedi;
+import ui.*;
 
 public class Login extends JPanel {
 
@@ -176,6 +173,13 @@ public class Login extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new VisualizzaCongedi(benefitFlow);
+            }
+        });
+
+        gestisciBenefit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new GestisciBenefit(benefitFlow);
             }
         });
 

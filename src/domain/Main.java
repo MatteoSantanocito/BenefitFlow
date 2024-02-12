@@ -38,18 +38,17 @@ public class Main {
         benefitFlow.inserisciFerie("GDB001", "Vacanza", d1, LocalDate.of(2024, 8, 5));
         benefitFlow.confermaFerie();
         System.out.println("\n");
+        benefitFlow.inserisciFerie("SGZ002", "salute", d1, LocalDate.of(2024, 8, 5));
+        benefitFlow.confermaFerie();
+        System.out.println("\n");
         benefitFlow.inserisciPermesso("GDB001", "Visita medica", d1, LocalTime.of(10, 15), LocalTime.of(10, 45));
         benefitFlow.confermaPermesso();
         System.out.println("\n");
         benefitFlow.inserisciPermesso("SGZ002", "spesa", d1, LocalTime.of(10, 15), LocalTime.of(10, 45));
         benefitFlow.confermaPermesso();
         System.out.println("\n");
-        benefitFlow.inserisciPermesso("MSN003", "laurea", d1, LocalTime.of(10, 15), LocalTime.of(10, 45));
+        benefitFlow.inserisciPermesso("MSN003", "laurea", d1, LocalTime.of(10, 30), LocalTime.of(10, 45));
         benefitFlow.confermaPermesso();
         System.out.println("\n");
-//        System.out.println("stampo lista ferie in elaborazione: " + benefitFlow.mostraBenefit("F"));
-        System.out.println("stampo lista: " + benefitFlow.sovrapposizioneBenefit(2));
-        benefitFlow.confermaBenefit("approvato");
-        System.out.println("stampo lista: " + benefitFlow.sovrapposizioneBenefit(3));
     }
 }

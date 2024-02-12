@@ -41,19 +41,10 @@ public class VisualizzaCongedi extends JFrame{
         titlePanel.add(titolo);
 
         JButton visualizzaFerie = new JButton("Visualizza Ferie");
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.weightx = 0;
-        gbc.weighty = 0;
         buttonPanel.add(visualizzaFerie);
 
         JButton visualizzaPermesso = new JButton("Visualizza Permesso");
-        gbc.gridx = 1;
-        gbc.gridy = 0;
-        gbc.weightx = 0;
-        gbc.weighty = 0;
         buttonPanel.add(visualizzaPermesso);
-        //buttonPanel.setBorder(new EmptyBorder(0, 0, 30, 0));
 
         contenitore.setPreferredSize(new Dimension(700,200));
         contenitore.setBackground(Color.WHITE);

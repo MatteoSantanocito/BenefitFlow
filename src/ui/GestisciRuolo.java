@@ -48,7 +48,6 @@ public class GestisciRuolo extends JFrame {
         table.getTableHeader().setDefaultRenderer(headerRenderer);
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setPreferredSize(new Dimension(700,200));
-        //scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
         table.setFocusable(false);
         TableColumn colonnaRuolo = table.getColumnModel().getColumn(4);
         colonnaRuolo.setPreferredWidth(300);
@@ -56,7 +55,7 @@ public class GestisciRuolo extends JFrame {
         colonnaData.setMinWidth(105);
         colonnaData.setMaxWidth(105);
         table.setSelectionBackground(new Color(119, 119, 119, 255));
-        table.setSelectionForeground(new Color(153, 221, 255));
+        //table.setSelectionForeground(new Color(153, 221, 255));
 
         matricolaLabel = new JLabel("Matricola");
         matricolaField = new JTextField(15);
@@ -142,7 +141,7 @@ public class GestisciRuolo extends JFrame {
 
     static class TabellaModello extends AbstractTableModel {
         private final List<Dipendente> lista;
-        private final String[] colonne = {"NOME", "COGNOME", "DATA DI NASCITA", "MATRICOLA", "RUOLO"};
+        private final String[] colonne = {"Nome", "Cognome", "Data di nascita", "Matricola", "Ruolo"};
 
         public TabellaModello(List<Dipendente> lista) {
             this.lista = lista;
