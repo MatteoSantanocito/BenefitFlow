@@ -12,13 +12,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import domain.BenefitFlow;
+import domain.Dipendente;
 
 public class ScegliBenefit extends JFrame{
 
     private BenefitFlow benefitFlow;
+    private Dipendente dipendente;
 
-    public ScegliBenefit(BenefitFlow b){
+    public ScegliBenefit(BenefitFlow b, Dipendente d){
         this.benefitFlow = b;
+        this.dipendente = d;
         initComponent();
     }
 
@@ -40,14 +43,14 @@ public class ScegliBenefit extends JFrame{
         inserisciFerie.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new InserisciFerie(benefitFlow);
+                new InserisciFerie(benefitFlow, dipendente);
             }
         });
 
         inserisciPermesso.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new InserisciPermesso(benefitFlow);
+                new InserisciPermesso(benefitFlow, dipendente);
             }
         });
 

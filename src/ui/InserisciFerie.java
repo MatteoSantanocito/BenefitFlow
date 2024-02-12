@@ -1,6 +1,8 @@
 package ui;
 
 import domain.BenefitFlow;
+import domain.Dipendente;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
@@ -19,9 +21,11 @@ public class InserisciFerie extends JFrame {
     private JButton confermaFerieButton;
 
     private BenefitFlow benefitFlow;
+    private Dipendente dipendente;
 
-    public InserisciFerie(BenefitFlow b){
+    public InserisciFerie(BenefitFlow b, Dipendente d){
         this.benefitFlow = b;
+        this.dipendente = d;
         initComponent();
     }
 
@@ -44,6 +48,8 @@ public class InserisciFerie extends JFrame {
 
         matricolaLabel = new JLabel("Matricola");
         matricolaField = new JTextField(15);
+        matricolaField.setText(dipendente.getMatricola());
+        matricolaField.setEnabled(false);
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 0.01;

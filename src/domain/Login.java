@@ -18,6 +18,7 @@ public class Login extends JPanel {
     private JPanel ammPanel, dipPanel, mainPanel;
 
     private BenefitFlow benefitFlow;
+    private Dipendente d_corrente;
 
     public Login(BenefitFlow b) {
         this.benefitFlow = b;
@@ -85,6 +86,7 @@ public class Login extends JPanel {
                         String matricola = dipendente.getMatricola();
                         if(matricola.equals(password)){
                            nome = dipendente.getNome();
+                           d_corrente = dipendente;
                            break;
                         }
                     }
@@ -218,7 +220,7 @@ public class Login extends JPanel {
         inserisciBenefit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ScegliBenefit(benefitFlow);
+                new ScegliBenefit(benefitFlow, d_corrente);
             }
         });
 

@@ -54,6 +54,8 @@ public class BenefitFlow extends JFrame {
         return benefitFlow;
     }
 
+
+    /****** UC1 ******/
     boolean flag = false;
     public void inserisciNuovoDipendente(String nome, String cognome, LocalDate dataDiNascita, String matricola, String codiceRuolo){
         Ruolo r = ruoli.get(codiceRuolo);
@@ -86,6 +88,8 @@ public class BenefitFlow extends JFrame {
         flag = false;
     }
 
+
+    /****** UC2 ******/
     public List<Dipendente> mostraDipendenti(){
         List<Dipendente> listDipendenti = new ArrayList<>();
         listDipendenti.addAll(elencoDipendenti.values());
@@ -135,6 +139,7 @@ public class BenefitFlow extends JFrame {
     }
 
 
+    /****** UC3 ******/
     int counter = 0;
     public void inserisciFerie(String matricola, String motivazione, LocalDate dataInizio, LocalDate dataFine){
         counter += 1;
@@ -179,6 +184,7 @@ public class BenefitFlow extends JFrame {
     }
 
 
+    /****** UC4 ******/
     public List<Benefit> mostraBenefit(String tipo){
         if (tipo.equals("F")) {
             List<Benefit> listFerie = new ArrayList<>();
@@ -254,9 +260,98 @@ public class BenefitFlow extends JFrame {
 
     public void confermaBenefit(String stato){
         this.benefit.setStato(stato);
-        //System.out.println(this.benefit.getClass());
     }
 
+
+    /****** UC5 ******/
+    public List<Benefit> mostraBenefitApprovati(String matricola, String tipo){
+        //da sistemare
+        this.dipendenteCorrente = elencoDipendenti.get(matricola);
+
+        if (tipo.equals("F")) {
+            List<Benefit> listFerie = new ArrayList<>();
+            listFerie.addAll(elencoFerie.values());
+            List<Benefit> approvedListFerie = new ArrayList<>();
+
+            for (Benefit ferie : listFerie) {
+               String stato = ferie.getStato();
+               String m = ferie.getMatricola();
+
+               if(stato.equals("approvato") && m.equals(matricola)){
+                    approvedListFerie.add(ferie);
+                }
+            }
+            return approvedListFerie;
+        }
+
+        if (tipo.equals("P")) {
+            List<Benefit> listPermessi = new ArrayList<>();
+            listPermessi.addAll(elencoPermessi.values());
+            List<Benefit> approvedListPermessi = new ArrayList<>();
+
+            for (Benefit permesso : listPermessi) {
+               String stato = permesso.getStato();
+               String m = permesso.getMatricola();
+
+               if(stato.equals("approvato") && m.equals(matricola)){
+                    approvedListPermessi.add(permesso);
+                }
+            }
+            return approvedListPermessi;
+        }
+
+        return null;
+    }
+
+    public void richiediProlungamentoFerie(int codice, LocalDate dataFine){
+        List<Benefit> listFerieApprovate = mostraBenefitApprovati(this.dipendenteCorrente.getMatricola(), "F");
+        for (Benefit ferie : listFerieApprovate) {
+            int c = ferie.getCodice();
+
+            if(c == codice){
+                String motivazione = ferie.getMotivazione();
+                String matricola = ferie.getMatricola();
+                LocalDate dataInizio = ((Ferie) ferie).getDataInizio();
+
+                elencoFerie.remove(c);
+
+                inserisciFerie(matricola, motivazione, dataInizio, dataFine);
+
+                break;
+            }
+        }
+    }
+
+    public void confermaProlungamentoFerie(){
+        confermaFerie();
+    }
+
+    public void richiediProlungamentoPermesso(int codice, LocalTime oraFine){
+        List<Benefit> listPermessiApprovati = mostraBenefitApprovati(this.dipendenteCorrente.getMatricola(), "P");
+        for (Benefit permesso : listPermessiApprovati) {
+            int c = permesso.getCodice();
+
+            if(c == codice){
+                String motivazione = permesso.getMotivazione();
+                String matricola = permesso.getMatricola();
+                LocalDate data = ((Permesso) permesso).getData();
+                LocalTime oraInizio = ((Permesso) permesso).getOraInizio();
+
+                elencoPermessi.remove(c);
+
+                inserisciPermesso(matricola, motivazione, data, oraInizio, oraFine);
+
+                break;
+            }
+        }
+    }
+
+    public void confermaProlungamentoPermesso(){
+        confermaPermesso();
+    }
+
+
+    /****** UC6 ******/
     public List<Benefit> visualizzaCongediComplessivi(String tipo){
         if (tipo.equals("F")) {
             List<Benefit> listFerie = new ArrayList<>();

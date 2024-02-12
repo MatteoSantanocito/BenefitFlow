@@ -1,5 +1,6 @@
 package domain;
 
+import java.awt.List;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -50,5 +51,15 @@ public class Main {
         benefitFlow.inserisciPermesso("MSN003", "laurea", d1, LocalTime.of(10, 30), LocalTime.of(10, 45));
         benefitFlow.confermaPermesso();
         System.out.println("\n");
+
+        benefitFlow.sovrapposizioneBenefit(3);
+        benefitFlow.confermaBenefit("approvato");
+
+        System.out.println("mostro permessi approvati: \n" + benefitFlow.mostraBenefitApprovati("GDB001", "P"));
+
+        benefitFlow.richiediProlungamentoPermesso(3, LocalTime.of(11, 00));
+        benefitFlow.confermaProlungamentoPermesso();
+
+        System.out.println("Lista ferie aggiornata: \n" + benefitFlow.mostraBenefit("P"));
     }
 }
