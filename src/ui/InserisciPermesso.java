@@ -137,14 +137,23 @@ public class InserisciPermesso extends JFrame {
                         LocalDate dataFormatted = LocalDate.parse(dataField.getText(), formatterData);
                         LocalTime oraInizioFormatted = LocalTime.parse(oraInizioField.getText(), formatterTime);
                         LocalTime oraFineFormatted = LocalTime.parse(oraFineField.getText(), formatterTime);
-                        benefitFlow.inserisciPermesso(matricolaField.getText(), motivazioneField.getText(), dataFormatted, oraInizioFormatted, oraFineFormatted);
-                        benefitFlow.confermaPermesso();
-                        matricolaField.setText("");
-                        motivazioneField.setText("");
-                        dataField.setText("");
-                        oraInizioField.setText("");
-                        oraFineField.setText("");
-                        InserisciPermesso.this.dispose();
+                        boolean valida = validaDataOraPermesso(dataFormatted,oraInizioFormatted,oraFineFormatted);
+                        if(valida){
+                            benefitFlow.inserisciPermesso(matricolaField.getText(), motivazioneField.getText(), dataFormatted, oraInizioFormatted, oraFineFormatted);
+                            benefitFlow.confermaPermesso();
+                            matricolaField.setText("");
+                            motivazioneField.setText("");
+                            dataField.setText("");
+                            oraInizioField.setText("");
+                            oraFineField.setText("");
+                            InserisciPermesso.this.dispose();
+                        }else{
+                            errorField.setText("Data e/o ora non valida");
+                            dataField.setText("");
+                            oraInizioField.setText("");
+                            oraFineField.setText("");
+                        }
+
                     } catch (Exception ex) {
                         System.err.println("Inserimento ferie fallito. Formato data e/o ora non valido.");
                         errorField.setText("Data e/o ora non valida (dd/MM/yyyy - HH:mm)");
@@ -181,4 +190,25 @@ public class InserisciPermesso extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
+
+    public boolean validaDataOraPermesso(LocalDate data, LocalTime oraInizio, LocalTime oraFine){
+        boolean valida = false;
+        LocalDate dataCorrente = LocalDate.now();
+        LocalTime oraCorrente = LocalTime.now();
+
+        if ( data.isEqual(dataCorrente) ) {
+            if( (oraInizio.equals(oraCorrente) || oraInizio.isAfter(oraCorrente)) && oraFine.isAfter(oraInizio)){
+                valida = true;
+            }
+        }
+
+        if(data.isAfter(dataCorrente)){
+            if(oraFine.isAfter(oraInizio)){
+                valida = true;
+            }
+        }
+
+        return valida;
+    }
+
 }

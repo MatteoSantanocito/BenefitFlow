@@ -124,18 +124,25 @@ public class ProlungamentoPermesso extends JFrame {
                     try {
                         LocalTime oraFineFormatted = LocalTime.parse(oraFineField.getText(), formatter);
                         int codice = Integer.parseInt(codiceField.getText());
+                        LocalTime oldHour = LocalTime.of(23,59);
                         for(Benefit b : lista){
                             if (b.getCodice() == codice) {
+                                oldHour = ((Permesso) b).getOraFine();
                                 trovato = true;
                                 break;
                             }
                         }
                         if (trovato) {
-                            benefitFlow.richiediProlungamentoPermesso(codice, oraFineFormatted);
-                            benefitFlow.confermaProlungamentoPermesso();
-                            codiceField.setText("");
-                            oraFineField.setText("");
-                            ProlungamentoPermesso.this.dispose();
+                            if(oraFineFormatted.isAfter(oldHour)){
+                                benefitFlow.richiediProlungamentoPermesso(codice, oraFineFormatted);
+                                benefitFlow.confermaProlungamentoPermesso();
+                                codiceField.setText("");
+                                oraFineField.setText("");
+                                ProlungamentoPermesso.this.dispose();
+                            }else{
+                                errorField.setText("Ora non valida");
+                                oraFineField.setText("");
+                            }
                         }else{
                             errorField.setText("Codice non valido");
                             codiceField.setText("");

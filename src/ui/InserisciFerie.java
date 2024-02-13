@@ -124,13 +124,20 @@ public class InserisciFerie extends JFrame {
                     try {
                         LocalDate dataInizioFormatted = LocalDate.parse(dataInizioField.getText(), formatter);
                         LocalDate dataFineFormatted = LocalDate.parse(dataFineField.getText(), formatter);
-                        benefitFlow.inserisciFerie(matricolaField.getText(), motivazioneField.getText(), dataInizioFormatted, dataFineFormatted);
-                        benefitFlow.confermaFerie();
-                        matricolaField.setText("");
-                        motivazioneField.setText("");
-                        dataInizioField.setText("");
-                        dataFineField.setText("");
-                        InserisciFerie.this.dispose();
+                        boolean valida = validaDataFerie(dataInizioFormatted,dataFineFormatted);
+                        if(valida){
+                            benefitFlow.inserisciFerie(matricolaField.getText(), motivazioneField.getText(), dataInizioFormatted, dataFineFormatted);
+                            benefitFlow.confermaFerie();
+                            matricolaField.setText("");
+                            motivazioneField.setText("");
+                            dataInizioField.setText("");
+                            dataFineField.setText("");
+                            InserisciFerie.this.dispose();
+                        } else{
+                            errorField.setText("Data non valida");
+                            dataInizioField.setText("");
+                            dataFineField.setText("");
+                        }
                     } catch (Exception ex) {
                         System.err.println("Inserimento ferie fallito. Formato data non valido.");
                         errorField.setText("Data non valida (formato richiesto: dd/MM/yyyy)");
@@ -164,6 +171,17 @@ public class InserisciFerie extends JFrame {
         setSize(400, 385);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+
+    public boolean validaDataFerie(LocalDate dataInizio, LocalDate dataFine){
+        boolean valida = false;
+        LocalDate dataCorrente = LocalDate.now();
+
+        if ( (dataInizio.isAfter(dataCorrente) || dataInizio.isEqual(dataCorrente)) && dataFine.isAfter(dataInizio)) {
+            valida = true;
+        }
+
+        return valida;
     }
 }
 

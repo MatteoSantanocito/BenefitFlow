@@ -15,6 +15,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -122,18 +123,25 @@ public class ProlungamentoFerie extends JFrame {
                     try {
                         LocalDate dataFineFormatted = LocalDate.parse(dataFineField.getText(), formatter);
                         int codice = Integer.parseInt(codiceField.getText());
+                        LocalDate oldDate = null;
                         for(Benefit b : lista){
                             if (b.getCodice() == codice) {
+                                oldDate = ((Ferie) b).getDataFine();
                                 trovato = true;
                                 break;
                             }
                         }
                         if (trovato) {
-                            benefitFlow.richiediProlungamentoFerie(codice, dataFineFormatted);
-                            benefitFlow.confermaProlungamentoFerie();
-                            codiceField.setText("");
-                            dataFineField.setText("");
-                            ProlungamentoFerie.this.dispose();
+                            if(dataFineFormatted.isAfter(oldDate)){
+                                benefitFlow.richiediProlungamentoFerie(codice, dataFineFormatted);
+                                benefitFlow.confermaProlungamentoFerie();
+                                codiceField.setText("");
+                                dataFineField.setText("");
+                                ProlungamentoFerie.this.dispose();
+                            }else{
+                                errorField.setText("Data non valida");
+                                dataFineField.setText("");
+                            }
                         }else{
                             errorField.setText("Codice non valido");
                             codiceField.setText("");
