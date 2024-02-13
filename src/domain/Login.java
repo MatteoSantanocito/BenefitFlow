@@ -199,6 +199,8 @@ public class Login extends JPanel {
 
         JButton inserisciBenefit = new JButton("Inserisci Benefit");
         choisePanelDip.add(inserisciBenefit);
+        JButton gestisciBenefit = new JButton("Gestisci Benefit");
+        choisePanelDip.add(gestisciBenefit);
 
         JButton logoutDip = new JButton("LogOut");
         buttonLogoutPanelDip.add(logoutDip);
@@ -221,6 +223,13 @@ public class Login extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new ScegliBenefit(benefitFlow, d_corrente);
+            }
+        });
+
+        gestisciBenefit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ScegliBenefitModifica(benefitFlow, d_corrente);
             }
         });
 

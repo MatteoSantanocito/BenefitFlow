@@ -265,7 +265,6 @@ public class BenefitFlow extends JFrame {
 
     /****** UC5 ******/
     public List<Benefit> mostraBenefitApprovati(String matricola, String tipo){
-        //da sistemare
         this.dipendenteCorrente = elencoDipendenti.get(matricola);
 
         if (tipo.equals("F")) {
@@ -305,6 +304,7 @@ public class BenefitFlow extends JFrame {
 
     public void richiediProlungamentoFerie(int codice, LocalDate dataFine){
         List<Benefit> listFerieApprovate = mostraBenefitApprovati(this.dipendenteCorrente.getMatricola(), "F");
+
         for (Benefit ferie : listFerieApprovate) {
             int c = ferie.getCodice();
 
@@ -328,6 +328,7 @@ public class BenefitFlow extends JFrame {
 
     public void richiediProlungamentoPermesso(int codice, LocalTime oraFine){
         List<Benefit> listPermessiApprovati = mostraBenefitApprovati(this.dipendenteCorrente.getMatricola(), "P");
+
         for (Benefit permesso : listPermessiApprovati) {
             int c = permesso.getCodice();
 
@@ -367,6 +368,4 @@ public class BenefitFlow extends JFrame {
 
         return null;
     }
-
-
 }
