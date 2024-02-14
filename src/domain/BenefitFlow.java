@@ -368,4 +368,34 @@ public class BenefitFlow extends JFrame {
 
         return null;
     }
+
+
+    /****** UC7 ******/
+    public List<Benefit> visualizzaCongedi(String tipo, String matricola){
+        if (tipo.equals("F")) {
+            List<Benefit> listFerie = new ArrayList<>();
+            listFerie.addAll(elencoFerie.values());
+            List<Benefit> listFerieDip = new ArrayList<>();
+            for (Benefit f : listFerie){
+                if(f.getMatricola().equals(matricola)){
+                    listFerieDip.add(f);
+                }
+            }
+            return listFerieDip;
+        }
+
+        if (tipo.equals("P")) {
+            List<Benefit> listPermessi = new ArrayList<>();
+            listPermessi.addAll(elencoPermessi.values());
+            List<Benefit> listPermessiDip = new ArrayList<>();
+            for (Benefit p : listPermessi){
+                if(p.getMatricola().equals(matricola)){
+                    listPermessiDip.add(p);
+                }
+            }
+            return listPermessiDip;
+        }
+
+        return null;
+    }
 }

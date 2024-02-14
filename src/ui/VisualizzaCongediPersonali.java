@@ -1,9 +1,6 @@
 package ui;
 
-import domain.Benefit;
-import domain.BenefitFlow;
-import domain.Ferie;
-import domain.Permesso;
+import domain.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -16,12 +13,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class VisualizzaCongedi extends JFrame{
+public class VisualizzaCongediPersonali extends JFrame{
     private JLabel titolo;
     private BenefitFlow benefitFlow;
+    private Dipendente dipendente;
 
-    public VisualizzaCongedi(BenefitFlow b) {
+    public VisualizzaCongediPersonali(BenefitFlow b, Dipendente d) {
         this.benefitFlow = b;
+        this.dipendente = d;
         initComponent();
     }
 
@@ -51,7 +50,7 @@ public class VisualizzaCongedi extends JFrame{
 
         HeaderRenderer headerRenderer = new HeaderRenderer();
 
-        List<Benefit> listaF = benefitFlow.visualizzaCongediComplessivi("F");
+        List<Benefit> listaF = benefitFlow.visualizzaCongedi("F", dipendente.getMatricola());
         JTable tableF = new JTable(new TabellaFerie(listaF));
         tableF.getTableHeader().setDefaultRenderer(headerRenderer);
         JScrollPane scrollPaneF = new JScrollPane(tableF);
@@ -71,7 +70,7 @@ public class VisualizzaCongedi extends JFrame{
         tableF.setSelectionBackground(new Color(119, 119, 119, 255));
         tableF.setFocusable(false);
 
-        List<Benefit> listaP = benefitFlow.visualizzaCongediComplessivi("P");
+        List<Benefit> listaP = benefitFlow.visualizzaCongedi("P", dipendente.getMatricola());
         JTable tableP = new JTable(new TabellaPermessi(listaP));
         tableP.getTableHeader().setDefaultRenderer(headerRenderer);
         JScrollPane scrollPaneP = new JScrollPane(tableP);
@@ -96,7 +95,7 @@ public class VisualizzaCongedi extends JFrame{
 
 
         gbc.gridx = 0;
-        gbc.gridy = 0; 
+        gbc.gridy = 0;
         gbc.weightx = 0;
         gbc.weighty = 0.2;
         add(titlePanel, gbc);

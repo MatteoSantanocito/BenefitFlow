@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a60ab205-e48e-458a-b714-77e9ceaa1b87" name="Changes" comment="implementazione caso d'uso UC4, Gestisci ferie e permessi, su classe BenefitFlow">
+    <list default="true" id="a60ab205-e48e-458a-b714-77e9ceaa1b87" name="Changes" comment="correzione bug inserimento date e orari">
+      <change afterPath="$PROJECT_DIR$/src/ui/VisualizzaCongediPersonali.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/InserisciFerie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/InserisciFerie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/InserisciPermesso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/InserisciPermesso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/ProlungamentoFerie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ProlungamentoFerie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/ProlungamentoPermesso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ProlungamentoPermesso.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/BenefitFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/BenefitFlow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/VisualizzaCongedi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/VisualizzaCongedi.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +189,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707365456351</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="correzione bug inserimento date e orari">
+      <option name="closed" value="true" />
+      <created>1707855798563</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1707855798563</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,6 +224,7 @@
     <MESSAGE value="implementazione gestisciRuolo" />
     <MESSAGE value="modifiche alla UI e risolto bug in gestioneruolo" />
     <MESSAGE value="implementazione caso d'uso UC4, Gestisci ferie e permessi, su classe BenefitFlow" />
-    <option name="LAST_COMMIT_MESSAGE" value="implementazione caso d'uso UC4, Gestisci ferie e permessi, su classe BenefitFlow" />
+    <MESSAGE value="correzione bug inserimento date e orari" />
+    <option name="LAST_COMMIT_MESSAGE" value="correzione bug inserimento date e orari" />
   </component>
 </project>

@@ -58,8 +58,6 @@ public class Main {
         // System.out.println("mostro permessi approvati: \n" + benefitFlow.mostraBenefitApprovati("GDB001", "P"));
 
         // benefitFlow.richiediProlungamentoPermesso(3, LocalTime.of(11, 00));
-        // benefitFlow.confermaProlungamentoPermesso();
-
-        // System.out.println("Lista ferie aggiornata: \n" + benefitFlow.mostraBenefit("P"));
+        // benefitFlow.confermaProlungamentoPermesso()
     }
 }

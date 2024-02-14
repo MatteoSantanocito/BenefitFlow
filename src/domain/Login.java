@@ -190,7 +190,7 @@ public class Login extends JPanel {
 
     public JPanel dipPanel(){
         JPanel dipPanel = new JPanel(new GridLayout(3, 1));
-        JPanel choisePanelDip = new JPanel(new FlowLayout());
+        JPanel choisePanelDip = new JPanel(new GridLayout(3, 2));
         JPanel buttonLogoutPanelDip = new JPanel(new FlowLayout());
 
         JLabel textDip = new JLabel("Sezione dipendente. Scegli cosa fare");
@@ -198,9 +198,15 @@ public class Login extends JPanel {
         textDip.setHorizontalAlignment(JLabel.CENTER);
 
         JButton inserisciBenefit = new JButton("Inserisci Benefit");
-        choisePanelDip.add(inserisciBenefit);
         JButton gestisciBenefit = new JButton("Gestisci Benefit");
+        JButton visualizzaCongedi = new JButton("Visualizza Congedi");
+        JButton gestisciBP = new JButton("Gestisci Buoni Pasto");
+        JButton visualizzaBP = new JButton("Visualizza Buoni Pasto");
+        choisePanelDip.add(inserisciBenefit);
         choisePanelDip.add(gestisciBenefit);
+        choisePanelDip.add(visualizzaCongedi);
+        choisePanelDip.add(gestisciBP);
+        choisePanelDip.add(visualizzaBP);
 
         JButton logoutDip = new JButton("LogOut");
         buttonLogoutPanelDip.add(logoutDip);
@@ -230,6 +236,13 @@ public class Login extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new ScegliBenefitModifica(benefitFlow, d_corrente);
+            }
+        });
+
+        visualizzaCongedi.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new VisualizzaCongediPersonali(benefitFlow, d_corrente);
             }
         });
 
