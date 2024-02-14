@@ -124,8 +124,9 @@ public class InserisciFerie extends JFrame {
                     try {
                         LocalDate dataInizioFormatted = LocalDate.parse(dataInizioField.getText(), formatter);
                         LocalDate dataFineFormatted = LocalDate.parse(dataFineField.getText(), formatter);
-                        boolean valida = validaDataFerie(dataInizioFormatted,dataFineFormatted);
-                        if(valida){
+
+                        try {
+                            validaDataFerie(dataInizioFormatted, dataFineFormatted);
                             benefitFlow.inserisciFerie(matricolaField.getText(), motivazioneField.getText(), dataInizioFormatted, dataFineFormatted);
                             benefitFlow.confermaFerie();
                             matricolaField.setText("");
@@ -133,11 +134,10 @@ public class InserisciFerie extends JFrame {
                             dataInizioField.setText("");
                             dataFineField.setText("");
                             InserisciFerie.this.dispose();
-                        } else{
-                            errorField.setText("Data non valida");
-                            dataInizioField.setText("");
-                            dataFineField.setText("");
+                        } catch (Exception ex) {
+                            errorField.setText(ex.getMessage());
                         }
+
                     } catch (Exception ex) {
                         System.err.println("Inserimento ferie fallito. Formato data non valido.");
                         errorField.setText("Data non valida (formato richiesto: dd/MM/yyyy)");
@@ -173,15 +173,16 @@ public class InserisciFerie extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
-    public boolean validaDataFerie(LocalDate dataInizio, LocalDate dataFine){
-        boolean valida = false;
+    public void validaDataFerie(LocalDate dataInizio, LocalDate dataFine){
         LocalDate dataCorrente = LocalDate.now();
 
-        if ( (dataInizio.isAfter(dataCorrente) || dataInizio.isEqual(dataCorrente)) && dataFine.isAfter(dataInizio)) {
-            valida = true;
+        if (dataInizio.isBefore(dataCorrente)) {
+            throw new IllegalArgumentException("Data Inizio precedente alla data odierna");
         }
 
-        return valida;
+        if (dataFine.isBefore(dataInizio)) {
+            throw new IllegalArgumentException("Data Fine precedente a Data Inizio");
+        }
     }
 }
 

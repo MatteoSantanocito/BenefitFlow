@@ -1,6 +1,5 @@
 package ui;
 
-
 import domain.BenefitFlow;
 import domain.Dipendente;
 
@@ -31,7 +30,7 @@ public class GestisciRuolo extends JFrame {
 
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 10, 0, 10);
+        gbc.insets = new Insets(5, 5, 0, 5);
 
         JPanel titlePanel = new JPanel(new FlowLayout());
         JPanel formPanel = new JPanel(new GridBagLayout());
@@ -70,6 +69,7 @@ public class GestisciRuolo extends JFrame {
         formPanel.add(matricolaField, gbc);
 
         codiceRuoloLabel = new JLabel("Codice Ruolo");
+        codiceRuoloLabel.setBorder(new EmptyBorder(0, 30, 0, 0));
         codiceRuoloField = new JTextField(15);
         gbc.gridx = 2;
         gbc.gridy = 1;
@@ -100,11 +100,25 @@ public class GestisciRuolo extends JFrame {
         confermaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                boolean trovato = false;
                 if (!matricolaField.getText().isEmpty() && !codiceRuoloField.getText().isEmpty()) {
-                    benefitFlow.confermaRuolo(matricolaField.getText(), codiceRuoloField.getText());
-                    matricolaField.setText("");
-                    codiceRuoloField.setText("");
-                    GestisciRuolo.this.dispose();
+                    for(Dipendente d : lista){
+                        if (d.getMatricola().equals(matricolaField.getText())) {
+                            trovato = true;
+                            break;
+                        }
+                    }
+
+                    if (trovato) {
+                        benefitFlow.confermaRuolo(matricolaField.getText(), codiceRuoloField.getText());
+                        matricolaField.setText("");
+                        codiceRuoloField.setText("");
+                        GestisciRuolo.this.dispose();
+                    }else{
+                        errorField.setText("Matricola non valida");
+                    }
+                    
+                    
                 } else {
                     System.out.println("Compilare tutti i campi.");
                     errorField.setText("Compilare tutti i campi");

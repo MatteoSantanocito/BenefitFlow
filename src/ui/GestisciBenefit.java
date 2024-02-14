@@ -53,6 +53,7 @@ public class GestisciBenefit extends JFrame {
         subtitlePanelBenefit.add(titleChoseBenefit);
 
         JPanel buttonPanelBenefit = new JPanel(new FlowLayout());
+        buttonPanelBenefit.setBorder(new EmptyBorder(0, 11, 0, 0));
         JButton visualizzaFerie = new JButton("Visualizza Ferie");
         JButton visualizzaPermesso = new JButton("Visualizza Permesso");
         buttonPanelBenefit.add(visualizzaFerie);
@@ -70,7 +71,8 @@ public class GestisciBenefit extends JFrame {
         titleCode.setFont(new Font("Arial", Font.PLAIN, 15));
         subTitlePanelCode.add(titleCode);
 
-        JPanel codePanel = new JPanel(new FlowLayout());
+        JPanel codePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        codePanel.setBorder(new EmptyBorder(0, 14, 0, 0));
         JTextField code = new JTextField(3);
         JButton confermaCodice = new JButton("Conferma codice");
         code.setEnabled(false);
@@ -78,8 +80,8 @@ public class GestisciBenefit extends JFrame {
         codePanel.add(code);
         codePanel.add(confermaCodice);
 
-        JPanel errorPanelCode = new JPanel(new FlowLayout());
-        errorPanelCode.setBorder(new EmptyBorder(10, 0, 0, 0));
+        JPanel errorPanelCode = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        errorPanelCode.setBorder(new EmptyBorder(0, 17, 0, 0));
         errorFieldCode = new JTextField(25);
         errorFieldCode.setBorder(null);
         errorFieldCode.setBackground(new Color(238, 238, 238));
@@ -102,7 +104,8 @@ public class GestisciBenefit extends JFrame {
         titleState.setFont(new Font("Arial", Font.PLAIN, 15));
         subTitlePanelState.add(titleState);
 
-        JPanel statePanel = new JPanel(new FlowLayout());
+        JPanel statePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        statePanel.setBorder(new EmptyBorder(0, 14, 0, 0));
         JTextField state = new JTextField(10);
         JButton confermaStato = new JButton("Conferma stato");
         state.setEnabled(false);
@@ -110,8 +113,8 @@ public class GestisciBenefit extends JFrame {
         statePanel.add(state);
         statePanel.add(confermaStato);
 
-        JPanel errorPanelState = new JPanel(new FlowLayout());
-        errorPanelState.setBorder(new EmptyBorder(10, 0, 0, 0));
+        JPanel errorPanelState = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        errorPanelState.setBorder(new EmptyBorder(0, 17, 0, 0));
         errorFieldState = new JTextField(25);
         errorFieldState.setBorder(null);
         errorFieldState.setBackground(new Color(238, 238, 238));
@@ -383,7 +386,7 @@ public class GestisciBenefit extends JFrame {
                         benefitFlow.confermaBenefit(stato);
                         GestisciBenefit.this.dispose();
                     }else{
-                        errorFieldState.setText("inserire 'approvato' o 'non approvato'");
+                        errorFieldState.setText("Inserire 'approvato' o 'non approvato'");
                         state.setText("");
                         code.setEnabled(false);
                         confermaCodice.setEnabled(false);

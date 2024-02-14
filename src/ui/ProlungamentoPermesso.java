@@ -1,6 +1,5 @@
 package ui;
 
-
 import domain.Benefit;
 import domain.BenefitFlow;
 import domain.Dipendente;
@@ -38,7 +37,7 @@ public class ProlungamentoPermesso extends JFrame {
 
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 10, 0, 10);
+        gbc.insets = new Insets(5, 5, 0, 5);
 
         JPanel titlePanel = new JPanel(new FlowLayout());
         JPanel formPanel = new JPanel(new GridBagLayout());
@@ -87,7 +86,8 @@ public class ProlungamentoPermesso extends JFrame {
         formPanel.add(codiceField, gbc);
 
         oraFineLabel = new JLabel("Ora fine");
-        oraFineField = new JTextField(15);
+        oraFineLabel.setBorder(new EmptyBorder(0, 30, 0, 0));
+        oraFineField = new JTextField(6);
         gbc.gridx = 2;
         gbc.gridy = 1;
         gbc.weightx = 0.01;
@@ -114,6 +114,15 @@ public class ProlungamentoPermesso extends JFrame {
         buttonPanel.setBorder(new EmptyBorder(10, 0, 30, 0));
         buttonPanel.add(confermaButton);
 
+        if (lista.isEmpty()) {
+            codiceLabel.setEnabled(false);
+            codiceField.setEnabled(false);
+            oraFineLabel.setEnabled(false);
+            oraFineField.setEnabled(false);
+            confermaButton.setEnabled(false);
+            errorField.setText("Non sono presenti permessi approvati");
+        }
+
         confermaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -133,16 +142,18 @@ public class ProlungamentoPermesso extends JFrame {
                             }
                         }
                         if (trovato) {
-                            if(oraFineFormatted.isAfter(oldHour)){
+
+                            try {
+                                validaOraPermesso(oldHour, oraFineFormatted);
                                 benefitFlow.richiediProlungamentoPermesso(codice, oraFineFormatted);
                                 benefitFlow.confermaProlungamentoPermesso();
                                 codiceField.setText("");
                                 oraFineField.setText("");
                                 ProlungamentoPermesso.this.dispose();
-                            }else{
-                                errorField.setText("Ora non valida");
-                                oraFineField.setText("");
+                            } catch (Exception ex) {
+                                errorField.setText(ex.getMessage());
                             }
+                            
                         }else{
                             errorField.setText("Codice non valido");
                             codiceField.setText("");
@@ -242,6 +253,18 @@ public class ProlungamentoPermesso extends JFrame {
             setFont(new Font("Arial", Font.BOLD, 12));
 
             return this;
+        }
+    }
+
+    public void validaOraPermesso(LocalTime oldHour, LocalTime oraFine){
+        LocalTime oraMax = LocalTime.of(18, 00);
+
+        if (oraFine.isBefore(oldHour)) {
+            throw new IllegalArgumentException("Ora Fine è precedente alla vecchia Ora Fine");
+        }
+
+        if (oraFine.isAfter(oraMax)) {
+            throw new IllegalArgumentException("Ora Fine successivo alla fine dell'orario lavorativo");
         }
     }
 

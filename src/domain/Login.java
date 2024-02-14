@@ -23,9 +23,13 @@ public class Login extends JPanel {
     public Login(BenefitFlow b) {
         this.benefitFlow = b;
         setLayout(new GridLayout(1, 1));
-        mainPanel = new JPanel(new GridLayout(3, 1));
+
+        mainPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 10, 0, 10);
+
         JPanel titlePanel = new JPanel(new FlowLayout());
-        JPanel formPanel = new JPanel(new GridLayout(3, 1));
+        JPanel formPanel = new JPanel(new GridBagLayout());
         JPanel buttonPanel = new JPanel(new FlowLayout()); 
         ammPanel = ammPanel();
         dipPanel = dipPanel();
@@ -33,24 +37,36 @@ public class Login extends JPanel {
         titolo = new JLabel("BenefitFlow");
         titolo.setFont(new Font("Arial", Font.BOLD, 20));
         titolo.setHorizontalAlignment(JLabel.LEFT);
-        titlePanel.setBorder(new EmptyBorder(30, 0, 0, 0));
+        titlePanel.setBorder(new EmptyBorder(30, 0, 20, 0));
         titlePanel.add(titolo);
 
-        JPanel usernamePanel = new JPanel(new FlowLayout());
         usernameLabel = new JLabel("Username");
         usernameField = new JTextField(15);
-        usernamePanel.add(usernameLabel);
-        usernamePanel.add(usernameField);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 0.01;
+        gbc.weighty = 0.01;
+        formPanel.add(usernameLabel, gbc);
+        gbc.gridx = 1;
+        gbc.weightx = 0.01;
+        gbc.weighty = 0.01;
+        formPanel.add(usernameField, gbc);
 
-        JPanel passwordPanel = new JPanel(new FlowLayout());
         passwordLabel = new JLabel("Password");
         passwordField = new JPasswordField(15);
-        passwordPanel.add(passwordLabel);
-        passwordPanel.add(passwordField);
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.weightx = 0.01;
+        gbc.weighty = 0.01;
+        formPanel.add(passwordLabel, gbc);
+        gbc.gridx = 1;
+        gbc.weightx = 0.01;
+        gbc.weighty = 0.01;
+        formPanel.add(passwordField, gbc);
 
-        JPanel errorPanel = new JPanel(new FlowLayout());
-        errorPanel.setBorder(new EmptyBorder(10, 0, 0, 0));
-        errorField = new JTextField(25);
+        JPanel errorPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        errorPanel.setBorder(new EmptyBorder(5, 0, 0, 0));
+        errorField = new JTextField(27);
         errorField.setBorder(null);
         errorField.setBackground(new Color(238, 238, 238));
         errorField.setFont(new Font("Arial", Font.ITALIC, 12));
@@ -58,12 +74,8 @@ public class Login extends JPanel {
         errorField.setDisabledTextColor(Color.RED);
         errorPanel.add(errorField);
 
-        formPanel.add(usernamePanel);
-        formPanel.add(passwordPanel);
-        formPanel.add(errorPanel);
-
         login = new JButton("Login");
-        buttonPanel.setBorder(new EmptyBorder(10, 0, 0, 0));
+        buttonPanel.setBorder(new EmptyBorder(0, 0, 20, 0));
         buttonPanel.add(login);
 
         login.addActionListener(new ActionListener() {
@@ -72,46 +84,63 @@ public class Login extends JPanel {
                 String username = usernameField.getText();
                 String password = passwordField.getText();
 
-                if("admin".equals(username) && "admin".equals(password)){
-                    SwingUtilities.invokeLater(() -> {
-                        remove(mainPanel);
-                        add(ammPanel);
-                        revalidate();
-                        repaint();
-                    });
-                }else{
-                    List<Dipendente> d = benefitFlow.mostraDipendenti();
-                    String nome = "";
-                    for (Dipendente dipendente : d){
-                        String matricola = dipendente.getMatricola();
-                        if(matricola.equals(password)){
-                           nome = dipendente.getNome();
-                           d_corrente = dipendente;
-                           break;
-                        }
-                    }
-                    if (nome.equals("")) {
-                        errorField.setText("Password errata");
-                    } else if (nome.equals(username)) {
+                if (!username.equals("") && !password.equals("")) {
+                    if("admin".equals(username) && "admin".equals(password)){
                         SwingUtilities.invokeLater(() -> {
                             remove(mainPanel);
-                            add(dipPanel);
+                            add(ammPanel);
                             revalidate();
                             repaint();
                         });
                     }else{
-                        errorField.setText("Username errato");
+                        List<Dipendente> d = benefitFlow.mostraDipendenti();
+                        String nome = "";
+                        for (Dipendente dipendente : d){
+                            String matricola = dipendente.getMatricola();
+                            if(matricola.equals(password)){
+                               nome = dipendente.getNome();
+                               d_corrente = dipendente;
+                               break;
+                            }
+                        }
+                        if (nome.equals("")) {
+                            errorField.setText("Password errata");
+                        } else if (nome.equals(username)) {
+                            SwingUtilities.invokeLater(() -> {
+                                remove(mainPanel);
+                                add(dipPanel);
+                                revalidate();
+                                repaint();
+                            });
+                        }else{
+                            errorField.setText("Username errato");
+                        }
                     }
+                    
+                    usernameField.setText("");
+                    passwordField.setText("");
+                }else{
+                    errorField.setText("Compilare tutti i campi");
                 }
+
                 
-                usernameField.setText("");
-                passwordField.setText("");
             }
         });
 
-        mainPanel.add(titlePanel);
-        mainPanel.add(formPanel);
-        mainPanel.add(buttonPanel);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 0.1;
+        mainPanel.add(titlePanel,gbc);
+        gbc.gridy = 1;
+        gbc.weighty = 0.8;
+        mainPanel.add(formPanel,gbc);
+        gbc.gridy = 2;
+        mainPanel.add(errorPanel, gbc);
+        gbc.gridy = 3;
+        gbc.weighty = 0.1;
+        mainPanel.add(buttonPanel,gbc);
+        
         add(mainPanel);
     }
 

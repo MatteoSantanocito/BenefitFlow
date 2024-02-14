@@ -137,8 +137,9 @@ public class InserisciPermesso extends JFrame {
                         LocalDate dataFormatted = LocalDate.parse(dataField.getText(), formatterData);
                         LocalTime oraInizioFormatted = LocalTime.parse(oraInizioField.getText(), formatterTime);
                         LocalTime oraFineFormatted = LocalTime.parse(oraFineField.getText(), formatterTime);
-                        boolean valida = validaDataOraPermesso(dataFormatted,oraInizioFormatted,oraFineFormatted);
-                        if(valida){
+                        
+                        try {
+                            validaDataOraPermesso(dataFormatted,oraInizioFormatted,oraFineFormatted);
                             benefitFlow.inserisciPermesso(matricolaField.getText(), motivazioneField.getText(), dataFormatted, oraInizioFormatted, oraFineFormatted);
                             benefitFlow.confermaPermesso();
                             matricolaField.setText("");
@@ -147,11 +148,8 @@ public class InserisciPermesso extends JFrame {
                             oraInizioField.setText("");
                             oraFineField.setText("");
                             InserisciPermesso.this.dispose();
-                        }else{
-                            errorField.setText("Data e/o ora non valida");
-                            dataField.setText("");
-                            oraInizioField.setText("");
-                            oraFineField.setText("");
+                        } catch (Exception ex) {
+                            errorField.setText(ex.getMessage());
                         }
 
                     } catch (Exception ex) {
@@ -191,24 +189,39 @@ public class InserisciPermesso extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
-    public boolean validaDataOraPermesso(LocalDate data, LocalTime oraInizio, LocalTime oraFine){
-        boolean valida = false;
+    public void validaDataOraPermesso(LocalDate data, LocalTime oraInizio, LocalTime oraFine){
         LocalDate dataCorrente = LocalDate.now();
         LocalTime oraCorrente = LocalTime.now();
+        LocalTime oraMin = LocalTime.of(7,59);
+        LocalTime oraMax = LocalTime.of(18, 01);
 
-        if ( data.isEqual(dataCorrente) ) {
-            if( (oraInizio.equals(oraCorrente) || oraInizio.isAfter(oraCorrente)) && oraFine.isAfter(oraInizio)){
-                valida = true;
+        if (data.isBefore(dataCorrente)) {
+            throw new IllegalArgumentException("Data Inizio precedente alla data odierna");
+        }
+
+        if(oraInizio.isBefore(oraMin)){
+            throw new IllegalArgumentException("Ora Inizio precedente all'inizio dell'orario lavorativo");
+        }
+
+        if(oraFine.isAfter(oraMax)){
+            throw new IllegalArgumentException("Ora Fine successivo alla fine dell'orario lavorativo");
+        }
+
+        if (data.isEqual(dataCorrente)) {
+            if((oraInizio.isBefore(oraCorrente))){
+                throw new IllegalArgumentException("Ora Inizio è precedente all'orario attuale");
+            }
+
+            if(oraFine.isBefore(oraInizio)){
+                throw new IllegalArgumentException("Ora Fine è precedente a Ora Inizio");
             }
         }
 
         if(data.isAfter(dataCorrente)){
-            if(oraFine.isAfter(oraInizio)){
-                valida = true;
-            }
+            if(oraFine.isBefore(oraInizio)){
+                throw new IllegalArgumentException("Ora Fine è precedente a Ora Inizio");
+            }    
         }
-
-        return valida;
     }
 
 }

@@ -1,6 +1,5 @@
 package ui;
 
-
 import domain.Benefit;
 import domain.BenefitFlow;
 import domain.Dipendente;
@@ -15,7 +14,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -39,7 +37,7 @@ public class ProlungamentoFerie extends JFrame {
 
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 10, 0, 10);
+        gbc.insets = new Insets(5, 5, 0, 5);
 
         JPanel titlePanel = new JPanel(new FlowLayout());
         JPanel formPanel = new JPanel(new GridBagLayout());
@@ -51,7 +49,6 @@ public class ProlungamentoFerie extends JFrame {
         titlePanel.add(titolo);
 
         List<Benefit> lista = benefitFlow.mostraBenefitApprovati(this.dipendente.getMatricola(), "F");
-        System.out.println(lista);
         JTable table = new JTable(new TabellaModello(lista));
         HeaderRenderer headerRenderer = new HeaderRenderer();
         table.getTableHeader().setDefaultRenderer(headerRenderer);
@@ -86,7 +83,8 @@ public class ProlungamentoFerie extends JFrame {
         formPanel.add(codiceField, gbc);
 
         dataFineLabel = new JLabel("Data fine");
-        dataFineField = new JTextField(15);
+        dataFineLabel.setBorder(new EmptyBorder(0, 30, 0, 0));
+        dataFineField = new JTextField(9);
         gbc.gridx = 2;
         gbc.gridy = 1;
         gbc.weightx = 0.01;
@@ -112,6 +110,15 @@ public class ProlungamentoFerie extends JFrame {
         confermaButton = new JButton("Conferma");
         buttonPanel.setBorder(new EmptyBorder(10, 0, 30, 0));
         buttonPanel.add(confermaButton);
+
+        if (lista.isEmpty()) {
+            codiceLabel.setEnabled(false);
+            codiceField.setEnabled(false);
+            dataFineLabel.setEnabled(false);
+            dataFineField.setEnabled(false);
+            confermaButton.setEnabled(false);
+            errorField.setText("Non sono presenti ferie approvate");
+        }
 
         confermaButton.addActionListener(new ActionListener() {
             @Override
@@ -139,7 +146,7 @@ public class ProlungamentoFerie extends JFrame {
                                 dataFineField.setText("");
                                 ProlungamentoFerie.this.dispose();
                             }else{
-                                errorField.setText("Data non valida");
+                                errorField.setText("Data Fine precedente alle vecchia Data Fine");
                                 dataFineField.setText("");
                             }
                         }else{
