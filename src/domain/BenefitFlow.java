@@ -18,8 +18,11 @@ public class BenefitFlow extends JFrame {
     private Benefit benefit;
     private Ferie ferie;
     private Permesso permesso;
+    private BuonoPasto buonoPasto;
     private Map<Integer, Ferie> elencoFerie;
     private Map<Integer, Permesso> elencoPermessi;
+    private Map<String, BuonoPasto> elencoBuoniPasto;
+
 
     public BenefitFlow(){
         this.elencoDipendenti = new HashMap<>();
@@ -28,6 +31,7 @@ public class BenefitFlow extends JFrame {
 
         this.elencoFerie = new HashMap<>();
         this.elencoPermessi = new HashMap<>();
+        this.elencoBuoniPasto = new HashMap<>();
     }
 
     public void initComponent() {
@@ -397,5 +401,39 @@ public class BenefitFlow extends JFrame {
         }
 
         return null;
+    }
+
+
+    /****** UC8 ******/
+    public List<Dipendente> visualizzaDipendenti(){
+        return mostraDipendenti();
+    }
+
+    int counterBP = 0;
+    public void creaBuonoPasto(String matricola){
+        counterBP += 1;
+        Dipendente d = elencoDipendenti.get(matricola);
+        String stato = "valido";
+        String codice = "BP" + counterBP;
+        LocalDate dataScadenza = LocalDate.now().plusMonths(3);
+
+        if(d != null){
+            if(d.getRuolo() != null){
+                int livello = d.getRuolo().getLivello();
+                ValoreStrategyFactory sf = ValoreStrategyFactory.getInstance();
+                ValoreStrategyInterface vs = sf.getValoreStrategy();
+                float valore = vs.calcolaValore(livello);
+                this.buonoPasto = new BuonoPasto(codice, stato, matricola, dataScadenza, valore);
+            }
+        }
+    }
+
+    public void confermaBuonoPasto(){
+        if(this.buonoPasto != null){
+            BuonoPasto bp = this.buonoPasto;
+            String codice = bp.getCodiceBP();
+            this.elencoBuoniPasto.put(codice,bp);
+            System.out.println("Buono Pasto creato correttamente: \n" + bp);
+        }
     }
 }
