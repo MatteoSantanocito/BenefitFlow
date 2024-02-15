@@ -68,7 +68,7 @@ public class InserisciNuovoDipendente extends JFrame {
         gbc.weighty = 0.01;
         formPanel.add(cognomeField, gbc);
 
-        dataDiNascitaLabel = new JLabel("Data di Nascita*");
+        dataDiNascitaLabel = new JLabel("Data di nascita*");
         dataDiNascitaField = new JTextField(15);
         gbc.gridx = 0;
         gbc.gridy = 2;

@@ -199,7 +199,7 @@ public class ProlungamentoPermesso extends JFrame {
 
     static class TabellaModello extends AbstractTableModel {
         private final List<Benefit> lista;
-        private final String[] colonne = {"Codice", "Matricola", "Data", "Ora Inizio", "Ora Fine", "Motivazione", "Stato"};
+        private final String[] colonne = {"Codice", "Matricola", "Data", "Ora inizio", "Ora fine", "Motivazione", "Stato"};
 
         public TabellaModello(List<Benefit> lista) {
             this.lista = lista;

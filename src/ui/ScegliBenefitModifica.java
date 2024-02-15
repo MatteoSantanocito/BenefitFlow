@@ -30,14 +30,14 @@ public class ScegliBenefitModifica extends JFrame{
         JPanel choisePanel = new JPanel(new FlowLayout());
         JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
 
-        JLabel textDip = new JLabel("Scegli quale Benefit vuoi modificare.");
+        JLabel textDip = new JLabel("Scegli quale congedo vuoi modificare");
         textDip.setFont(new Font("Arial", Font.BOLD, 15));
         textDip.setHorizontalAlignment(JLabel.CENTER);
 
-        JButton prolugamentoFerie = new JButton("Prolunga Ferie");
+        JButton prolugamentoFerie = new JButton("Prolunga ferie");
         buttonPanel.add(prolugamentoFerie);
 
-        JButton prolungamentoPermesso = new JButton("Prolunga Permesso");
+        JButton prolungamentoPermesso = new JButton("Prolunga permesso");
         buttonPanel.add(prolungamentoPermesso);
 
         prolugamentoFerie.addActionListener(new ActionListener() {

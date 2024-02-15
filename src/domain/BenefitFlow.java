@@ -43,7 +43,7 @@ public class BenefitFlow extends JFrame {
         setVisible(true);
         setResizable(false);
         setTitle("BenefitFlow");
-        setSize(400, 300);
+        setSize(400, 320);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -410,12 +410,11 @@ public class BenefitFlow extends JFrame {
     }
 
     int counterBP = 0;
-    public void creaBuonoPasto(String matricola){
+    public void creaBuonoPasto(String matricola, LocalDate dataScadenza){
         counterBP += 1;
         Dipendente d = elencoDipendenti.get(matricola);
         String stato = "valido";
         String codice = "BP" + counterBP;
-        LocalDate dataScadenza = LocalDate.now().plusMonths(3);
 
         if(d != null){
             if(d.getRuolo() != null){
@@ -435,5 +434,19 @@ public class BenefitFlow extends JFrame {
             this.elencoBuoniPasto.put(codice,bp);
             System.out.println("Buono Pasto creato correttamente: \n" + bp);
         }
+    }
+
+
+    /****** UTILITY ******/
+    public List<BuonoPasto> visualizzaBuoniPasto(){
+        List<BuonoPasto> listBuoniPasto = new ArrayList<>();
+        listBuoniPasto.addAll(elencoBuoniPasto.values());
+        List<BuonoPasto> filteredListBuoniPasto = new ArrayList<>();
+        for(BuonoPasto bp : listBuoniPasto){
+            if(bp.getDataScadenza().isAfter(LocalDate.now()) || bp.getDataScadenza().isEqual(LocalDate.now())){
+                filteredListBuoniPasto.add(bp);
+            }
+        }
+        return filteredListBuoniPasto;
     }
 }

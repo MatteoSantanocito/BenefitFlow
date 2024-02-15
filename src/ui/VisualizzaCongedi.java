@@ -35,15 +35,15 @@ public class VisualizzaCongedi extends JFrame{
         JPanel buttonPanel = new JPanel(new FlowLayout());
         JPanel contenitore = new JPanel(new GridLayout(1,1));
 
-        titolo = new JLabel("Visualizza Congedi");
+        titolo = new JLabel("Elenco Congedi");
         titolo.setFont(new Font("Arial", Font.BOLD, 20));
         titlePanel.setBorder(new EmptyBorder(20, 0, 0, 0));
         titlePanel.add(titolo);
 
-        JButton visualizzaFerie = new JButton("Visualizza Ferie");
+        JButton visualizzaFerie = new JButton("Visualizza ferie");
         buttonPanel.add(visualizzaFerie);
 
-        JButton visualizzaPermessi = new JButton("Visualizza Permessi");
+        JButton visualizzaPermessi = new JButton("Visualizza permessi");
         buttonPanel.add(visualizzaPermessi);
 
         contenitore.setPreferredSize(new Dimension(700,200));
@@ -144,7 +144,7 @@ public class VisualizzaCongedi extends JFrame{
 
     static class TabellaFerie extends AbstractTableModel {
         private final List<Benefit> lista;
-        private final String[] colonne = {"Codice", "Matricola", "Data Inizio", "Data Fine", "Motivazione", "Stato"};
+        private final String[] colonne = {"Codice", "Matricola", "Data inizio", "Data fine", "Motivazione", "Stato"};
 
         public TabellaFerie(List<Benefit> lista) {
             this.lista = lista;
@@ -190,7 +190,7 @@ public class VisualizzaCongedi extends JFrame{
 
     static class TabellaPermessi extends AbstractTableModel {
         private final List<Benefit> lista;
-        private final String[] colonne = {"Codice", "Matricola", "Data", "Ora Inizio", "Ora Fine", "Motivazione", "Stato"};
+        private final String[] colonne = {"Codice", "Matricola", "Data", "Ora inizio", "Ora fine", "Motivazione", "Stato"};
 
         public TabellaPermessi(List<Benefit> lista) {
             this.lista = lista;

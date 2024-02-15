@@ -146,7 +146,7 @@ public class Login extends JPanel {
 
     public JPanel ammPanel(){
         JPanel ammPanel = new JPanel(new GridLayout(3, 1));
-        JPanel choisePanelAmm = new JPanel(new GridLayout(3,2));
+        JPanel choisePanelAmm = new JPanel(new GridLayout(4,2));
         JPanel buttonLogoutPanelAmm = new JPanel(new FlowLayout());
 
         JLabel textAmm = new JLabel("Sezione amministratore. Scegli cosa fare");
@@ -154,15 +154,19 @@ public class Login extends JPanel {
         textAmm.setHorizontalAlignment(JLabel.CENTER);
 
         JButton inserisciDipendente = new JButton("Inserisci Dipendente");
-        JButton mostraCongedi = new JButton("Visualizza congedi");
+        JButton visualizzaDipendenti = new JButton("Visualizza Dipendenti");
+        JButton mostraCongedi = new JButton("Visualizza Congedi");
         JButton gestisciRuolo = new JButton("Gestisci Ruolo");
-        JButton gestisciBenefit = new JButton("Gestisci Benefit");
+        JButton gestisciCongedi = new JButton("Gestisci Congedi");
         JButton gestisciBP = new JButton("Assegna Buoni Pasto");
+        JButton visualizzaBP = new JButton("Visualizza Buoni Pasto");
         choisePanelAmm.add(inserisciDipendente);
-        choisePanelAmm.add(mostraCongedi);
+        choisePanelAmm.add(visualizzaDipendenti);
         choisePanelAmm.add(gestisciRuolo);
-        choisePanelAmm.add(gestisciBenefit);
+        choisePanelAmm.add(gestisciCongedi);
+        choisePanelAmm.add(mostraCongedi);
         choisePanelAmm.add(gestisciBP);
+        choisePanelAmm.add(visualizzaBP);
 
         JButton logoutAmm = new JButton("LogOut");
         buttonLogoutPanelAmm.add(logoutAmm);
@@ -193,6 +197,13 @@ public class Login extends JPanel {
             }
         });
 
+        visualizzaDipendenti.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new VisualizzaDipendenti(benefitFlow);
+            }
+        });
+
         gestisciRuolo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -207,10 +218,24 @@ public class Login extends JPanel {
             }
         });
 
-        gestisciBenefit.addActionListener(new ActionListener() {
+        gestisciCongedi.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new GestisciBenefit(benefitFlow);
+                new GestisciCongedi(benefitFlow);
+            }
+        });
+
+        gestisciBP.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new InserisciBuonoPasto(benefitFlow);
+            }
+        });
+
+        visualizzaBP.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new VisualizzaBuoniPasto(benefitFlow);
             }
         });
 
@@ -226,13 +251,13 @@ public class Login extends JPanel {
         textDip.setFont(new Font("Arial", Font.BOLD, 15));
         textDip.setHorizontalAlignment(JLabel.CENTER);
 
-        JButton inserisciBenefit = new JButton("Inserisci Benefit");
-        JButton gestisciBenefit = new JButton("Gestisci Benefit");
+        JButton richiediCongedo = new JButton("Richiedi Congedo");
+        JButton gestisciCongedo = new JButton("Gestisci Congedo");
         JButton visualizzaCongedi = new JButton("Visualizza Congedi");
         JButton gestisciBP = new JButton("Gestisci Buoni Pasto");
         JButton visualizzaBP = new JButton("Visualizza Buoni Pasto");
-        choisePanelDip.add(inserisciBenefit);
-        choisePanelDip.add(gestisciBenefit);
+        choisePanelDip.add(richiediCongedo);
+        choisePanelDip.add(gestisciCongedo);
         choisePanelDip.add(visualizzaCongedi);
         choisePanelDip.add(gestisciBP);
         choisePanelDip.add(visualizzaBP);
@@ -254,14 +279,14 @@ public class Login extends JPanel {
             }
         });
 
-        inserisciBenefit.addActionListener(new ActionListener() {
+        richiediCongedo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new ScegliBenefit(benefitFlow, d_corrente);
             }
         });
 
-        gestisciBenefit.addActionListener(new ActionListener() {
+        gestisciCongedo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new ScegliBenefitModifica(benefitFlow, d_corrente);

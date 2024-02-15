@@ -9,19 +9,14 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 
-public class GestisciRuolo extends JFrame {
+public class VisualizzaDipendenti extends JFrame {
 
     private JLabel titolo;
-    private JLabel matricolaLabel, codiceRuoloLabel;
-    private JTextField matricolaField, codiceRuoloField, errorField;
-    private JButton confermaButton;
     private BenefitFlow benefitFlow;
 
-    public GestisciRuolo(BenefitFlow b) {
+    public VisualizzaDipendenti(BenefitFlow b) {
         this.benefitFlow = b;
         initComponent();
     }
@@ -33,15 +28,13 @@ public class GestisciRuolo extends JFrame {
         gbc.insets = new Insets(5, 5, 0, 5);
 
         JPanel titlePanel = new JPanel(new FlowLayout());
-        JPanel formPanel = new JPanel(new GridBagLayout());
-        JPanel buttonPanel = new JPanel(new FlowLayout());
 
-        titolo = new JLabel("Modifica o assegna un Ruolo");
+        titolo = new JLabel("Elenco Dipendenti");
         titolo.setFont(new Font("Arial", Font.BOLD, 20));
         titlePanel.setBorder(new EmptyBorder(30, 0, 20, 0));
         titlePanel.add(titolo);
 
-        List<Dipendente> lista = benefitFlow.mostraDipendenti();
+        List<Dipendente> lista = benefitFlow.visualizzaDipendenti();
         JTable table = new JTable(new TabellaModello(lista));
         HeaderRenderer headerRenderer = new HeaderRenderer();
         table.getTableHeader().setDefaultRenderer(headerRenderer);
@@ -56,98 +49,19 @@ public class GestisciRuolo extends JFrame {
         table.setSelectionBackground(new Color(119, 119, 119, 255));
         //table.setSelectionForeground(new Color(153, 221, 255));
 
-        matricolaLabel = new JLabel("Matricola");
-        matricolaField = new JTextField(15);
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.weightx = 0.01;
-        gbc.weighty = 0.01;
-        formPanel.add(matricolaLabel, gbc);
-        gbc.gridx = 1;
-        gbc.weightx = 0.01;
-        gbc.weighty = 0.01;
-        formPanel.add(matricolaField, gbc);
-
-        codiceRuoloLabel = new JLabel("Codice Ruolo");
-        codiceRuoloLabel.setBorder(new EmptyBorder(0, 30, 0, 0));
-        codiceRuoloField = new JTextField(15);
-        gbc.gridx = 2;
-        gbc.gridy = 1;
-        gbc.weightx = 0.01;
-        gbc.weighty = 0.01;
-        formPanel.add(codiceRuoloLabel, gbc);
-        gbc.gridx = 3;
-        gbc.weightx = 0.01;
-        gbc.weighty = 0.01;
-        formPanel.add(codiceRuoloField, gbc);
-
-        formPanel.setBorder(new EmptyBorder(20, 0, 5, 0));
-
-        JPanel errorPanel = new JPanel(new FlowLayout());
-        errorField = new JTextField(28);
-        errorField.setBorder(null);
-        errorField.setBackground(new Color(238, 238, 238));
-        errorField.setFont(new Font("Arial", Font.ITALIC, 12));
-        errorField.setHorizontalAlignment(SwingConstants.CENTER);
-        errorField.setEnabled(false);
-        errorField.setDisabledTextColor(Color.RED);
-        errorPanel.add(errorField);
-
-        confermaButton = new JButton("Conferma");
-        buttonPanel.setBorder(new EmptyBorder(10, 0, 30, 0));
-        buttonPanel.add(confermaButton);
-
-        confermaButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                boolean trovato = false;
-                if (!matricolaField.getText().isEmpty() && !codiceRuoloField.getText().isEmpty()) {
-                    for(Dipendente d : lista){
-                        if (d.getMatricola().equals(matricolaField.getText())) {
-                            trovato = true;
-                            break;
-                        }
-                    }
-
-                    if (trovato) {
-                        benefitFlow.confermaRuolo(matricolaField.getText(), codiceRuoloField.getText());
-                        matricolaField.setText("");
-                        codiceRuoloField.setText("");
-                        GestisciRuolo.this.dispose();
-                    }else{
-                        errorField.setText("Matricola non valida");
-                    }
-                    
-                    
-                } else {
-                    System.out.println("Compilare tutti i campi.");
-                    errorField.setText("Compilare tutti i campi");
-                }
-            }
-        });
-
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 1.0;
         gbc.weighty = 0.1;
         add(titlePanel, gbc);
         gbc.gridy = 1;
-        gbc.weighty = 0.5;
+        gbc.weighty = 1;
         add(scrollPane, gbc);
-        gbc.gridy = 2;
-        gbc.weighty = 0;
-        add(formPanel, gbc);
-        gbc.gridy = 3;
-        gbc.weighty = 0;
-        add(errorPanel, gbc);
-        gbc.gridy = 4;
-        gbc.weighty = 0.1;
-        add(buttonPanel, gbc);
 
         setResizable(false);
         setVisible(true);
         setTitle("BenefitFlow");
-        setSize(850, 500);
+        setSize(850, 400);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }

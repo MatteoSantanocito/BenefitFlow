@@ -84,7 +84,7 @@ public class InserisciPermesso extends JFrame {
         gbc.weighty = 0.01;
         formPanel.add(oraInizioField, gbc);
 
-        oraFineLabel = new JLabel("Ora fine");
+        oraFineLabel = new JLabel("Ora Fine");
         oraFineField = new JTextField(15);
         gbc.gridx = 0;
         gbc.gridy = 3;

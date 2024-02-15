@@ -16,13 +16,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class GestisciBenefit extends JFrame {
+public class GestisciCongedi extends JFrame {
     private JLabel titolo;
     private BenefitFlow benefitFlow;
     private JButton pressed;
     private JTextField errorFieldCode, errorFieldState;
 
-    public GestisciBenefit(BenefitFlow b) {
+    public GestisciCongedi(BenefitFlow b) {
         this.benefitFlow = b;
         initComponent();
     }
@@ -38,7 +38,7 @@ public class GestisciBenefit extends JFrame {
 
         //titolo generico
         JPanel titlePanel = new JPanel(new FlowLayout());
-        titolo = new JLabel("Gestisci Benefit");
+        titolo = new JLabel("Gestisci Congedi");
         titolo.setFont(new Font("Arial", Font.BOLD, 20));
         titlePanel.add(titolo);
 
@@ -48,14 +48,14 @@ public class GestisciBenefit extends JFrame {
         chosePanel.setBorder(new EmptyBorder(0, 0, 40, 0));
 
         JPanel subtitlePanelBenefit = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JLabel titleChoseBenefit = new JLabel("1. Scegli il tipo di Benefit");
+        JLabel titleChoseBenefit = new JLabel("1. Scegli il tipo di congedo");
         titleChoseBenefit.setFont(new Font("Arial", Font.PLAIN, 15));
         subtitlePanelBenefit.add(titleChoseBenefit);
 
         JPanel buttonPanelBenefit = new JPanel(new FlowLayout());
         buttonPanelBenefit.setBorder(new EmptyBorder(0, 11, 0, 0));
-        JButton visualizzaFerie = new JButton("Visualizza Ferie");
-        JButton visualizzaPermesso = new JButton("Visualizza Permesso");
+        JButton visualizzaFerie = new JButton("Visualizza ferie");
+        JButton visualizzaPermesso = new JButton("Visualizza permessi");
         buttonPanelBenefit.add(visualizzaFerie);
         buttonPanelBenefit.add(visualizzaPermesso);
 
@@ -67,7 +67,7 @@ public class GestisciBenefit extends JFrame {
         JPanel insertCodePanel = new JPanel(new GridLayout(3,1));
 
         JPanel subTitlePanelCode = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JLabel titleCode = new JLabel("2. Inserisci il codice");
+        JLabel titleCode = new JLabel("2. Inserisci il codice del congedo");
         titleCode.setFont(new Font("Arial", Font.PLAIN, 15));
         subTitlePanelCode.add(titleCode);
 
@@ -106,11 +106,12 @@ public class GestisciBenefit extends JFrame {
 
         JPanel statePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         statePanel.setBorder(new EmptyBorder(0, 14, 0, 0));
-        JTextField state = new JTextField(10);
+        String[] options = {"Seleziona stato", "approvato", "non approvato"};
+        JComboBox<String> comboBox = new JComboBox<>(options);
         JButton confermaStato = new JButton("Conferma stato");
-        state.setEnabled(false);
+        comboBox.setEnabled(false);
         confermaStato.setEnabled(false);
-        statePanel.add(state);
+        statePanel.add(comboBox);
         statePanel.add(confermaStato);
 
         JPanel errorPanelState = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -151,7 +152,7 @@ public class GestisciBenefit extends JFrame {
 
         JPanel titleTableBenefit = new JPanel(new FlowLayout(FlowLayout.LEFT));
         titleTableBenefit.setPreferredSize(new Dimension(750,22));
-        JLabel titleList = new JLabel("Lista Benefit");
+        JLabel titleList = new JLabel("Elenco congedi");
         titleList.setFont(new Font("Arial", Font.BOLD, 15));
         titleTableBenefit.add(titleList);
         contenitoreBenefit.setPreferredSize(new Dimension(750,200));
@@ -159,7 +160,7 @@ public class GestisciBenefit extends JFrame {
 
         JPanel titleTableBenefitSovrapposti = new JPanel(new FlowLayout(FlowLayout.LEFT));
         titleTableBenefitSovrapposti.setPreferredSize(new Dimension(750,22));
-        JLabel titleListSovrapposti = new JLabel("Lista Benefit sovrapposti");
+        JLabel titleListSovrapposti = new JLabel("Elenco congedi sovrapposti");
         titleListSovrapposti.setFont(new Font("Arial", Font.BOLD, 15));
         titleTableBenefitSovrapposti.add(titleListSovrapposti);
         contenitoreBenefitSovrapposti.setPreferredSize(new Dimension(750,200));
@@ -290,7 +291,7 @@ public class GestisciBenefit extends JFrame {
                                     repaint();
                                 });
 
-                                state.setEnabled(true);
+                                comboBox.setEnabled(true);
                                 confermaStato.setEnabled(true);
 
                                 errorFieldCode.setText("");
@@ -304,7 +305,7 @@ public class GestisciBenefit extends JFrame {
                                 repaint();
                             });
 
-                            state.setEnabled(false);
+                            comboBox.setEnabled(false);
                             confermaStato.setEnabled(false);
 
                             errorFieldCode.setText("Codice non valido");
@@ -346,7 +347,7 @@ public class GestisciBenefit extends JFrame {
                                     repaint();
                                 });
 
-                                state.setEnabled(true);
+                                comboBox.setEnabled(true);
                                 confermaStato.setEnabled(true);
 
                                 errorFieldCode.setText("");
@@ -361,7 +362,7 @@ public class GestisciBenefit extends JFrame {
                                 repaint();
                             });
 
-                            state.setEnabled(false);
+                            comboBox.setEnabled(false);
                             confermaStato.setEnabled(false);
 
                             errorFieldCode.setText("Codice non valido");
@@ -370,7 +371,7 @@ public class GestisciBenefit extends JFrame {
                     }
                 }else{
                     errorFieldCode.setText("Riempire il campo");
-                    state.setEnabled(false);
+                    comboBox.setEnabled(false);
                     confermaStato.setEnabled(false);
                 }
             }
@@ -380,14 +381,13 @@ public class GestisciBenefit extends JFrame {
         confermaStato.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String stato = state.getText();
+                String stato = (String) comboBox.getSelectedItem();
                 if(!stato.isEmpty()){
                     if((stato.equals("approvato") || stato.equals("non approvato"))){
                         benefitFlow.confermaBenefit(stato);
-                        GestisciBenefit.this.dispose();
+                        GestisciCongedi.this.dispose();
                     }else{
-                        errorFieldState.setText("Inserire 'approvato' o 'non approvato'");
-                        state.setText("");
+                        errorFieldState.setText("Stato non valido");
                         code.setEnabled(false);
                         confermaCodice.setEnabled(false);
                     }
@@ -423,7 +423,7 @@ public class GestisciBenefit extends JFrame {
 
     static class TabellaFerie extends AbstractTableModel {
         private final List<Benefit> lista;
-        private final String[] colonne = {"Codice", "Matricola", "Data Inizio", "Data Fine", "Motivazione", "Stato"};
+        private final String[] colonne = {"Codice", "Matricola", "Data inizio", "Data fine", "Motivazione", "Stato"};
 
         public TabellaFerie(List<Benefit> lista) {
             this.lista = lista;
@@ -469,7 +469,7 @@ public class GestisciBenefit extends JFrame {
 
     static class TabellaPermessi extends AbstractTableModel {
         private final List<Benefit> lista;
-        private final String[] colonne = {"Codice", "Matricola", "Data", "Ora Inizio", "Ora Fine", "Motivazione", "Stato"};
+        private final String[] colonne = {"Codice", "Matricola", "Data", "Ora inizio", "Ora fine", "Motivazione", "Stato"};
 
         public TabellaPermessi(List<Benefit> lista) {
             this.lista = lista;

@@ -1,9 +1,7 @@
 package ui;
 
-import domain.Benefit;
 import domain.BenefitFlow;
 import domain.Dipendente;
-import domain.Ferie;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -17,19 +15,16 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class ProlungamentoFerie extends JFrame {
+public class InserisciBuonoPasto extends JFrame {
 
     private JLabel titolo;
-    private JLabel codiceLabel, dataFineLabel;
-    private JTextField codiceField, dataFineField, errorField;
+    private JLabel matricolaLabel, dataScadenzaLabel;
+    private JTextField matricolaField, dataScadenzaField, errorField;
     private JButton confermaButton;
-
     private BenefitFlow benefitFlow;
-    private Dipendente dipendente;
 
-    public ProlungamentoFerie(BenefitFlow b, Dipendente d) {
+    public InserisciBuonoPasto(BenefitFlow b) {
         this.benefitFlow = b;
-        this.dipendente = d;
         initComponent();
     }
 
@@ -43,57 +38,54 @@ public class ProlungamentoFerie extends JFrame {
         JPanel formPanel = new JPanel(new GridBagLayout());
         JPanel buttonPanel = new JPanel(new FlowLayout());
 
-        titolo = new JLabel("Richiedi un prolungamento Ferie");
+        titolo = new JLabel("Assegna Buono Pasto");
         titolo.setFont(new Font("Arial", Font.BOLD, 20));
         titlePanel.setBorder(new EmptyBorder(30, 0, 20, 0));
         titlePanel.add(titolo);
 
-        List<Benefit> lista = benefitFlow.mostraBenefitApprovati(this.dipendente.getMatricola(), "F");
+        List<Dipendente> lista = benefitFlow.visualizzaDipendenti();
         JTable table = new JTable(new TabellaModello(lista));
         HeaderRenderer headerRenderer = new HeaderRenderer();
         table.getTableHeader().setDefaultRenderer(headerRenderer);
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setPreferredSize(new Dimension(700,200));
         table.setFocusable(false);
-        TableColumn colonnaCodiceF = table.getColumnModel().getColumn(0);
-        colonnaCodiceF.setMaxWidth(65);
-        TableColumn colonnaDataInizioF = table.getColumnModel().getColumn(2);
-        colonnaDataInizioF.setMinWidth(95);
-        colonnaDataInizioF.setMaxWidth(95);
-        TableColumn colonnaDataFineF = table.getColumnModel().getColumn(3);
-        colonnaDataFineF.setMinWidth(95);
-        colonnaDataFineF.setMaxWidth(95);
-        TableColumn colonnaMotivazioneF = table.getColumnModel().getColumn(4);
-        colonnaMotivazioneF.setPreferredWidth(220);
-        TableColumn colonnaStatoF = table.getColumnModel().getColumn(5);
-        colonnaStatoF.setPreferredWidth(100);
+        TableColumn colonnaRuolo = table.getColumnModel().getColumn(4);
+        colonnaRuolo.setPreferredWidth(300);
+        TableColumn colonnaData = table.getColumnModel().getColumn(2);
+        colonnaData.setMinWidth(105);
+        colonnaData.setMaxWidth(105);
         table.setSelectionBackground(new Color(119, 119, 119, 255));
         //table.setSelectionForeground(new Color(153, 221, 255));
 
-        codiceLabel = new JLabel("Codice");
-        codiceField = new JTextField(3);
+        matricolaLabel = new JLabel("Matricola");
+        matricolaField = new JTextField(15);
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.weightx = 0.01;
         gbc.weighty = 0.01;
-        formPanel.add(codiceLabel, gbc);
+        formPanel.add(matricolaLabel, gbc);
         gbc.gridx = 1;
         gbc.weightx = 0.01;
         gbc.weighty = 0.01;
-        formPanel.add(codiceField, gbc);
+        formPanel.add(matricolaField, gbc);
 
-        dataFineLabel = new JLabel("Data fine");
-        dataFineLabel.setBorder(new EmptyBorder(0, 30, 0, 0));
-        dataFineField = new JTextField(9);
+        dataScadenzaLabel = new JLabel("Data Scadenza");
+        dataScadenzaLabel.setBorder(new EmptyBorder(0, 30, 0, 0));
+        dataScadenzaField = new JTextField(15);
+        LocalDate dataScadenza = LocalDate.now().plusMonths(3);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        dataScadenzaField.setText(dataScadenza.format(formatter));
+        dataScadenzaField.setEnabled(false);
         gbc.gridx = 2;
         gbc.gridy = 1;
         gbc.weightx = 0.01;
         gbc.weighty = 0.01;
-        formPanel.add(dataFineLabel, gbc);
+        formPanel.add(dataScadenzaLabel, gbc);
         gbc.gridx = 3;
         gbc.weightx = 0.01;
         gbc.weighty = 0.01;
-        formPanel.add(dataFineField, gbc);
+        formPanel.add(dataScadenzaField, gbc);
 
         formPanel.setBorder(new EmptyBorder(20, 0, 5, 0));
 
@@ -111,53 +103,27 @@ public class ProlungamentoFerie extends JFrame {
         buttonPanel.setBorder(new EmptyBorder(10, 0, 30, 0));
         buttonPanel.add(confermaButton);
 
-        if (lista.isEmpty()) {
-            codiceLabel.setEnabled(false);
-            codiceField.setEnabled(false);
-            dataFineLabel.setEnabled(false);
-            dataFineField.setEnabled(false);
-            confermaButton.setEnabled(false);
-            errorField.setText("Non sono presenti ferie approvate");
-        }
-
         confermaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 boolean trovato = false;
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-                if (!codiceField.getText().isEmpty() && !dataFineField.getText().isEmpty()) {
-                    try {
-                        LocalDate dataFineFormatted = LocalDate.parse(dataFineField.getText(), formatter);
-                        int codice = Integer.parseInt(codiceField.getText());
-                        LocalDate oldDate = null;
-                        for(Benefit b : lista){
-                            if (b.getCodice() == codice) {
-                                oldDate = ((Ferie) b).getDataFine();
-                                trovato = true;
-                                break;
-                            }
+                if (!matricolaField.getText().isEmpty()) {
+                    for(Dipendente d : lista){
+                        if (d.getMatricola().equals(matricolaField.getText())) {
+                            trovato = true;
+                            break;
                         }
-                        if (trovato) {
-                            if(dataFineFormatted.isAfter(oldDate)){
-                                benefitFlow.richiediProlungamentoFerie(codice, dataFineFormatted);
-                                benefitFlow.confermaProlungamentoFerie();
-                                codiceField.setText("");
-                                dataFineField.setText("");
-                                ProlungamentoFerie.this.dispose();
-                            }else{
-                                errorField.setText("Data Fine precedente alle vecchia Data Fine");
-                                dataFineField.setText("");
-                            }
-                        }else{
-                            errorField.setText("Codice non valido");
-                            codiceField.setText("");
-                        }  
-                    } catch (Exception ex) {
-                        System.err.println("Inserimento ferie fallito. Formato data non valido.");
-                        errorField.setText("Data non valida (formato richiesto: dd/MM/yyyy)");
-                        dataFineField.setText("");
-                    } 
+                    }
+
+                    if (trovato) {
+                        benefitFlow.creaBuonoPasto(matricolaField.getText(), dataScadenza);
+                        benefitFlow.confermaBuonoPasto();
+                        matricolaField.setText("");
+                        InserisciBuonoPasto.this.dispose();
+                    }else{
+                        errorField.setText("Matricola non valida");
+                    }
+                    
                 } else {
                     System.out.println("Compilare tutti i campi.");
                     errorField.setText("Compilare tutti i campi");
@@ -193,10 +159,10 @@ public class ProlungamentoFerie extends JFrame {
 
 
     static class TabellaModello extends AbstractTableModel {
-        private final List<Benefit> lista;
-        private final String[] colonne = {"Codice", "Matricola", "Data inizio", "Data fine", "Motivazione", "Stato"};
+        private final List<Dipendente> lista;
+        private final String[] colonne = {"Nome", "Cognome", "Data di nascita", "Matricola", "Ruolo"};
 
-        public TabellaModello(List<Benefit> lista) {
+        public TabellaModello(List<Dipendente> lista) {
             this.lista = lista;
         }
 
@@ -212,21 +178,22 @@ public class ProlungamentoFerie extends JFrame {
 
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
-            Ferie ferie = (Ferie) lista.get(rowIndex);
+            Dipendente dipendente = lista.get(rowIndex);
 
             switch (columnIndex) {
                 case 0:
-                    return ferie.getCodice();
+                    return dipendente.getNome();
                 case 1:
-                    return ferie.getMatricola();
+                    return dipendente.getCognome();
                 case 2:
-                    return ferie.getDataInizio();
+                    return dipendente.getDataDiNascita();
                 case 3:
-                    return ferie.getDataFine();
+                    return dipendente.getMatricola();
                 case 4:
-                    return ferie.getMotivazione();
-                case 5:
-                    return ferie.getStato();
+                    if(dipendente.getRuolo() == null){
+                        return "non assegnato";
+                    }
+                    return dipendente.getRuolo();
                 default:
                     return null;
             }
@@ -248,4 +215,5 @@ public class ProlungamentoFerie extends JFrame {
             return this;
         }
     }
+
 }

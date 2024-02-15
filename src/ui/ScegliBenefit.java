@@ -30,14 +30,14 @@ public class ScegliBenefit extends JFrame{
         JPanel choisePanel = new JPanel(new FlowLayout());
         JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
 
-        JLabel textDip = new JLabel("Scegli cosa fare.");
+        JLabel textDip = new JLabel("Scegli quale congedo richiedere");
         textDip.setFont(new Font("Arial", Font.BOLD, 15));
         textDip.setHorizontalAlignment(JLabel.CENTER);
 
-        JButton inserisciFerie = new JButton("Inserisci Ferie");
+        JButton inserisciFerie = new JButton("Inserisci ferie");
         buttonPanel.add(inserisciFerie);
 
-        JButton inserisciPermesso = new JButton("Inserisci Permesso");
+        JButton inserisciPermesso = new JButton("Inserisci permesso");
         buttonPanel.add(inserisciPermesso);
 
         inserisciFerie.addActionListener(new ActionListener() {
