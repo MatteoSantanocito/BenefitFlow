@@ -14,6 +14,8 @@ import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.List;
 
 public class GestisciCongedi extends JFrame {
@@ -74,6 +76,22 @@ public class GestisciCongedi extends JFrame {
         JPanel codePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         codePanel.setBorder(new EmptyBorder(0, 14, 0, 0));
         JTextField code = new JTextField(3);
+        code.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e){
+                e.setKeyChar(Character.toUpperCase(e.getKeyChar()));
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                // TODO Auto-generated method stub
+            }
+        });
         JButton confermaCodice = new JButton("Conferma codice");
         code.setEnabled(false);
         confermaCodice.setEnabled(false);
@@ -257,13 +275,12 @@ public class GestisciCongedi extends JFrame {
                 String stringCode = code.getText();
 
                 if(!stringCode.isEmpty()){
-                    int codice = Integer.parseInt(stringCode);
                     if(pressed == visualizzaFerie){
                         boolean flagPremuto = false;
                         for (Benefit f : listFerieElab){
-                            if(f.getCodice() == codice){
+                            if(f.getCodice().equals(stringCode)){
                                 flagPremuto = true;
-                                List<Benefit> listaSovrapposti = benefitFlow.sovrapposizioneBenefit(codice);
+                                List<Benefit> listaSovrapposti = benefitFlow.sovrapposizioneBenefit(stringCode);
 
                                 JTable tableF_S = new JTable(new TabellaFerie(listaSovrapposti));
                                 tableF_S.getTableHeader().setDefaultRenderer(headerRenderer);
@@ -314,9 +331,9 @@ public class GestisciCongedi extends JFrame {
                     }else if(pressed == visualizzaPermesso){
                         boolean flagPremuto = false;
                         for (Benefit p : listPermessiElab){
-                            if(p.getCodice() == codice){
+                            if(p.getCodice().equals(stringCode)){
                                 flagPremuto = true;
-                                List<Benefit> listaSovrapposti = benefitFlow.sovrapposizioneBenefit(codice);
+                                List<Benefit> listaSovrapposti = benefitFlow.sovrapposizioneBenefit(stringCode);
 
                                 JTable tableP_S = new JTable(new TabellaPermessi(listaSovrapposti));
                                 tableP_S.getTableHeader().setDefaultRenderer(headerRenderer);

@@ -13,6 +13,8 @@ import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -71,10 +73,27 @@ public class ProlungamentoPermesso extends JFrame {
         TableColumn colonnaStatoP = table.getColumnModel().getColumn(6);
         colonnaStatoP.setPreferredWidth(100);
         table.setSelectionBackground(new Color(119, 119, 119, 255));
-        //table.setSelectionForeground(new Color(153, 221, 255));
 
         codiceLabel = new JLabel("Codice");
         codiceField = new JTextField(3);
+        codiceField.addKeyListener(new KeyListener() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                e.setKeyChar(Character.toUpperCase(e.getKeyChar()));
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                // TODO Auto-generated method stub
+            }
+            
+        });
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.weightx = 0.01;
@@ -132,10 +151,9 @@ public class ProlungamentoPermesso extends JFrame {
                 if (!codiceField.getText().isEmpty() && !oraFineField.getText().isEmpty()) {
                     try {
                         LocalTime oraFineFormatted = LocalTime.parse(oraFineField.getText(), formatter);
-                        int codice = Integer.parseInt(codiceField.getText());
                         LocalTime oldHour = LocalTime.of(23,59);
                         for(Benefit b : lista){
-                            if (b.getCodice() == codice) {
+                            if (b.getCodice().equals(codiceField.getText())) {
                                 oldHour = ((Permesso) b).getOraFine();
                                 trovato = true;
                                 break;
@@ -145,7 +163,7 @@ public class ProlungamentoPermesso extends JFrame {
 
                             try {
                                 validaOraPermesso(oldHour, oraFineFormatted);
-                                benefitFlow.richiediProlungamentoPermesso(codice, oraFineFormatted);
+                                benefitFlow.richiediProlungamentoPermesso(codiceField.getText(), oraFineFormatted);
                                 benefitFlow.confermaProlungamentoPermesso();
                                 codiceField.setText("");
                                 oraFineField.setText("");

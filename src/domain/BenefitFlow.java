@@ -19,8 +19,8 @@ public class BenefitFlow extends JFrame {
     private Ferie ferie;
     private Permesso permesso;
     private BuonoPasto buonoPasto;
-    private Map<Integer, Ferie> elencoFerie;
-    private Map<Integer, Permesso> elencoPermessi;
+    private Map<String, Ferie> elencoFerie;
+    private Map<String, Permesso> elencoPermessi;
     private Map<String, BuonoPasto> elencoBuoniPasto;
 
 
@@ -144,12 +144,12 @@ public class BenefitFlow extends JFrame {
 
 
     /****** UC3 ******/
-    int counter = 0;
+    int counterF = 0;
     public void inserisciFerie(String matricola, String motivazione, LocalDate dataInizio, LocalDate dataFine){
-        counter += 1;
+        counterF += 1;
         Dipendente d = elencoDipendenti.get(matricola);
         String stato = "in elaborazione";
-        int codice = counter;
+        String codice = "F" + counterF;
         String tipo = "F";
 
         if(d != null){
@@ -160,17 +160,18 @@ public class BenefitFlow extends JFrame {
     public void confermaFerie(){
         if(this.ferie != null){
             Ferie f = this.ferie;
-            int codice = f.getCodice();
+            String codice = f.getCodice();
             this.elencoFerie.put(codice,f);
             System.out.println("Ferie inserita correttamente: \n" + f);
         }
     }
 
+    int counterP = 0;
     public void inserisciPermesso(String matricola, String motivazione, LocalDate data, LocalTime oraInizio, LocalTime oraFine){
-        counter += 1;
+        counterP += 1;
         Dipendente d = elencoDipendenti.get(matricola);
         String stato = "in elaborazione";
-        int codice = counter;
+        String codice = "P" + counterP;
         String tipo = "P";
 
         if(d != null){
@@ -181,7 +182,7 @@ public class BenefitFlow extends JFrame {
     public void confermaPermesso(){
         if(this.permesso != null){
             Permesso p = this.permesso;
-            int codice = p.getCodice();
+            String codice = p.getCodice();
             this.elencoPermessi.put(codice,p);
             System.out.println("Permesso inserito correttamente: \n" + p);
         }
@@ -218,14 +219,14 @@ public class BenefitFlow extends JFrame {
         return null;
     }
 
-    public List<Benefit> sovrapposizioneBenefit(int codice){
+    public List<Benefit> sovrapposizioneBenefit(String codice){
         List<Benefit> listBenefit = new ArrayList<>();
         listBenefit.addAll(elencoFerie.values());
         listBenefit.addAll(elencoPermessi.values());
         LocalDate dataF, dataP;
         LocalTime oraP;
         for (Benefit b : listBenefit){
-            if (b.getCodice() == codice){
+            if (b.getCodice().equals(codice)){
                 this.benefit = b;
 
                 if(b.getTipo().equals("F")){
@@ -306,13 +307,13 @@ public class BenefitFlow extends JFrame {
         return null;
     }
 
-    public void richiediProlungamentoFerie(int codice, LocalDate dataFine){
+    public void richiediProlungamentoFerie(String codice, LocalDate dataFine){
         List<Benefit> listFerieApprovate = mostraBenefitApprovati(this.dipendenteCorrente.getMatricola(), "F");
 
         for (Benefit ferie : listFerieApprovate) {
-            int c = ferie.getCodice();
+            String c = ferie.getCodice();
 
-            if(c == codice){
+            if(c.equals(codice)){
                 String motivazione = ferie.getMotivazione();
                 String matricola = ferie.getMatricola();
                 LocalDate dataInizio = ((Ferie) ferie).getDataInizio();
@@ -330,13 +331,13 @@ public class BenefitFlow extends JFrame {
         confermaFerie();
     }
 
-    public void richiediProlungamentoPermesso(int codice, LocalTime oraFine){
+    public void richiediProlungamentoPermesso(String codice, LocalTime oraFine){
         List<Benefit> listPermessiApprovati = mostraBenefitApprovati(this.dipendenteCorrente.getMatricola(), "P");
 
         for (Benefit permesso : listPermessiApprovati) {
-            int c = permesso.getCodice();
+            String c = permesso.getCodice();
 
-            if(c == codice){
+            if(c.equals(codice)){
                 String motivazione = permesso.getMotivazione();
                 String matricola = permesso.getMatricola();
                 LocalDate data = ((Permesso) permesso).getData();

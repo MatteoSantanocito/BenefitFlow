@@ -7,7 +7,7 @@ public class Permesso extends Benefit{
     private LocalDate data;
     private LocalTime oraInizio;
     private LocalTime oraFine;
-    public Permesso(String motivazione, String stato, String tipo, int codice, String matricola, LocalDate data, LocalTime oraInizio, LocalTime oraFine) {
+    public Permesso(String motivazione, String stato, String tipo, String codice, String matricola, LocalDate data, LocalTime oraInizio, LocalTime oraFine) {
         super(motivazione, stato, tipo, codice, matricola);
         this.data = data;
         this.oraInizio = oraInizio;

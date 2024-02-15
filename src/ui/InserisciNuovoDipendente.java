@@ -3,6 +3,7 @@ package ui;
 import domain.BenefitFlow;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
@@ -79,6 +80,7 @@ public class InserisciNuovoDipendente extends JFrame {
         gbc.weightx = 0.01;
         gbc.weighty = 0.01;
         formPanel.add(dataDiNascitaField, gbc);
+        
 
         matricolaLabel = new JLabel("Matricola*");
         matricolaField = new JTextField(15);

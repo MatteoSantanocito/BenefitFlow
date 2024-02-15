@@ -4,10 +4,10 @@ public abstract class Benefit {
     protected String motivazione;
     protected String stato;
     protected String tipo;
-    protected int codice;
+    protected String codice;
     protected String matricola;
 
-    public Benefit(String motivazione, String stato, String tipo, int codice, String matricola) {
+    public Benefit(String motivazione, String stato, String tipo, String codice, String matricola) {
         this.motivazione = motivazione;
         this.stato = stato;
         this.tipo = tipo;
@@ -39,11 +39,11 @@ public abstract class Benefit {
         this.tipo = tipo;
     }
 
-    public int getCodice() {
+    public String getCodice() {
         return codice;
     }
 
-    public void setCodice(int codice) {
+    public void setCodice(String codice) {
         this.codice = codice;
     }
 

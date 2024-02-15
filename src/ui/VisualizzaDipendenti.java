@@ -47,7 +47,6 @@ public class VisualizzaDipendenti extends JFrame {
         colonnaData.setMinWidth(105);
         colonnaData.setMaxWidth(105);
         table.setSelectionBackground(new Color(119, 119, 119, 255));
-        //table.setSelectionForeground(new Color(153, 221, 255));
 
         gbc.gridx = 0;
         gbc.gridy = 0;

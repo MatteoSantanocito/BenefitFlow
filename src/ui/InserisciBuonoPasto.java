@@ -11,6 +11,8 @@ import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -56,10 +58,27 @@ public class InserisciBuonoPasto extends JFrame {
         colonnaData.setMinWidth(105);
         colonnaData.setMaxWidth(105);
         table.setSelectionBackground(new Color(119, 119, 119, 255));
-        //table.setSelectionForeground(new Color(153, 221, 255));
 
         matricolaLabel = new JLabel("Matricola");
         matricolaField = new JTextField(15);
+        matricolaField.addKeyListener(new KeyListener() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                e.setKeyChar(Character.toUpperCase(e.getKeyChar()));
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                // TODO Auto-generated method stub
+            }
+            
+        });
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.weightx = 0.01;

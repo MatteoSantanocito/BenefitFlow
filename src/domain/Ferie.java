@@ -7,7 +7,7 @@ public class Ferie extends Benefit{
     private LocalDate dataInizio;
     private LocalDate dataFine;
 
-    public Ferie(String motivazione, String stato, String tipo, int codice, String matricola, LocalDate dataInizio, LocalDate dataFine) {
+    public Ferie(String motivazione, String stato, String tipo, String codice, String matricola, LocalDate dataInizio, LocalDate dataFine) {
         super(motivazione, stato, tipo, codice, matricola);
         this.dataInizio = dataInizio;
         this.dataFine = dataFine;

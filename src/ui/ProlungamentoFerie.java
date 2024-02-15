@@ -13,6 +13,8 @@ import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -68,10 +70,27 @@ public class ProlungamentoFerie extends JFrame {
         TableColumn colonnaStatoF = table.getColumnModel().getColumn(5);
         colonnaStatoF.setPreferredWidth(100);
         table.setSelectionBackground(new Color(119, 119, 119, 255));
-        //table.setSelectionForeground(new Color(153, 221, 255));
 
         codiceLabel = new JLabel("Codice");
         codiceField = new JTextField(3);
+        codiceField.addKeyListener(new KeyListener() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                e.setKeyChar(Character.toUpperCase(e.getKeyChar()));
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                // TODO Auto-generated method stub
+            }
+            
+        });
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.weightx = 0.01;
@@ -129,10 +148,9 @@ public class ProlungamentoFerie extends JFrame {
                 if (!codiceField.getText().isEmpty() && !dataFineField.getText().isEmpty()) {
                     try {
                         LocalDate dataFineFormatted = LocalDate.parse(dataFineField.getText(), formatter);
-                        int codice = Integer.parseInt(codiceField.getText());
                         LocalDate oldDate = null;
                         for(Benefit b : lista){
-                            if (b.getCodice() == codice) {
+                            if (b.getCodice().equals(codiceField.getText())) {
                                 oldDate = ((Ferie) b).getDataFine();
                                 trovato = true;
                                 break;
@@ -140,7 +158,7 @@ public class ProlungamentoFerie extends JFrame {
                         }
                         if (trovato) {
                             if(dataFineFormatted.isAfter(oldDate)){
-                                benefitFlow.richiediProlungamentoFerie(codice, dataFineFormatted);
+                                benefitFlow.richiediProlungamentoFerie(codiceField.getText(), dataFineFormatted);
                                 benefitFlow.confermaProlungamentoFerie();
                                 codiceField.setText("");
                                 dataFineField.setText("");
