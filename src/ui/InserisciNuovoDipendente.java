@@ -13,8 +13,8 @@ import java.awt.event.ActionEvent;
 public class InserisciNuovoDipendente extends JFrame {
 
     private JLabel titolo;
-    private JLabel nomeLabel, cognomeLabel, dataDiNascitaLabel, matricolaLabel, codiceRuoloLabel, sottotitolo;
-    private JTextField nomeField, cognomeField, dataDiNascitaField, matricolaField, codiceRuoloField, errorField;
+    private JLabel nomeLabel, cognomeLabel, dataDiNascitaLabel, codiceRuoloLabel, sottotitolo;
+    private JTextField nomeField, cognomeField, dataDiNascitaField, codiceRuoloField, errorField;
     private JButton confermaInserimentoButton;
 
     private BenefitFlow benefitFlow;
@@ -80,24 +80,11 @@ public class InserisciNuovoDipendente extends JFrame {
         gbc.weightx = 0.01;
         gbc.weighty = 0.01;
         formPanel.add(dataDiNascitaField, gbc);
-        
-
-        matricolaLabel = new JLabel("Matricola*");
-        matricolaField = new JTextField(15);
-        gbc.gridx = 0;
-        gbc.gridy = 3;
-        gbc.weightx = 0.01;
-        gbc.weighty = 0.01;
-        formPanel.add(matricolaLabel, gbc);
-        gbc.gridx = 1;
-        gbc.weightx = 0.01;
-        gbc.weighty = 0.01;
-        formPanel.add(matricolaField, gbc);
 
         codiceRuoloLabel = new JLabel("Codice Ruolo");
         codiceRuoloField = new JTextField(15);
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 3;
         gbc.weightx = 0.01;
         gbc.weighty = 0.01;
         formPanel.add(codiceRuoloLabel, gbc);
@@ -124,15 +111,14 @@ public class InserisciNuovoDipendente extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-                if (!nomeField.getText().isEmpty() && !cognomeField.getText().isEmpty() && !dataDiNascitaField.getText().isEmpty() && !matricolaField.getText().isEmpty()) {
+                if (!nomeField.getText().isEmpty() && !cognomeField.getText().isEmpty() && !dataDiNascitaField.getText().isEmpty()) {
                     try {
                         LocalDate dataDiNascitaFormatted = LocalDate.parse(dataDiNascitaField.getText(), formatter);
-                        benefitFlow.inserisciNuovoDipendente(nomeField.getText(), cognomeField.getText(), dataDiNascitaFormatted, matricolaField.getText(), codiceRuoloField.getText());
+                        benefitFlow.inserisciNuovoDipendente(nomeField.getText(), cognomeField.getText(), dataDiNascitaFormatted, codiceRuoloField.getText());
                         benefitFlow.confermaInserimento();
                         nomeField.setText("");
                         cognomeField.setText("");
                         dataDiNascitaField.setText("");
-                        matricolaField.setText("");
                         codiceRuoloField.setText("");
                         InserisciNuovoDipendente.this.dispose();
                     } catch (Exception ex) {
@@ -169,7 +155,7 @@ public class InserisciNuovoDipendente extends JFrame {
         setResizable(false);
         setVisible(true);
         setTitle("BenefitFlow");
-        setSize(400, 420);
+        setSize(400, 400);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }

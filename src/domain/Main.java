@@ -9,11 +9,11 @@ public class Main {
         benefitFlow.initComponent();
 
         System.out.println("\n\nInserimento nuovo dipendente...");
-        benefitFlow.inserisciNuovoDipendente("Giorgio", "Di Bartolo", LocalDate.of(2024, 8, 5), "GDB001", "ing03");
+        benefitFlow.inserisciNuovoDipendente("Giorgio", "Di Bartolo", LocalDate.of(2024, 8, 5), "ing03");
         benefitFlow.confermaInserimento();
-        benefitFlow.inserisciNuovoDipendente("Silvia", "Garozzo", LocalDate.of(2024, 8, 5), "SGZ002", "inf01");
+        benefitFlow.inserisciNuovoDipendente("Silvia", "Garozzo", LocalDate.of(2024, 8, 5), "inf01");
         benefitFlow.confermaInserimento();
-        benefitFlow.inserisciNuovoDipendente("Matteo", "Santanocito", LocalDate.of(2024, 8, 5), "MSN003", "inf03");
+        benefitFlow.inserisciNuovoDipendente("Matteo", "Santanocito", LocalDate.of(2024, 8, 5), "inf03");
         benefitFlow.confermaInserimento();
 //
 //

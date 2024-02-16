@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a60ab205-e48e-458a-b714-77e9ceaa1b87" name="Changes" comment="implementazione caso d'uso UC7, visualizzazione congedi perosnali dipendente. Crezione interfaccia grafica.">
-      <change afterPath="$PROJECT_DIR$/src/domain/BuonoPasto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/ValoreStrategy1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/ValoreStrategyFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/ValoreStrategyInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domain/BenefitFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/BenefitFlow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domain/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/InserisciNuovoDipendente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/InserisciNuovoDipendente.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

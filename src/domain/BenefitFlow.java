@@ -60,36 +60,29 @@ public class BenefitFlow extends JFrame {
 
 
     /****** UC1 ******/
-    boolean flag = false;
-    public void inserisciNuovoDipendente(String nome, String cognome, LocalDate dataDiNascita, String matricola, String codiceRuolo){
+    public void inserisciNuovoDipendente(String nome, String cognome, LocalDate dataDiNascita, String codiceRuolo){
         Ruolo r = ruoli.get(codiceRuolo);
-        Dipendente d = elencoDipendenti.get(matricola);
+        String matricola = generatoreMatricola(nome,cognome);
 
-        if(d == null){
-            if(r != null){
-                this.dipendenteCorrente = new Dipendente(nome,cognome,dataDiNascita,matricola,r);
-                System.out.println("Dipendente inserito correttamente!");
-            }else{
-                if (codiceRuolo != null) {
-                    this.dipendenteCorrente = new Dipendente(nome, cognome, dataDiNascita, matricola);
-                    System.out.println("Il ruolo inserito non esiste. Il dipendente è stato comunque inserito senza ruolo.");
-                }else{
-                    this.dipendenteCorrente = new Dipendente(nome, cognome, dataDiNascita, matricola);
-                    System.out.println("Dipendente inserito correttamente senza ruolo!");
-                }
-            }
+        if(r != null){
+            this.dipendenteCorrente = new Dipendente(nome,cognome,dataDiNascita,matricola,r);
+            System.out.println("Dipendente inserito correttamente!");
         }else{
-            flag = true;
-            System.out.println("Esiste già un dipendente con matricola " + matricola);
+            if (codiceRuolo != null) {
+                this.dipendenteCorrente = new Dipendente(nome, cognome, dataDiNascita, matricola);
+                System.out.println("Il ruolo inserito non esiste. Il dipendente è stato comunque inserito senza ruolo.");
+            }else{
+                this.dipendenteCorrente = new Dipendente(nome, cognome, dataDiNascita, matricola);
+                System.out.println("Dipendente inserito correttamente senza ruolo!");
+            }
         }
     }
 
     public void confermaInserimento(){
-        if(dipendenteCorrente != null && !flag){
+        if(dipendenteCorrente != null){
             this.elencoDipendenti.put(dipendenteCorrente.getMatricola(),dipendenteCorrente);
             System.out.println("Lista dipendenti aggiornata con successo!");
         }
-        flag = false;
     }
 
 
@@ -449,5 +442,25 @@ public class BenefitFlow extends JFrame {
             }
         }
         return filteredListBuoniPasto;
+    }
+
+
+    private static int counter = 1;
+    private static String generatoreMatricola(String nome, String cognome) {
+        String nomeUpper = nome.toUpperCase();
+        String cognomeUpper = cognome.toUpperCase();
+        char firstCharNome = nomeUpper.charAt(0);
+        char firstCharCognome = cognomeUpper.charAt(0);
+        char secondCharCognome = cognomeUpper.charAt(2);
+        for (int i = 1; i < cognomeUpper.length(); i++) {
+            if (Character.isWhitespace(cognomeUpper.charAt(i - 1))) {
+                secondCharCognome = cognomeUpper.charAt(i);
+                break;
+            }
+        }
+
+        String counterString = String.format("%03d", counter);
+        counter++;
+        return String.valueOf(firstCharNome) + firstCharCognome + secondCharCognome + counterString;
     }
 }
