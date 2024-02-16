@@ -114,13 +114,18 @@ public class InserisciNuovoDipendente extends JFrame {
                 if (!nomeField.getText().isEmpty() && !cognomeField.getText().isEmpty() && !dataDiNascitaField.getText().isEmpty()) {
                     try {
                         LocalDate dataDiNascitaFormatted = LocalDate.parse(dataDiNascitaField.getText(), formatter);
-                        benefitFlow.inserisciNuovoDipendente(nomeField.getText(), cognomeField.getText(), dataDiNascitaFormatted, codiceRuoloField.getText());
-                        benefitFlow.confermaInserimento();
-                        nomeField.setText("");
-                        cognomeField.setText("");
-                        dataDiNascitaField.setText("");
-                        codiceRuoloField.setText("");
-                        InserisciNuovoDipendente.this.dispose();
+                        LocalDate dataMinima = LocalDate.now().minusYears(18);
+                        if(dataDiNascitaFormatted.isBefore(dataMinima) || dataDiNascitaFormatted.equals(dataMinima)) {
+                            benefitFlow.inserisciNuovoDipendente(nomeField.getText(), cognomeField.getText(), dataDiNascitaFormatted, codiceRuoloField.getText());
+                            benefitFlow.confermaInserimento();
+                            nomeField.setText("");
+                            cognomeField.setText("");
+                            dataDiNascitaField.setText("");
+                            codiceRuoloField.setText("");
+                            InserisciNuovoDipendente.this.dispose();
+                        }else {
+                            errorField.setText("Il dipendente deve essere maggiorenne!");
+                        }
                     } catch (Exception ex) {
                         System.err.println("Inserimento nuovo dipendente fallito. Formato data non valido.");
                         errorField.setText("Data non valida (formato richiesto: dd/MM/yyyy)");

@@ -300,6 +300,18 @@ public class Login extends JPanel {
             }
         });
 
+        gestisciBP.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) { new GestisciBuonoPasto(benefitFlow, d_corrente);
+            }
+        });
+
+        visualizzaBP.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) { new VisualizzaBuoniPastoPersonali(benefitFlow, d_corrente);
+            }
+        });
+
         dipPanel.add(textDip);
         dipPanel.add(choisePanelDip);
         dipPanel.add(buttonLogoutPanelDip);

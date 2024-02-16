@@ -2,6 +2,7 @@ package ui;
 
 import domain.BenefitFlow;
 import domain.BuonoPasto;
+import domain.Dipendente;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -11,13 +12,16 @@ import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.util.List;
 
-public class VisualizzaBuoniPasto extends JFrame {
+public class VisualizzaBuoniPastoPersonali extends JFrame {
 
     private JLabel titolo;
     private BenefitFlow benefitFlow;
 
-    public VisualizzaBuoniPasto(BenefitFlow b) {
+    private Dipendente dipendente;
+
+    public VisualizzaBuoniPastoPersonali(BenefitFlow b, Dipendente d) {
         this.benefitFlow = b;
+        this.dipendente = d;
         initComponent();
     }
 
@@ -34,12 +38,12 @@ public class VisualizzaBuoniPasto extends JFrame {
         titlePanel.setBorder(new EmptyBorder(30, 0, 20, 0));
         titlePanel.add(titolo);
 
-        List<BuonoPasto> lista = benefitFlow.visualizzaBuoniPastoComplessivi();
+        List<BuonoPasto> lista = benefitFlow.visualizzaBuoniPasto(dipendente.getMatricola());
         JTable table = new JTable(new TabellaModello(lista));
         HeaderRenderer headerRenderer = new HeaderRenderer();
         table.getTableHeader().setDefaultRenderer(headerRenderer);
         JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setPreferredSize(new Dimension(500,200));
+        scrollPane.setPreferredSize(new Dimension(700,200));
         table.setFocusable(false);
         TableColumn colonnaDataScadenza = table.getColumnModel().getColumn(3);
         colonnaDataScadenza.setMinWidth(105);
@@ -55,10 +59,10 @@ public class VisualizzaBuoniPasto extends JFrame {
         gbc.weighty = 1;
         add(scrollPane, gbc);
 
-        setResizable(true);
+        setResizable(false);
         setVisible(true);
         setTitle("BenefitFlow");
-        setSize(600, 400);
+        setSize(850, 400);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
@@ -97,7 +101,7 @@ public class VisualizzaBuoniPasto extends JFrame {
                 case 3:
                     return buonoPasto.getDataScadenza();
                 case 4:
-                    return "Creato";
+                    return buonoPasto.getStato();
                 default:
                     return null;
             }

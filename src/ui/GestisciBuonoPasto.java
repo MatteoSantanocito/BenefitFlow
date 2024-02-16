@@ -1,6 +1,7 @@
 package ui;
 
 import domain.BenefitFlow;
+import domain.BuonoPasto;
 import domain.Dipendente;
 
 import javax.swing.*;
@@ -13,20 +14,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class InserisciBuonoPasto extends JFrame {
+public class GestisciBuonoPasto extends JFrame {
 
     private JLabel titolo;
-    private JLabel matricolaLabel, dataScadenzaLabel;
-    private JTextField matricolaField, dataScadenzaField, errorField;
+    private JLabel codiceLabel;
+    private JTextField codiceField, errorField;
     private JButton confermaButton;
     private BenefitFlow benefitFlow;
 
-    public InserisciBuonoPasto(BenefitFlow b) {
+    private Dipendente dipendente;
+
+    public GestisciBuonoPasto(BenefitFlow b, Dipendente d) {
         this.benefitFlow = b;
+        this.dipendente = d;
         initComponent();
     }
 
@@ -40,31 +42,30 @@ public class InserisciBuonoPasto extends JFrame {
         JPanel formPanel = new JPanel(new GridBagLayout());
         JPanel buttonPanel = new JPanel(new FlowLayout());
 
-        titolo = new JLabel("Assegna Buono Pasto");
+        titolo = new JLabel("Attiva i tuoi buoni pasto");
         titolo.setFont(new Font("Arial", Font.BOLD, 20));
         titlePanel.setBorder(new EmptyBorder(30, 0, 20, 0));
         titlePanel.add(titolo);
 
-        List<Dipendente> lista = benefitFlow.visualizzaDipendenti();
+        List<BuonoPasto> lista = benefitFlow.visualizzaBuoniPastoValidi(dipendente.getMatricola());
         JTable table = new JTable(new TabellaModello(lista));
         HeaderRenderer headerRenderer = new HeaderRenderer();
         table.getTableHeader().setDefaultRenderer(headerRenderer);
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setPreferredSize(new Dimension(700,200));
         table.setFocusable(false);
-        TableColumn colonnaRuolo = table.getColumnModel().getColumn(4);
-        colonnaRuolo.setPreferredWidth(300);
-        TableColumn colonnaData = table.getColumnModel().getColumn(2);
-        colonnaData.setMinWidth(105);
-        colonnaData.setMaxWidth(105);
+        TableColumn colonnaDataScadenza = table.getColumnModel().getColumn(3);
+        colonnaDataScadenza.setMinWidth(105);
+        colonnaDataScadenza.setMaxWidth(105);
         table.setSelectionBackground(new Color(119, 119, 119, 255));
 
-        matricolaLabel = new JLabel("Matricola");
-        matricolaField = new JTextField(15);
-        matricolaField.addKeyListener(new KeyListener() {
+        codiceLabel = new JLabel("Codice");
+        codiceField = new JTextField(3);
+        codiceField.addKeyListener(new KeyListener() {
 
             @Override
             public void keyTyped(KeyEvent e) {
+                // TODO Auto-generated method stub
                 e.setKeyChar(Character.toUpperCase(e.getKeyChar()));
             }
 
@@ -77,38 +78,30 @@ public class InserisciBuonoPasto extends JFrame {
             public void keyReleased(KeyEvent e) {
                 // TODO Auto-generated method stub
             }
-            
+
         });
+
+        confermaButton = new JButton("Conferma");
+
         gbc.gridx = 0;
-        gbc.gridy = 1;
+        gbc.gridy = 0;
         gbc.weightx = 0.01;
         gbc.weighty = 0.01;
-        formPanel.add(matricolaLabel, gbc);
+        formPanel.add(codiceLabel, gbc);
         gbc.gridx = 1;
         gbc.weightx = 0.01;
         gbc.weighty = 0.01;
-        formPanel.add(matricolaField, gbc);
-
-        dataScadenzaLabel = new JLabel("Data Scadenza");
-        dataScadenzaLabel.setBorder(new EmptyBorder(0, 30, 0, 0));
-        dataScadenzaField = new JTextField(15);
-        LocalDate dataScadenza = LocalDate.now().plusMonths(1);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        dataScadenzaField.setText(dataScadenza.format(formatter));
-        dataScadenzaField.setEnabled(false);
+        formPanel.add(codiceField, gbc);
         gbc.gridx = 2;
-        gbc.gridy = 1;
         gbc.weightx = 0.01;
         gbc.weighty = 0.01;
-        formPanel.add(dataScadenzaLabel, gbc);
-        gbc.gridx = 3;
-        gbc.weightx = 0.01;
-        gbc.weighty = 0.01;
-        formPanel.add(dataScadenzaField, gbc);
+        formPanel.add(confermaButton, gbc);
 
-        formPanel.setBorder(new EmptyBorder(20, 0, 5, 0));
+
+        formPanel.setBorder(new EmptyBorder(10, 0, 5, 0));
 
         JPanel errorPanel = new JPanel(new FlowLayout());
+        errorPanel.setBorder(new EmptyBorder(0, 0, 20, 0));
         errorField = new JTextField(28);
         errorField.setBorder(null);
         errorField.setBackground(new Color(238, 238, 238));
@@ -118,34 +111,31 @@ public class InserisciBuonoPasto extends JFrame {
         errorField.setDisabledTextColor(Color.RED);
         errorPanel.add(errorField);
 
-        confermaButton = new JButton("Conferma");
-        buttonPanel.setBorder(new EmptyBorder(10, 0, 30, 0));
-        buttonPanel.add(confermaButton);
 
         confermaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 boolean trovato = false;
-                if (!matricolaField.getText().isEmpty()) {
-                    for(Dipendente d : lista){
-                        if (d.getMatricola().equals(matricolaField.getText())) {
+                if (!codiceField.getText().isEmpty()) {
+                    for(BuonoPasto bp : lista){
+                        if (bp.getCodiceBP().equals(codiceField.getText())) {
                             trovato = true;
                             break;
                         }
                     }
 
                     if (trovato) {
-                        benefitFlow.creaBuonoPasto(matricolaField.getText(), dataScadenza);
-                        benefitFlow.confermaBuonoPasto();
-                        matricolaField.setText("");
-                        InserisciBuonoPasto.this.dispose();
+                        benefitFlow.confermaAttivazione(codiceField.getText());
+                        codiceField.setText("");
+                        GestisciBuonoPasto.this.dispose();
                     }else{
-                        errorField.setText("Matricola non valida");
+                        errorField.setText("Codice non valido");
                     }
-                    
+
+
                 } else {
                     System.out.println("Compilare tutti i campi.");
-                    errorField.setText("Compilare tutti i campi");
+                    errorField.setText("Compila il campo");
                 }
             }
         });
@@ -164,9 +154,9 @@ public class InserisciBuonoPasto extends JFrame {
         gbc.gridy = 3;
         gbc.weighty = 0;
         add(errorPanel, gbc);
-        gbc.gridy = 4;
-        gbc.weighty = 0.1;
-        add(buttonPanel, gbc);
+//        gbc.gridy = 4;
+//        gbc.weighty = 0.1;
+//        add(buttonPanel, gbc);
 
         setResizable(false);
         setVisible(true);
@@ -178,10 +168,10 @@ public class InserisciBuonoPasto extends JFrame {
 
 
     static class TabellaModello extends AbstractTableModel {
-        private final List<Dipendente> lista;
-        private final String[] colonne = {"Nome", "Cognome", "Data di nascita", "Matricola", "Ruolo"};
+        private final List<BuonoPasto> lista;
+        private final String[] colonne = {"Codice", "Matricola", "Valore", "Data di scadenza", "Stato"};
 
-        public TabellaModello(List<Dipendente> lista) {
+        public TabellaModello(List<BuonoPasto> lista) {
             this.lista = lista;
         }
 
@@ -197,22 +187,20 @@ public class InserisciBuonoPasto extends JFrame {
 
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
-            Dipendente dipendente = lista.get(rowIndex);
+            BuonoPasto buonoPasto = lista.get(rowIndex);
 
             switch (columnIndex) {
                 case 0:
-                    return dipendente.getNome();
+                    return buonoPasto.getCodiceBP();
                 case 1:
-                    return dipendente.getCognome();
+                    return buonoPasto.getMatricola();
                 case 2:
-                    return dipendente.getDataDiNascita();
+                    String valore = String.format("%.2f", buonoPasto.getValore()) + "€";
+                    return valore;
                 case 3:
-                    return dipendente.getMatricola();
+                    return buonoPasto.getDataScadenza();
                 case 4:
-                    if(dipendente.getRuolo() == null){
-                        return "non assegnato";
-                    }
-                    return dipendente.getRuolo();
+                    return buonoPasto.getStato();
                 default:
                     return null;
             }

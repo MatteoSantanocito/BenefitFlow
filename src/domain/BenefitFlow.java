@@ -431,8 +431,50 @@ public class BenefitFlow extends JFrame {
     }
 
 
+    /****** UC9 ******/
+    public List<BuonoPasto> visualizzaBuoniPastoValidi(String matricola){
+        List<BuonoPasto> listBuoniPasto = new ArrayList<>();
+        listBuoniPasto.addAll(elencoBuoniPasto.values());
+        List<BuonoPasto> filteredListBuoniPasto = new ArrayList<>();
+        for(BuonoPasto bp : listBuoniPasto){
+            if(bp.getMatricola().equals(matricola) && bp.getStato().equals("valido")){
+                filteredListBuoniPasto.add(bp);
+            }
+        }
+        return filteredListBuoniPasto;
+    }
+
+    public void confermaAttivazione(String codice){
+        List<BuonoPasto> listBuoniPasto = new ArrayList<>();
+        listBuoniPasto.addAll(elencoBuoniPasto.values());
+        for(BuonoPasto bp : listBuoniPasto){
+            if(bp.getCodiceBP().equals(codice)){
+                String stato = bp.getStato();
+                if(stato.equals("valido")){
+                    bp.setStato("attivato");
+                }
+            }
+        }
+    }
+
+
+    /****** UC10 ******/
+    public List<BuonoPasto> visualizzaBuoniPasto(String matricola){
+        List<BuonoPasto> listBuoniPasto = new ArrayList<>();
+        listBuoniPasto.addAll(elencoBuoniPasto.values());
+        List<BuonoPasto> filteredListBuoniPasto = new ArrayList<>();
+        controlloScadenzaBP();
+        for(BuonoPasto bp : listBuoniPasto){
+            if(bp.getMatricola().equals(matricola)){
+                filteredListBuoniPasto.add(bp);
+            }
+        }
+        return filteredListBuoniPasto;
+    }
+
+
     /****** UTILITY ******/
-    public List<BuonoPasto> visualizzaBuoniPasto(){
+    public List<BuonoPasto> visualizzaBuoniPastoComplessivi(){
         List<BuonoPasto> listBuoniPasto = new ArrayList<>();
         listBuoniPasto.addAll(elencoBuoniPasto.values());
         List<BuonoPasto> filteredListBuoniPasto = new ArrayList<>();
@@ -462,5 +504,15 @@ public class BenefitFlow extends JFrame {
         String counterString = String.format("%03d", counter);
         counter++;
         return String.valueOf(firstCharNome) + firstCharCognome + secondCharCognome + counterString;
+    }
+
+    public void controlloScadenzaBP(){
+        List<BuonoPasto> listBuoniPasto = new ArrayList<>();
+        listBuoniPasto.addAll(elencoBuoniPasto.values());
+        for(BuonoPasto bp : listBuoniPasto){
+            if(bp.getDataScadenza().isBefore(LocalDate.now()) && bp.getStato().equals("valido")){
+                bp.setStato("scaduto");
+            }
+        }
     }
 }
