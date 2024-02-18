@@ -78,7 +78,6 @@ public class BenefitFlow extends JFrame {
         }
     }
 
-
     public void confermaInserimento(){
         if(dipendenteCorrente != null){
             this.elencoDipendenti.put(dipendenteCorrente.getMatricola(),dipendenteCorrente);
@@ -137,7 +136,6 @@ public class BenefitFlow extends JFrame {
         System.out.println("Caricamento Ruoli ultimato");
     }
 
-
     /****** UC3 ******/
     int counterF = 0;
     public void inserisciFerie(String matricola, String motivazione, LocalDate dataInizio, LocalDate dataFine){
@@ -149,8 +147,11 @@ public class BenefitFlow extends JFrame {
 
         if(d != null){
             this.ferie = new Ferie(motivazione, stato, tipo, codice, matricola, dataInizio, dataFine);
-            System.out.println("Ferie creata con successo");
         }
+    }
+
+    public Ferie getFerieCorrente(){
+        return ferie;
     }
 
     public void confermaFerie(){
@@ -424,6 +425,10 @@ public class BenefitFlow extends JFrame {
         }
     }
 
+    public BuonoPasto getBuonoPastoCorrente(){
+        return buonoPasto;
+    }
+
     public void confermaBuonoPasto(){
         if(this.buonoPasto != null){
             BuonoPasto bp = this.buonoPasto;
@@ -489,6 +494,11 @@ public class BenefitFlow extends JFrame {
         return filteredListBuoniPasto;
     }
 
+    public List<Ruolo> getRuoli(){
+        List<Ruolo> listRuolo = new ArrayList<>();
+        listRuolo.addAll(ruoli.values());
+        return listRuolo;
+    }
 
     private int counter = 1;
     public String generatoreMatricola(String nome, String cognome) {

@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a60ab205-e48e-458a-b714-77e9ceaa1b87" name="Changes" comment="Test UC1 e UC2">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domain/BenefitFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/BenefitFlow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/TestBenefitFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/TestBenefitFlow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/GestisciBuonoPasto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GestisciBuonoPasto.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,10 +76,13 @@
     "JUnit.MyTest.executor": "Run",
     "JUnit.TestBenefitFlow.executor": "Run",
     "JUnit.TestBenefitFlow.testConfermaInserimento.executor": "Run",
+    "JUnit.TestBenefitFlow.testCreazioneBuonoPasto.executor": "Run",
     "JUnit.TestBenefitFlow.testGeneratorematricola.executor": "Run",
     "JUnit.TestBenefitFlow.testGestisciRuolo.executor": "Run",
     "JUnit.TestBenefitFlow.testInserisciFerie.executor": "Run",
     "JUnit.TestBenefitFlow.testInserisciNuovoDipendente.executor": "Run",
+    "JUnit.TestBenefitFlow.testLoadRuolo.executor": "Run",
+    "JUnit.TestBenefitFlow.testSovrapposizioneBenefit.executor": "Run",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
@@ -124,7 +127,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestBenefitFlow.testConfermaInserimento" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestBenefitFlow.testConfermaBuonoPasto" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="BenefitFlow" />
       <extension name="coverage">
         <pattern>
@@ -134,13 +137,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="test" />
       <option name="MAIN_CLASS_NAME" value="test.TestBenefitFlow" />
-      <option name="METHOD_NAME" value="testConfermaInserimento" />
+      <option name="METHOD_NAME" value="testConfermaBuonoPasto" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestBenefitFlow.testGeneratorematricola" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestBenefitFlow.testCreazioneBuonoPasto" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="BenefitFlow" />
       <extension name="coverage">
         <pattern>
@@ -150,23 +153,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="test" />
       <option name="MAIN_CLASS_NAME" value="test.TestBenefitFlow" />
-      <option name="METHOD_NAME" value="testGeneratorematricola" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestBenefitFlow.testGestisciRuolo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="BenefitFlow" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.TestBenefitFlow" />
-      <option name="METHOD_NAME" value="testGestisciRuolo" />
+      <option name="METHOD_NAME" value="testCreazioneBuonoPasto" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -188,20 +175,36 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestBenefitFlow.testSovrapposizioneBenefit" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BenefitFlow" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.TestBenefitFlow" />
+      <option name="METHOD_NAME" value="testSovrapposizioneBenefit" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.TestBenefitFlow" />
+        <item itemvalue="JUnit.TestBenefitFlow.testConfermaBuonoPasto" />
+        <item itemvalue="JUnit.TestBenefitFlow.testCreazioneBuonoPasto" />
         <item itemvalue="JUnit.TestBenefitFlow.testInserisciFerie" />
-        <item itemvalue="JUnit.TestBenefitFlow.testGeneratorematricola" />
-        <item itemvalue="JUnit.TestBenefitFlow.testGestisciRuolo" />
-        <item itemvalue="JUnit.TestBenefitFlow.testConfermaInserimento" />
+        <item itemvalue="JUnit.TestBenefitFlow.testSovrapposizioneBenefit" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.1-openjdk-21.0.1-f644763e9732-2f79fb23" />
+        <option value="jdk-17.0.9-corretto-17.0.9-3183f394aec4-5f3ff201" />
       </set>
     </attachedChunks>
   </component>
