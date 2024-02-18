@@ -83,6 +83,7 @@ public class BenefitFlow extends JFrame {
         if(dipendenteCorrente != null){
             this.elencoDipendenti.put(dipendenteCorrente.getMatricola(),dipendenteCorrente);
             System.out.println("Lista dipendenti aggiornata con successo!");
+            System.out.println(dipendenteCorrente);
         }
     }
 
@@ -149,8 +150,6 @@ public class BenefitFlow extends JFrame {
         if(d != null){
             this.ferie = new Ferie(motivazione, stato, tipo, codice, matricola, dataInizio, dataFine);
             System.out.println("Ferie creata con successo");
-        }else {
-            System.out.println("Ferie non creata");
         }
     }
 
@@ -491,7 +490,7 @@ public class BenefitFlow extends JFrame {
     }
 
 
-    private static int counter = 1;
+    private int counter = 1;
     public String generatoreMatricola(String nome, String cognome) {
         String nomeUpper = nome.toUpperCase();
         String cognomeUpper = cognome.toUpperCase();

@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a60ab205-e48e-458a-b714-77e9ceaa1b87" name="Changes" comment="SetUp test">
+    <list default="true" id="a60ab205-e48e-458a-b714-77e9ceaa1b87" name="Changes" comment="Test UC1 e UC2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domain/BenefitFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/BenefitFlow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/TestBenefitFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/TestBenefitFlow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/GestisciBuonoPasto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GestisciBuonoPasto.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,7 +218,7 @@
       <workItem from="1708200377537" duration="921000" />
       <workItem from="1708203469238" duration="750000" />
       <workItem from="1708205407346" duration="1429000" />
-      <workItem from="1708208939021" duration="11739000" />
+      <workItem from="1708208939021" duration="13204000" />
     </task>
     <task id="LOCAL-00001" summary="eliminato commenti">
       <option name="closed" value="true" />
@@ -316,7 +316,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708204010645</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Test UC1 e UC2">
+      <option name="closed" value="true" />
+      <created>1708229883808</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1708229883808</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -346,6 +354,7 @@
     <MESSAGE value="correzione bug inserimento date e orari" />
     <MESSAGE value="implementazione caso d'uso UC7, visualizzazione congedi perosnali dipendente. Crezione interfaccia grafica." />
     <MESSAGE value="SetUp test" />
-    <option name="LAST_COMMIT_MESSAGE" value="SetUp test" />
+    <MESSAGE value="Test UC1 e UC2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test UC1 e UC2" />
   </component>
 </project>

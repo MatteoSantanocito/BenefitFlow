@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TestBenefitFlow {
-    static BenefitFlow benefitFlow;
+    private BenefitFlow benefitFlow;
 
     @BeforeEach
     void testGetInstance(){
@@ -32,18 +32,16 @@ class TestBenefitFlow {
         }
     }
 
-//    @Test
-//    @DisplayName("Test generatore matricola")
-//    void testGeneratorematricola(){
-//        try {
-//            String matricola = benefitFlow.generatoreMatricola("Giorgio", "Di Bartolo");
-//            assertEquals("GDB001", matricola);
-//        }catch (Exception e){
-//            fail("Eccezione inaspettata");
-//        }
-//    }
-    //Questa funzione è controllata già dentro inserisciNuovoDipendete ed eseguendo tutto insieme fallisce
-    //Eseguendola singolarmente non da nessun errore
+    @Test
+    @DisplayName("Test generatore matricola")
+    void testGeneratorematricola(){
+        try {
+            String matricola = benefitFlow.generatoreMatricola("Giorgio", "Di Bartolo");
+            assertEquals("GDB001", matricola);
+        }catch (Exception e){
+            fail("Eccezione inaspettata");
+        }
+    }
 
     @Test
     @DisplayName("Test conferma inserimento nuovo dipendente")
@@ -64,6 +62,32 @@ class TestBenefitFlow {
             benefitFlow.inserisciNuovoDipendente("Giorgio", "Di Bartolo", LocalDate.of(2000, 9, 29), "ing03");
             benefitFlow.confermaInserimento();
             benefitFlow.confermaRuolo("GDB001", "inf03");
+        }catch (Exception e){
+            fail("Eccezione inaspettata");
+        }
+    }
+
+    @Test
+    @DisplayName("Test inserisci Ferie")
+    void testInserisciFerie(){
+        try {
+            benefitFlow.inserisciNuovoDipendente("Silvia", "Garozzo", LocalDate.of(2000, 9, 29), "ing03");
+            benefitFlow.confermaInserimento();
+            benefitFlow.inserisciFerie("SGR001","vacanza", LocalDate.of(2024, 9, 29), LocalDate.of(2024, 10, 29));
+        }catch (Exception e){
+            fail("Eccezione inaspettata");
+        }
+    }
+
+    @Test
+    @DisplayName("Test conferma inserimento Ferie")
+    void testConfermaInserimentoFerie(){
+        try {
+            benefitFlow.inserisciNuovoDipendente("Silvia", "Garozzo", LocalDate.of(2000, 9, 29), "ing03");
+            benefitFlow.confermaInserimento();
+            benefitFlow.inserisciFerie("SGR001","vacanza", LocalDate.of(2024, 9, 29), LocalDate.of(2024, 10, 29));
+            benefitFlow.confermaFerie();
+            assertEquals(1, benefitFlow.mostraBenefit("F").size());
         }catch (Exception e){
             fail("Eccezione inaspettata");
         }

@@ -40,7 +40,6 @@ public class GestisciBuonoPasto extends JFrame {
 
         JPanel titlePanel = new JPanel(new FlowLayout());
         JPanel formPanel = new JPanel(new GridBagLayout());
-        JPanel buttonPanel = new JPanel(new FlowLayout());
 
         titolo = new JLabel("Attiva i tuoi buoni pasto");
         titolo.setFont(new Font("Arial", Font.BOLD, 20));
