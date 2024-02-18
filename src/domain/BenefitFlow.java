@@ -137,7 +137,7 @@ public class BenefitFlow extends JFrame {
     }
 
     /****** UC3 ******/
-    int counterF = 0;
+    private int counterF = 0;
     public void inserisciFerie(String matricola, String motivazione, LocalDate dataInizio, LocalDate dataFine){
         counterF += 1;
         Dipendente d = elencoDipendenti.get(matricola);
@@ -163,7 +163,7 @@ public class BenefitFlow extends JFrame {
         }
     }
 
-    int counterP = 0;
+    private int counterP = 0;
     public void inserisciPermesso(String matricola, String motivazione, LocalDate data, LocalTime oraInizio, LocalTime oraFine){
         counterP += 1;
         Dipendente d = elencoDipendenti.get(matricola);
@@ -407,19 +407,20 @@ public class BenefitFlow extends JFrame {
         return mostraDipendenti();
     }
 
-    int counterBP = 0;
+    private int counterBP = 0;
     public void creaBuonoPasto(String matricola, LocalDate dataScadenza){
         counterBP += 1;
         Dipendente d = elencoDipendenti.get(matricola);
         String stato = "valido";
         String codice = "BP" + counterBP;
+        float valoreBase = 150.00f;
 
         if(d != null){
             if(d.getRuolo() != null){
                 int livello = d.getRuolo().getLivello();
                 ValoreStrategyFactory sf = ValoreStrategyFactory.getInstance();
                 ValoreStrategyInterface vs = sf.getValoreStrategy();
-                float valore = vs.calcolaValore(livello);
+                float valore = vs.calcolaValore(valoreBase, livello);
                 this.buonoPasto = new BuonoPasto(codice, stato, matricola, dataScadenza, valore);
             }
         }

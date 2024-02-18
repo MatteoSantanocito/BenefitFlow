@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a60ab205-e48e-458a-b714-77e9ceaa1b87" name="Changes" comment="Test UC1 e UC2">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/TestValoreStrategy1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/domain/BenefitFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/BenefitFlow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/ValoreStrategy1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/ValoreStrategy1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/ValoreStrategyInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/ValoreStrategyInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/TestBenefitFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/TestBenefitFlow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,7 +56,7 @@
     <option name="contextName" value="minikube" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -75,7 +78,9 @@
     "Downloaded.Files.Path.Enabled": "false",
     "JUnit.MyTest.executor": "Run",
     "JUnit.TestBenefitFlow.executor": "Run",
+    "JUnit.TestBenefitFlow.testConfermaAttivazione.executor": "Run",
     "JUnit.TestBenefitFlow.testConfermaInserimento.executor": "Run",
+    "JUnit.TestBenefitFlow.testControlloScadenzaBP.executor": "Run",
     "JUnit.TestBenefitFlow.testCreazioneBuonoPasto.executor": "Run",
     "JUnit.TestBenefitFlow.testGeneratorematricola.executor": "Run",
     "JUnit.TestBenefitFlow.testGestisciRuolo.executor": "Run",
@@ -83,6 +88,7 @@
     "JUnit.TestBenefitFlow.testInserisciNuovoDipendente.executor": "Run",
     "JUnit.TestBenefitFlow.testLoadRuolo.executor": "Run",
     "JUnit.TestBenefitFlow.testSovrapposizioneBenefit.executor": "Run",
+    "JUnit.TestValoreStrategy1.testCalcolaValore.executor": "Run",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
@@ -111,7 +117,7 @@
       <recent name="ui" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestBenefitFlow">
+  <component name="RunManager">
     <configuration name="TestBenefitFlow" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="BenefitFlow" />
       <extension name="coverage">
@@ -127,7 +133,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestBenefitFlow.testConfermaBuonoPasto" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestBenefitFlow.testConfermaAttivazione" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="BenefitFlow" />
       <extension name="coverage">
         <pattern>
@@ -137,7 +143,23 @@
       </extension>
       <option name="PACKAGE_NAME" value="test" />
       <option name="MAIN_CLASS_NAME" value="test.TestBenefitFlow" />
-      <option name="METHOD_NAME" value="testConfermaBuonoPasto" />
+      <option name="METHOD_NAME" value="testConfermaAttivazione" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestBenefitFlow.testControlloScadenzaBP" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BenefitFlow" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.TestBenefitFlow" />
+      <option name="METHOD_NAME" value="testControlloScadenzaBP" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -159,7 +181,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestBenefitFlow.testInserisciFerie" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestValoreStrategy1.testCalcolaValore" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="BenefitFlow" />
       <extension name="coverage">
         <pattern>
@@ -168,24 +190,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.TestBenefitFlow" />
-      <option name="METHOD_NAME" value="testInserisciFerie" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestBenefitFlow.testSovrapposizioneBenefit" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="BenefitFlow" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="test" />
-      <option name="MAIN_CLASS_NAME" value="test.TestBenefitFlow" />
-      <option name="METHOD_NAME" value="testSovrapposizioneBenefit" />
+      <option name="MAIN_CLASS_NAME" value="test.TestValoreStrategy1" />
+      <option name="METHOD_NAME" value="testCalcolaValore" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -193,11 +199,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestBenefitFlow" />
-        <item itemvalue="JUnit.TestBenefitFlow.testConfermaBuonoPasto" />
+        <item itemvalue="JUnit.TestValoreStrategy1.testCalcolaValore" />
+        <item itemvalue="JUnit.TestBenefitFlow.testControlloScadenzaBP" />
         <item itemvalue="JUnit.TestBenefitFlow.testCreazioneBuonoPasto" />
-        <item itemvalue="JUnit.TestBenefitFlow.testInserisciFerie" />
-        <item itemvalue="JUnit.TestBenefitFlow.testSovrapposizioneBenefit" />
+        <item itemvalue="JUnit.TestBenefitFlow.testConfermaAttivazione" />
+        <item itemvalue="JUnit.TestBenefitFlow" />
       </list>
     </recent_temporary>
   </component>

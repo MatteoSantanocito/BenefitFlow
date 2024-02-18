@@ -1,5 +1,5 @@
 package domain;
 
 public interface ValoreStrategyInterface {
-    float calcolaValore(int livello);
+    float calcolaValore(float valoreBase, int livello);
 }

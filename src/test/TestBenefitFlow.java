@@ -71,7 +71,7 @@ class TestBenefitFlow {
     }
 
     @Test
-    @DisplayName("Test LoadRuolo")
+    @DisplayName("Test caricamneto ruoli")
     void testLoadRuolo(){
         List<Ruolo> expected = new ArrayList<>();
         Ruolo r1 = new Ruolo("ing01", "dataAnalist", 1);
@@ -94,7 +94,6 @@ class TestBenefitFlow {
         expected.add(r9);
 
         assertEquals(expected.size(), benefitFlow.getRuoli().size());
-//        assertTrue(benefitFlow.getRuoli().containsAll(expected));
     }
 
     @Test
@@ -152,6 +151,7 @@ class TestBenefitFlow {
             benefitFlow.confermaInserimento();
             benefitFlow.creaBuonoPasto("SGR001", LocalDate.of(2024,10,10));
             assertNotNull(benefitFlow.getBuonoPastoCorrente());
+            assertEquals("valido", benefitFlow.getBuonoPastoCorrente().getStato());
         }catch (Exception e){
             fail("Eccezione inaspettata");
         }
@@ -171,5 +171,35 @@ class TestBenefitFlow {
         }
     }
 
+    @Test
+    @DisplayName("Test conferma attivazione Buono Pasto")
+    void testConfermaAttivazione(){
+        try{
+            benefitFlow.inserisciNuovoDipendente("Silvia", "Garozzo", LocalDate.of(2000, 9, 29), "ing03");
+            benefitFlow.confermaInserimento();
+            benefitFlow.creaBuonoPasto("SGR001", LocalDate.of(2024,10,10));
+            benefitFlow.confermaBuonoPasto();
+            benefitFlow.confermaAttivazione("BP1");
+            assertEquals("attivato", benefitFlow.visualizzaBuoniPastoComplessivi().get(0).getStato());
+        }catch (Exception e){
+            fail("Eccezione inaspettata");
+        }
+    }
 
+    @Test
+    @DisplayName("Test controllo Data di scadenza e visualizza dei Buono Pasto")
+    void testControlloScadenzaBP(){
+        try{
+            benefitFlow.inserisciNuovoDipendente("Silvia", "Garozzo", LocalDate.of(2000, 9, 29), "ing03");
+            benefitFlow.confermaInserimento();
+            benefitFlow.creaBuonoPasto("SGR001", LocalDate.of(2023,10,10));
+            benefitFlow.confermaBuonoPasto();
+            assertEquals("scaduto", benefitFlow.visualizzaBuoniPasto("SGR001").get(0).getStato());
+            assertEquals(1, benefitFlow.visualizzaBuoniPasto("SGR001").size());
+            assertEquals(0, benefitFlow.visualizzaBuoniPastoValidi("SGR001").size());
+            assertEquals(0, benefitFlow.visualizzaBuoniPastoComplessivi().size());
+        }catch (Exception e){
+            fail("Eccezione inaspettata");
+        }
+    }
 }
