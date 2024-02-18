@@ -8,13 +8,13 @@ public class Main {
         BenefitFlow benefitFlow = BenefitFlow.getInstance();
         benefitFlow.initComponent();
 
-        System.out.println("\n\nInserimento nuovo dipendente...");
-        benefitFlow.inserisciNuovoDipendente("Giorgio", "Di Bartolo", LocalDate.of(2024, 8, 5), "ing03");
-        benefitFlow.confermaInserimento();
-        benefitFlow.inserisciNuovoDipendente("Silvia", "Garozzo", LocalDate.of(2024, 8, 5), "inf01");
-        benefitFlow.confermaInserimento();
-        benefitFlow.inserisciNuovoDipendente("Matteo", "Santanocito", LocalDate.of(2024, 8, 5), "inf03");
-        benefitFlow.confermaInserimento();
+//        System.out.println("\n\nInserimento nuovo dipendente...");
+//        benefitFlow.inserisciNuovoDipendente("Giorgio", "Di Bartolo", LocalDate.of(2024, 8, 5), "ing03");
+//        benefitFlow.confermaInserimento();
+//        benefitFlow.inserisciNuovoDipendente("Silvia", "Garozzo", LocalDate.of(2024, 8, 5), "inf01");
+//        benefitFlow.confermaInserimento();
+//        benefitFlow.inserisciNuovoDipendente("Matteo", "Santanocito", LocalDate.of(2024, 8, 5), "inf03");
+//        benefitFlow.confermaInserimento();
 //
 //
 //        List<Dipendente> listDipendenti = new ArrayList<>();
