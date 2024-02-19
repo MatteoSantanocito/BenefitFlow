@@ -4,18 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a60ab205-e48e-458a-b714-77e9ceaa1b87" name="Changes" comment="Test UC3">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/Benefit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Congedo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/BenefitFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/BenefitFlow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/Ferie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Ferie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/Permesso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Permesso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/GestisciCongedi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GestisciCongedi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/ProlungamentoFerie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ProlungamentoFerie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/ProlungamentoPermesso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ProlungamentoPermesso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/VisualizzaCongedi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/VisualizzaCongedi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/VisualizzaCongediPersonali.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/VisualizzaCongediPersonali.java" afterDir="false" />
+    <list default="true" id="a60ab205-e48e-458a-b714-77e9ceaa1b87" name="Changes" comment="refactor nome Benefit">
+      <change beforePath="$PROJECT_DIR$/src/domain/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/ScegliBenefit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ScegliCongedo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/ScegliBenefitModifica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/ScegliCongedoModifica.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -232,7 +224,7 @@
       <workItem from="1708203469238" duration="750000" />
       <workItem from="1708205407346" duration="1429000" />
       <workItem from="1708208939021" duration="13204000" />
-      <workItem from="1708290255825" duration="1404000" />
+      <workItem from="1708290255825" duration="1676000" />
     </task>
     <task id="LOCAL-00001" summary="eliminato commenti">
       <option name="closed" value="true" />
@@ -338,7 +330,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708229883808</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="refactor nome Benefit">
+      <option name="closed" value="true" />
+      <created>1708367012618</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1708367012618</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -369,6 +369,7 @@
     <MESSAGE value="implementazione caso d'uso UC7, visualizzazione congedi perosnali dipendente. Crezione interfaccia grafica." />
     <MESSAGE value="SetUp test" />
     <MESSAGE value="Test UC1 e UC2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test UC1 e UC2" />
+    <MESSAGE value="refactor nome Benefit" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor nome Benefit" />
   </component>
 </project>

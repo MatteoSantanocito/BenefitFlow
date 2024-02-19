@@ -14,12 +14,12 @@ import javax.swing.JPanel;
 import domain.BenefitFlow;
 import domain.Dipendente;
 
-public class ScegliBenefit extends JFrame{
+public class ScegliCongedoModifica extends JFrame{
 
     private BenefitFlow benefitFlow;
     private Dipendente dipendente;
 
-    public ScegliBenefit(BenefitFlow b, Dipendente d){
+    public ScegliCongedoModifica(BenefitFlow b, Dipendente d){
         this.benefitFlow = b;
         this.dipendente = d;
         initComponent();
@@ -30,27 +30,27 @@ public class ScegliBenefit extends JFrame{
         JPanel choisePanel = new JPanel(new FlowLayout());
         JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
 
-        JLabel textDip = new JLabel("Scegli quale congedo richiedere");
+        JLabel textDip = new JLabel("Scegli quale congedo vuoi modificare");
         textDip.setFont(new Font("Arial", Font.BOLD, 15));
         textDip.setHorizontalAlignment(JLabel.CENTER);
 
-        JButton inserisciFerie = new JButton("Inserisci ferie");
-        buttonPanel.add(inserisciFerie);
+        JButton prolugamentoFerie = new JButton("Prolunga ferie");
+        buttonPanel.add(prolugamentoFerie);
 
-        JButton inserisciPermesso = new JButton("Inserisci permesso");
-        buttonPanel.add(inserisciPermesso);
+        JButton prolungamentoPermesso = new JButton("Prolunga permesso");
+        buttonPanel.add(prolungamentoPermesso);
 
-        inserisciFerie.addActionListener(new ActionListener() {
+        prolugamentoFerie.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new InserisciFerie(benefitFlow, dipendente);
+                new ProlungamentoFerie(benefitFlow, dipendente);
             }
         });
 
-        inserisciPermesso.addActionListener(new ActionListener() {
+        prolungamentoPermesso.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new InserisciPermesso(benefitFlow, dipendente);
+                new ProlungamentoPermesso(benefitFlow, dipendente);
             }
         });
 

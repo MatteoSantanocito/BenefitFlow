@@ -14,12 +14,12 @@ import javax.swing.JPanel;
 import domain.BenefitFlow;
 import domain.Dipendente;
 
-public class ScegliBenefitModifica extends JFrame{
+public class ScegliCongedo extends JFrame{
 
     private BenefitFlow benefitFlow;
     private Dipendente dipendente;
 
-    public ScegliBenefitModifica(BenefitFlow b, Dipendente d){
+    public ScegliCongedo(BenefitFlow b, Dipendente d){
         this.benefitFlow = b;
         this.dipendente = d;
         initComponent();
@@ -30,27 +30,27 @@ public class ScegliBenefitModifica extends JFrame{
         JPanel choisePanel = new JPanel(new FlowLayout());
         JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
 
-        JLabel textDip = new JLabel("Scegli quale congedo vuoi modificare");
+        JLabel textDip = new JLabel("Scegli quale congedo richiedere");
         textDip.setFont(new Font("Arial", Font.BOLD, 15));
         textDip.setHorizontalAlignment(JLabel.CENTER);
 
-        JButton prolugamentoFerie = new JButton("Prolunga ferie");
-        buttonPanel.add(prolugamentoFerie);
+        JButton inserisciFerie = new JButton("Inserisci ferie");
+        buttonPanel.add(inserisciFerie);
 
-        JButton prolungamentoPermesso = new JButton("Prolunga permesso");
-        buttonPanel.add(prolungamentoPermesso);
+        JButton inserisciPermesso = new JButton("Inserisci permesso");
+        buttonPanel.add(inserisciPermesso);
 
-        prolugamentoFerie.addActionListener(new ActionListener() {
+        inserisciFerie.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ProlungamentoFerie(benefitFlow, dipendente);
+                new InserisciFerie(benefitFlow, dipendente);
             }
         });
 
-        prolungamentoPermesso.addActionListener(new ActionListener() {
+        inserisciPermesso.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ProlungamentoPermesso(benefitFlow, dipendente);
+                new InserisciPermesso(benefitFlow, dipendente);
             }
         });
 

@@ -282,14 +282,14 @@ public class Login extends JPanel {
         richiediCongedo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ScegliBenefit(benefitFlow, d_corrente);
+                new ScegliCongedo(benefitFlow, d_corrente);
             }
         });
 
         gestisciCongedo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ScegliBenefitModifica(benefitFlow, d_corrente);
+                new ScegliCongedoModifica(benefitFlow, d_corrente);
             }
         });
 
