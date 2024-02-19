@@ -50,7 +50,7 @@ public class VisualizzaCongediPersonali extends JFrame{
 
         HeaderRenderer headerRenderer = new HeaderRenderer();
 
-        List<Benefit> listaF = benefitFlow.visualizzaCongedi("F", dipendente.getMatricola());
+        List<Congedo> listaF = benefitFlow.visualizzaCongedi("F", dipendente.getMatricola());
         JTable tableF = new JTable(new TabellaFerie(listaF));
         tableF.getTableHeader().setDefaultRenderer(headerRenderer);
         JScrollPane scrollPaneF = new JScrollPane(tableF);
@@ -70,7 +70,7 @@ public class VisualizzaCongediPersonali extends JFrame{
         tableF.setSelectionBackground(new Color(119, 119, 119, 255));
         tableF.setFocusable(false);
 
-        List<Benefit> listaP = benefitFlow.visualizzaCongedi("P", dipendente.getMatricola());
+        List<Congedo> listaP = benefitFlow.visualizzaCongedi("P", dipendente.getMatricola());
         JTable tableP = new JTable(new TabellaPermessi(listaP));
         tableP.getTableHeader().setDefaultRenderer(headerRenderer);
         JScrollPane scrollPaneP = new JScrollPane(tableP);
@@ -142,10 +142,10 @@ public class VisualizzaCongediPersonali extends JFrame{
 
 
     static class TabellaFerie extends AbstractTableModel {
-        private final List<Benefit> lista;
+        private final List<Congedo> lista;
         private final String[] colonne = {"Codice", "Matricola", "Data inizio", "Data fine", "Motivazione", "Stato"};
 
-        public TabellaFerie(List<Benefit> lista) {
+        public TabellaFerie(List<Congedo> lista) {
             this.lista = lista;
         }
 
@@ -188,10 +188,10 @@ public class VisualizzaCongediPersonali extends JFrame{
     }
 
     static class TabellaPermessi extends AbstractTableModel {
-        private final List<Benefit> lista;
+        private final List<Congedo> lista;
         private final String[] colonne = {"Codice", "Matricola", "Data", "Ora inizio", "Ora fine", "Motivazione", "Stato"};
 
-        public TabellaPermessi(List<Benefit> lista) {
+        public TabellaPermessi(List<Congedo> lista) {
             this.lista = lista;
         }
 

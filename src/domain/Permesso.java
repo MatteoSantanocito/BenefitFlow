@@ -3,7 +3,7 @@ package domain;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Permesso extends Benefit{
+public class Permesso extends Congedo {
     private LocalDate data;
     private LocalTime oraInizio;
     private LocalTime oraFine;

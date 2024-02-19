@@ -1,13 +1,13 @@
 package domain;
 
-public abstract class Benefit {
+public abstract class Congedo {
     protected String motivazione;
     protected String stato;
     protected String tipo;
     protected String codice;
     protected String matricola;
 
-    public Benefit(String motivazione, String stato, String tipo, String codice, String matricola) {
+    public Congedo(String motivazione, String stato, String tipo, String codice, String matricola) {
         this.motivazione = motivazione;
         this.stato = stato;
         this.tipo = tipo;

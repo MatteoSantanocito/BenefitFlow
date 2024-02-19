@@ -1,6 +1,6 @@
 package ui;
 
-import domain.Benefit;
+import domain.Congedo;
 import domain.BenefitFlow;
 import domain.Dipendente;
 import domain.Ferie;
@@ -50,7 +50,7 @@ public class ProlungamentoFerie extends JFrame {
         titlePanel.setBorder(new EmptyBorder(30, 0, 20, 0));
         titlePanel.add(titolo);
 
-        List<Benefit> lista = benefitFlow.mostraBenefitApprovati(this.dipendente.getMatricola(), "F");
+        List<Congedo> lista = benefitFlow.mostraBenefitApprovati(this.dipendente.getMatricola(), "F");
         JTable table = new JTable(new TabellaModello(lista));
         HeaderRenderer headerRenderer = new HeaderRenderer();
         table.getTableHeader().setDefaultRenderer(headerRenderer);
@@ -149,7 +149,7 @@ public class ProlungamentoFerie extends JFrame {
                     try {
                         LocalDate dataFineFormatted = LocalDate.parse(dataFineField.getText(), formatter);
                         LocalDate oldDate = null;
-                        for(Benefit b : lista){
+                        for(Congedo b : lista){
                             if (b.getCodice().equals(codiceField.getText())) {
                                 oldDate = ((Ferie) b).getDataFine();
                                 trovato = true;
@@ -211,10 +211,10 @@ public class ProlungamentoFerie extends JFrame {
 
 
     static class TabellaModello extends AbstractTableModel {
-        private final List<Benefit> lista;
+        private final List<Congedo> lista;
         private final String[] colonne = {"Codice", "Matricola", "Data inizio", "Data fine", "Motivazione", "Stato"};
 
-        public TabellaModello(List<Benefit> lista) {
+        public TabellaModello(List<Congedo> lista) {
             this.lista = lista;
         }
 

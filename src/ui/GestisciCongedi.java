@@ -1,6 +1,6 @@
 package ui;
 
-import domain.Benefit;
+import domain.Congedo;
 import domain.BenefitFlow;
 import domain.Ferie;
 import domain.Permesso;
@@ -186,7 +186,7 @@ public class GestisciCongedi extends JFrame {
 
         HeaderRenderer headerRenderer = new HeaderRenderer();
 
-        List<Benefit> listaF = benefitFlow.mostraBenefit("F");
+        List<Congedo> listaF = benefitFlow.mostraBenefit("F");
         JTable tableF = new JTable(new TabellaFerie(listaF));
         tableF.getTableHeader().setDefaultRenderer(headerRenderer);
         JScrollPane scrollPaneF = new JScrollPane(tableF);
@@ -206,7 +206,7 @@ public class GestisciCongedi extends JFrame {
         tableF.setSelectionBackground(new Color(119, 119, 119, 255));
         tableF.setFocusable(false);
 
-        List<Benefit> listaP = benefitFlow.mostraBenefit("P");
+        List<Congedo> listaP = benefitFlow.mostraBenefit("P");
         JTable tableP = new JTable(new TabellaPermessi(listaP));
         tableP.getTableHeader().setDefaultRenderer(headerRenderer);
         JScrollPane scrollPaneP = new JScrollPane(tableP);
@@ -269,18 +269,18 @@ public class GestisciCongedi extends JFrame {
                 visualizzaFerie.setEnabled(false);
                 visualizzaPermesso.setEnabled(false);
 
-                List<Benefit> listFerieElab = benefitFlow.mostraBenefit("F");
-                List<Benefit> listPermessiElab = benefitFlow.mostraBenefit("P");
+                List<Congedo> listFerieElab = benefitFlow.mostraBenefit("F");
+                List<Congedo> listPermessiElab = benefitFlow.mostraBenefit("P");
 
                 String stringCode = code.getText();
 
                 if(!stringCode.isEmpty()){
                     if(pressed == visualizzaFerie){
                         boolean flagPremuto = false;
-                        for (Benefit f : listFerieElab){
+                        for (Congedo f : listFerieElab){
                             if(f.getCodice().equals(stringCode)){
                                 flagPremuto = true;
-                                List<Benefit> listaSovrapposti = benefitFlow.sovrapposizioneBenefit(stringCode);
+                                List<Congedo> listaSovrapposti = benefitFlow.sovrapposizioneBenefit(stringCode);
 
                                 JTable tableF_S = new JTable(new TabellaFerie(listaSovrapposti));
                                 tableF_S.getTableHeader().setDefaultRenderer(headerRenderer);
@@ -330,10 +330,10 @@ public class GestisciCongedi extends JFrame {
                         }
                     }else if(pressed == visualizzaPermesso){
                         boolean flagPremuto = false;
-                        for (Benefit p : listPermessiElab){
+                        for (Congedo p : listPermessiElab){
                             if(p.getCodice().equals(stringCode)){
                                 flagPremuto = true;
-                                List<Benefit> listaSovrapposti = benefitFlow.sovrapposizioneBenefit(stringCode);
+                                List<Congedo> listaSovrapposti = benefitFlow.sovrapposizioneBenefit(stringCode);
 
                                 JTable tableP_S = new JTable(new TabellaPermessi(listaSovrapposti));
                                 tableP_S.getTableHeader().setDefaultRenderer(headerRenderer);
@@ -439,10 +439,10 @@ public class GestisciCongedi extends JFrame {
 
 
     static class TabellaFerie extends AbstractTableModel {
-        private final List<Benefit> lista;
+        private final List<Congedo> lista;
         private final String[] colonne = {"Codice", "Matricola", "Data inizio", "Data fine", "Motivazione", "Stato"};
 
-        public TabellaFerie(List<Benefit> lista) {
+        public TabellaFerie(List<Congedo> lista) {
             this.lista = lista;
         }
 
@@ -485,10 +485,10 @@ public class GestisciCongedi extends JFrame {
     }
 
     static class TabellaPermessi extends AbstractTableModel {
-        private final List<Benefit> lista;
+        private final List<Congedo> lista;
         private final String[] colonne = {"Codice", "Matricola", "Data", "Ora inizio", "Ora fine", "Motivazione", "Stato"};
 
-        public TabellaPermessi(List<Benefit> lista) {
+        public TabellaPermessi(List<Congedo> lista) {
             this.lista = lista;
         }
 

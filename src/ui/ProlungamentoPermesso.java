@@ -1,6 +1,6 @@
 package ui;
 
-import domain.Benefit;
+import domain.Congedo;
 import domain.BenefitFlow;
 import domain.Dipendente;
 import domain.Permesso;
@@ -50,7 +50,7 @@ public class ProlungamentoPermesso extends JFrame {
         titlePanel.setBorder(new EmptyBorder(30, 0, 20, 0));
         titlePanel.add(titolo);
 
-        List<Benefit> lista = benefitFlow.mostraBenefitApprovati(this.dipendente.getMatricola(), "P");
+        List<Congedo> lista = benefitFlow.mostraBenefitApprovati(this.dipendente.getMatricola(), "P");
         JTable table = new JTable(new TabellaModello(lista));
         HeaderRenderer headerRenderer = new HeaderRenderer();
         table.getTableHeader().setDefaultRenderer(headerRenderer);
@@ -152,7 +152,7 @@ public class ProlungamentoPermesso extends JFrame {
                     try {
                         LocalTime oraFineFormatted = LocalTime.parse(oraFineField.getText(), formatter);
                         LocalTime oldHour = LocalTime.of(23,59);
-                        for(Benefit b : lista){
+                        for(Congedo b : lista){
                             if (b.getCodice().equals(codiceField.getText())) {
                                 oldHour = ((Permesso) b).getOraFine();
                                 trovato = true;
@@ -216,10 +216,10 @@ public class ProlungamentoPermesso extends JFrame {
 
 
     static class TabellaModello extends AbstractTableModel {
-        private final List<Benefit> lista;
+        private final List<Congedo> lista;
         private final String[] colonne = {"Codice", "Matricola", "Data", "Ora inizio", "Ora fine", "Motivazione", "Stato"};
 
-        public TabellaModello(List<Benefit> lista) {
+        public TabellaModello(List<Congedo> lista) {
             this.lista = lista;
         }
 

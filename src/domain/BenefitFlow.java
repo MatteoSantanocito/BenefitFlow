@@ -15,7 +15,7 @@ public class BenefitFlow extends JFrame {
     private Map<String, Dipendente> elencoDipendenti;
     private Login login;
 
-    private Benefit benefit;
+    private Congedo congedo;
     private Ferie ferie;
     private Permesso permesso;
     private BuonoPasto buonoPasto;
@@ -187,12 +187,12 @@ public class BenefitFlow extends JFrame {
 
 
     /****** UC4 ******/
-    public List<Benefit> mostraBenefit(String tipo){
+    public List<Congedo> mostraBenefit(String tipo){
         if (tipo.equals("F")) {
-            List<Benefit> listFerie = new ArrayList<>();
+            List<Congedo> listFerie = new ArrayList<>();
             listFerie.addAll(elencoFerie.values());
-            List<Benefit> filteredListFerie = new ArrayList<>();
-            for (Benefit ferie : listFerie) {
+            List<Congedo> filteredListFerie = new ArrayList<>();
+            for (Congedo ferie : listFerie) {
                String stato = ferie.getStato();
                if(stato.equals("in elaborazione")){
                    filteredListFerie.add(ferie);
@@ -202,10 +202,10 @@ public class BenefitFlow extends JFrame {
         }
 
         if (tipo.equals("P")) {
-            List<Benefit> listPermessi = new ArrayList<>();
-            List<Benefit> filteredListPermessi = new ArrayList<>();
+            List<Congedo> listPermessi = new ArrayList<>();
+            List<Congedo> filteredListPermessi = new ArrayList<>();
             listPermessi.addAll(elencoPermessi.values());
-            for (Benefit permesso : listPermessi) {
+            for (Congedo permesso : listPermessi) {
                 String stato = permesso.getStato();
                 if(stato.equals("in elaborazione")){
                     filteredListPermessi.add(permesso);
@@ -216,22 +216,22 @@ public class BenefitFlow extends JFrame {
         return null;
     }
 
-    public List<Benefit> sovrapposizioneBenefit(String codice){
-        List<Benefit> listBenefit = new ArrayList<>();
-        listBenefit.addAll(elencoFerie.values());
-        listBenefit.addAll(elencoPermessi.values());
+    public List<Congedo> sovrapposizioneBenefit(String codice){
+        List<Congedo> listCongedo = new ArrayList<>();
+        listCongedo.addAll(elencoFerie.values());
+        listCongedo.addAll(elencoPermessi.values());
         LocalDate dataF, dataP;
         LocalTime oraP;
-        for (Benefit b : listBenefit){
+        for (Congedo b : listCongedo){
             if (b.getCodice().equals(codice)){
-                this.benefit = b;
+                this.congedo = b;
 
                 if(b.getTipo().equals("F")){
                     Ferie ferie = (Ferie) b;
                     dataF = ferie.getDataInizio();
                     List<Ferie> listFerie = new ArrayList<>();
                     listFerie.addAll(elencoFerie.values());
-                    List<Benefit> listFerieSovrapposizioni = new ArrayList<>();
+                    List<Congedo> listFerieSovrapposizioni = new ArrayList<>();
                     for (Ferie f : listFerie){
                         if(f.getDataInizio().isEqual(dataF) && f.getStato().equals("in elaborazione")){
                             listFerieSovrapposizioni.add(f);
@@ -246,7 +246,7 @@ public class BenefitFlow extends JFrame {
                     dataP = permesso.getData();
                     List<Permesso> listPermessi = new ArrayList<>();
                     listPermessi.addAll(elencoPermessi.values());
-                    List<Benefit> listPermessiSovrapposizioni = new ArrayList<>();
+                    List<Congedo> listPermessiSovrapposizioni = new ArrayList<>();
                     for (Permesso p : listPermessi){
                         if( (p.getData().isEqual(dataP)) && (p.getOraInizio().equals(oraP)) && p.getStato().equals("in elaborazione")){
                             listPermessiSovrapposizioni.add(p);
@@ -261,20 +261,20 @@ public class BenefitFlow extends JFrame {
     }
 
     public void confermaBenefit(String stato){
-        this.benefit.setStato(stato);
+        this.congedo.setStato(stato);
     }
 
 
     /****** UC5 ******/
-    public List<Benefit> mostraBenefitApprovati(String matricola, String tipo){
+    public List<Congedo> mostraBenefitApprovati(String matricola, String tipo){
         this.dipendenteCorrente = elencoDipendenti.get(matricola);
 
         if (tipo.equals("F")) {
-            List<Benefit> listFerie = new ArrayList<>();
+            List<Congedo> listFerie = new ArrayList<>();
             listFerie.addAll(elencoFerie.values());
-            List<Benefit> approvedListFerie = new ArrayList<>();
+            List<Congedo> approvedListFerie = new ArrayList<>();
 
-            for (Benefit ferie : listFerie) {
+            for (Congedo ferie : listFerie) {
                String stato = ferie.getStato();
                String m = ferie.getMatricola();
 
@@ -286,11 +286,11 @@ public class BenefitFlow extends JFrame {
         }
 
         if (tipo.equals("P")) {
-            List<Benefit> listPermessi = new ArrayList<>();
+            List<Congedo> listPermessi = new ArrayList<>();
             listPermessi.addAll(elencoPermessi.values());
-            List<Benefit> approvedListPermessi = new ArrayList<>();
+            List<Congedo> approvedListPermessi = new ArrayList<>();
 
-            for (Benefit permesso : listPermessi) {
+            for (Congedo permesso : listPermessi) {
                String stato = permesso.getStato();
                String m = permesso.getMatricola();
 
@@ -305,9 +305,9 @@ public class BenefitFlow extends JFrame {
     }
 
     public void richiediProlungamentoFerie(String codice, LocalDate dataFine){
-        List<Benefit> listFerieApprovate = mostraBenefitApprovati(this.dipendenteCorrente.getMatricola(), "F");
+        List<Congedo> listFerieApprovate = mostraBenefitApprovati(this.dipendenteCorrente.getMatricola(), "F");
 
-        for (Benefit ferie : listFerieApprovate) {
+        for (Congedo ferie : listFerieApprovate) {
             String c = ferie.getCodice();
 
             if(c.equals(codice)){
@@ -329,9 +329,9 @@ public class BenefitFlow extends JFrame {
     }
 
     public void richiediProlungamentoPermesso(String codice, LocalTime oraFine){
-        List<Benefit> listPermessiApprovati = mostraBenefitApprovati(this.dipendenteCorrente.getMatricola(), "P");
+        List<Congedo> listPermessiApprovati = mostraBenefitApprovati(this.dipendenteCorrente.getMatricola(), "P");
 
-        for (Benefit permesso : listPermessiApprovati) {
+        for (Congedo permesso : listPermessiApprovati) {
             String c = permesso.getCodice();
 
             if(c.equals(codice)){
@@ -355,15 +355,15 @@ public class BenefitFlow extends JFrame {
 
 
     /****** UC6 ******/
-    public List<Benefit> visualizzaCongediComplessivi(String tipo){
+    public List<Congedo> visualizzaCongediComplessivi(String tipo){
         if (tipo.equals("F")) {
-            List<Benefit> listFerie = new ArrayList<>();
+            List<Congedo> listFerie = new ArrayList<>();
             listFerie.addAll(elencoFerie.values());
             return listFerie;
         }
 
         if (tipo.equals("P")) {
-            List<Benefit> listPermessi = new ArrayList<>();
+            List<Congedo> listPermessi = new ArrayList<>();
             listPermessi.addAll(elencoPermessi.values());
             return listPermessi;
         }
@@ -373,12 +373,12 @@ public class BenefitFlow extends JFrame {
 
 
     /****** UC7 ******/
-    public List<Benefit> visualizzaCongedi(String tipo, String matricola){
+    public List<Congedo> visualizzaCongedi(String tipo, String matricola){
         if (tipo.equals("F")) {
-            List<Benefit> listFerie = new ArrayList<>();
+            List<Congedo> listFerie = new ArrayList<>();
             listFerie.addAll(elencoFerie.values());
-            List<Benefit> listFerieDip = new ArrayList<>();
-            for (Benefit f : listFerie){
+            List<Congedo> listFerieDip = new ArrayList<>();
+            for (Congedo f : listFerie){
                 if(f.getMatricola().equals(matricola)){
                     listFerieDip.add(f);
                 }
@@ -387,10 +387,10 @@ public class BenefitFlow extends JFrame {
         }
 
         if (tipo.equals("P")) {
-            List<Benefit> listPermessi = new ArrayList<>();
+            List<Congedo> listPermessi = new ArrayList<>();
             listPermessi.addAll(elencoPermessi.values());
-            List<Benefit> listPermessiDip = new ArrayList<>();
-            for (Benefit p : listPermessi){
+            List<Congedo> listPermessiDip = new ArrayList<>();
+            for (Congedo p : listPermessi){
                 if(p.getMatricola().equals(matricola)){
                     listPermessiDip.add(p);
                 }
@@ -445,6 +445,7 @@ public class BenefitFlow extends JFrame {
         List<BuonoPasto> listBuoniPasto = new ArrayList<>();
         listBuoniPasto.addAll(elencoBuoniPasto.values());
         List<BuonoPasto> filteredListBuoniPasto = new ArrayList<>();
+        controlloScadenzaBP();
         for(BuonoPasto bp : listBuoniPasto){
             if(bp.getMatricola().equals(matricola) && bp.getStato().equals("valido")){
                 filteredListBuoniPasto.add(bp);

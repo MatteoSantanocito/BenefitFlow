@@ -2,7 +2,7 @@ package domain;
 
 import java.time.LocalDate;
 
-public class Ferie extends Benefit{
+public class Ferie extends Congedo {
 
     private LocalDate dataInizio;
     private LocalDate dataFine;
