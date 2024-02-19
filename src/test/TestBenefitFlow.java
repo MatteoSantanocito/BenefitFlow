@@ -117,7 +117,7 @@ class TestBenefitFlow {
             benefitFlow.confermaInserimento();
             benefitFlow.inserisciFerie("SGR001","vacanza", LocalDate.of(2024, 9, 29), LocalDate.of(2024, 10, 29));
             benefitFlow.confermaFerie();
-            assertEquals(1, benefitFlow.mostraBenefit("F").size());
+            assertEquals(1, benefitFlow.mostraCongedi("F").size());
         }catch (Exception e){
             fail("Eccezione inaspettata");
         }
@@ -137,7 +137,7 @@ class TestBenefitFlow {
             benefitFlow.confermaFerie();
             benefitFlow.inserisciFerie("GDB002","laurea matteo", LocalDate.of(2024, 3, 1), LocalDate.of(2024, 3, 2));
             benefitFlow.confermaFerie();
-            assertEquals(2,benefitFlow.sovrapposizioneBenefit("F1").size());
+            assertEquals(2,benefitFlow.sovrapposizioneCongedi("F1").size());
         }catch (Exception e){
             fail("Eccezione inaspettata");
         }

@@ -50,7 +50,7 @@ public class ProlungamentoPermesso extends JFrame {
         titlePanel.setBorder(new EmptyBorder(30, 0, 20, 0));
         titlePanel.add(titolo);
 
-        List<Congedo> lista = benefitFlow.mostraBenefitApprovati(this.dipendente.getMatricola(), "P");
+        List<Congedo> lista = benefitFlow.mostraCongediApprovati(this.dipendente.getMatricola(), "P");
         JTable table = new JTable(new TabellaModello(lista));
         HeaderRenderer headerRenderer = new HeaderRenderer();
         table.getTableHeader().setDefaultRenderer(headerRenderer);

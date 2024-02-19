@@ -186,7 +186,7 @@ public class GestisciCongedi extends JFrame {
 
         HeaderRenderer headerRenderer = new HeaderRenderer();
 
-        List<Congedo> listaF = benefitFlow.mostraBenefit("F");
+        List<Congedo> listaF = benefitFlow.mostraCongedi("F");
         JTable tableF = new JTable(new TabellaFerie(listaF));
         tableF.getTableHeader().setDefaultRenderer(headerRenderer);
         JScrollPane scrollPaneF = new JScrollPane(tableF);
@@ -206,7 +206,7 @@ public class GestisciCongedi extends JFrame {
         tableF.setSelectionBackground(new Color(119, 119, 119, 255));
         tableF.setFocusable(false);
 
-        List<Congedo> listaP = benefitFlow.mostraBenefit("P");
+        List<Congedo> listaP = benefitFlow.mostraCongedi("P");
         JTable tableP = new JTable(new TabellaPermessi(listaP));
         tableP.getTableHeader().setDefaultRenderer(headerRenderer);
         JScrollPane scrollPaneP = new JScrollPane(tableP);
@@ -269,8 +269,8 @@ public class GestisciCongedi extends JFrame {
                 visualizzaFerie.setEnabled(false);
                 visualizzaPermesso.setEnabled(false);
 
-                List<Congedo> listFerieElab = benefitFlow.mostraBenefit("F");
-                List<Congedo> listPermessiElab = benefitFlow.mostraBenefit("P");
+                List<Congedo> listFerieElab = benefitFlow.mostraCongedi("F");
+                List<Congedo> listPermessiElab = benefitFlow.mostraCongedi("P");
 
                 String stringCode = code.getText();
 
@@ -280,7 +280,7 @@ public class GestisciCongedi extends JFrame {
                         for (Congedo f : listFerieElab){
                             if(f.getCodice().equals(stringCode)){
                                 flagPremuto = true;
-                                List<Congedo> listaSovrapposti = benefitFlow.sovrapposizioneBenefit(stringCode);
+                                List<Congedo> listaSovrapposti = benefitFlow.sovrapposizioneCongedi(stringCode);
 
                                 JTable tableF_S = new JTable(new TabellaFerie(listaSovrapposti));
                                 tableF_S.getTableHeader().setDefaultRenderer(headerRenderer);
@@ -333,7 +333,7 @@ public class GestisciCongedi extends JFrame {
                         for (Congedo p : listPermessiElab){
                             if(p.getCodice().equals(stringCode)){
                                 flagPremuto = true;
-                                List<Congedo> listaSovrapposti = benefitFlow.sovrapposizioneBenefit(stringCode);
+                                List<Congedo> listaSovrapposti = benefitFlow.sovrapposizioneCongedi(stringCode);
 
                                 JTable tableP_S = new JTable(new TabellaPermessi(listaSovrapposti));
                                 tableP_S.getTableHeader().setDefaultRenderer(headerRenderer);
@@ -401,7 +401,7 @@ public class GestisciCongedi extends JFrame {
                 String stato = (String) comboBox.getSelectedItem();
                 if(!stato.isEmpty()){
                     if((stato.equals("approvato") || stato.equals("non approvato"))){
-                        benefitFlow.confermaBenefit(stato);
+                        benefitFlow.confermaCongedo(stato);
                         GestisciCongedi.this.dispose();
                     }else{
                         errorFieldState.setText("Stato non valido");

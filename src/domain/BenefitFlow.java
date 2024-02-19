@@ -187,7 +187,7 @@ public class BenefitFlow extends JFrame {
 
 
     /****** UC4 ******/
-    public List<Congedo> mostraBenefit(String tipo){
+    public List<Congedo> mostraCongedi(String tipo){
         if (tipo.equals("F")) {
             List<Congedo> listFerie = new ArrayList<>();
             listFerie.addAll(elencoFerie.values());
@@ -216,7 +216,7 @@ public class BenefitFlow extends JFrame {
         return null;
     }
 
-    public List<Congedo> sovrapposizioneBenefit(String codice){
+    public List<Congedo> sovrapposizioneCongedi(String codice){
         List<Congedo> listCongedo = new ArrayList<>();
         listCongedo.addAll(elencoFerie.values());
         listCongedo.addAll(elencoPermessi.values());
@@ -260,13 +260,13 @@ public class BenefitFlow extends JFrame {
         return null;
     }
 
-    public void confermaBenefit(String stato){
+    public void confermaCongedo(String stato){
         this.congedo.setStato(stato);
     }
 
 
     /****** UC5 ******/
-    public List<Congedo> mostraBenefitApprovati(String matricola, String tipo){
+    public List<Congedo> mostraCongediApprovati(String matricola, String tipo){
         this.dipendenteCorrente = elencoDipendenti.get(matricola);
 
         if (tipo.equals("F")) {
@@ -305,7 +305,7 @@ public class BenefitFlow extends JFrame {
     }
 
     public void richiediProlungamentoFerie(String codice, LocalDate dataFine){
-        List<Congedo> listFerieApprovate = mostraBenefitApprovati(this.dipendenteCorrente.getMatricola(), "F");
+        List<Congedo> listFerieApprovate = mostraCongediApprovati(this.dipendenteCorrente.getMatricola(), "F");
 
         for (Congedo ferie : listFerieApprovate) {
             String c = ferie.getCodice();
@@ -329,7 +329,7 @@ public class BenefitFlow extends JFrame {
     }
 
     public void richiediProlungamentoPermesso(String codice, LocalTime oraFine){
-        List<Congedo> listPermessiApprovati = mostraBenefitApprovati(this.dipendenteCorrente.getMatricola(), "P");
+        List<Congedo> listPermessiApprovati = mostraCongediApprovati(this.dipendenteCorrente.getMatricola(), "P");
 
         for (Congedo permesso : listPermessiApprovati) {
             String c = permesso.getCodice();
