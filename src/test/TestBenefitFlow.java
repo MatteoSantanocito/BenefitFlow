@@ -65,6 +65,7 @@ class TestBenefitFlow {
             benefitFlow.inserisciNuovoDipendente("Giorgio", "Di Bartolo", LocalDate.of(2000, 9, 29), "ing03");
             benefitFlow.confermaInserimento();
             benefitFlow.confermaRuolo("GDB001", "inf03");
+            assertEquals("inf03", benefitFlow.mostraDipendenti().get(0).getRuolo().getCodiceRuolo());
         }catch (Exception e){
             fail("Eccezione inaspettata");
         }
@@ -124,8 +125,8 @@ class TestBenefitFlow {
     }
 
     @Test
-    @DisplayName("Test sovrapposizione Benefit")
-    void testSovrapposizioneBenefit(){
+    @DisplayName("Test sovrapposizione Congedi")
+    void testSovrapposizioneCongedi(){
         try{
             benefitFlow.inserisciNuovoDipendente("Silvia", "Garozzo", LocalDate.of(2000, 9, 29), "ing03");
             benefitFlow.confermaInserimento();

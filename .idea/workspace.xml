@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a60ab205-e48e-458a-b714-77e9ceaa1b87" name="Changes" comment="refactor nome funzione">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/BenefitFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/BenefitFlow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/TestBenefitFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/TestBenefitFlow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/GestisciCongedi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GestisciCongedi.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,46 +64,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Application.GestisciBenefit.executor&quot;: &quot;Run&quot;,
-    &quot;Application.InserisciDipendente.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;JUnit.MyTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestBenefitFlow.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestBenefitFlow.testConfermaAttivazione.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestBenefitFlow.testConfermaInserimento.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestBenefitFlow.testControlloScadenzaBP.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestBenefitFlow.testCreazioneBuonoPasto.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestBenefitFlow.testGeneratorematricola.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestBenefitFlow.testGestisciRuolo.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestBenefitFlow.testInserisciFerie.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestBenefitFlow.testInserisciNuovoDipendente.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestBenefitFlow.testLoadRuolo.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestBenefitFlow.testSovrapposizioneBenefit.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.TestValoreStrategy1.testCalcolaValore.executor&quot;: &quot;Run&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;/Users/matteo/IdeaProjects/BenefitFlow/src/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.GestisciBenefit.executor": "Run",
+    "Application.InserisciDipendente.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.MyTest.executor": "Run",
+    "JUnit.TestBenefitFlow.executor": "Run",
+    "JUnit.TestBenefitFlow.testConfermaAttivazione.executor": "Run",
+    "JUnit.TestBenefitFlow.testConfermaInserimento.executor": "Run",
+    "JUnit.TestBenefitFlow.testControlloScadenzaBP.executor": "Run",
+    "JUnit.TestBenefitFlow.testCreazioneBuonoPasto.executor": "Run",
+    "JUnit.TestBenefitFlow.testGeneratorematricola.executor": "Run",
+    "JUnit.TestBenefitFlow.testGestisciRuolo.executor": "Run",
+    "JUnit.TestBenefitFlow.testInserisciFerie.executor": "Run",
+    "JUnit.TestBenefitFlow.testInserisciNuovoDipendente.executor": "Run",
+    "JUnit.TestBenefitFlow.testLoadRuolo.executor": "Run",
+    "JUnit.TestBenefitFlow.testSovrapposizioneBenefit.executor": "Run",
+    "JUnit.TestBenefitFlow.testSovrapposizioneCongedi.executor": "Run",
+    "JUnit.TestValoreStrategy1.executor": "Run",
+    "JUnit.TestValoreStrategy1.testCalcolaValore.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "/Users/matteo/IdeaProjects/BenefitFlow/src/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
@@ -114,7 +114,7 @@
       <recent name="ui" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.TestBenefitFlow">
     <configuration name="TestBenefitFlow" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="BenefitFlow" />
       <extension name="coverage">
@@ -130,7 +130,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestBenefitFlow.testConfermaAttivazione" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestBenefitFlow.testGestisciRuolo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="BenefitFlow" />
       <extension name="coverage">
         <pattern>
@@ -140,13 +140,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="test" />
       <option name="MAIN_CLASS_NAME" value="test.TestBenefitFlow" />
-      <option name="METHOD_NAME" value="testConfermaAttivazione" />
+      <option name="METHOD_NAME" value="testGestisciRuolo" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestBenefitFlow.testControlloScadenzaBP" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestBenefitFlow.testLoadRuolo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="BenefitFlow" />
       <extension name="coverage">
         <pattern>
@@ -156,13 +156,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="test" />
       <option name="MAIN_CLASS_NAME" value="test.TestBenefitFlow" />
-      <option name="METHOD_NAME" value="testControlloScadenzaBP" />
+      <option name="METHOD_NAME" value="testLoadRuolo" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestBenefitFlow.testCreazioneBuonoPasto" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestBenefitFlow.testSovrapposizioneCongedi" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="BenefitFlow" />
       <extension name="coverage">
         <pattern>
@@ -172,7 +172,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="test" />
       <option name="MAIN_CLASS_NAME" value="test.TestBenefitFlow" />
-      <option name="METHOD_NAME" value="testCreazioneBuonoPasto" />
+      <option name="METHOD_NAME" value="testSovrapposizioneCongedi" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -197,10 +197,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.TestBenefitFlow" />
+        <item itemvalue="JUnit.TestBenefitFlow.testGestisciRuolo" />
+        <item itemvalue="JUnit.TestBenefitFlow.testLoadRuolo" />
+        <item itemvalue="JUnit.TestBenefitFlow.testSovrapposizioneCongedi" />
         <item itemvalue="JUnit.TestValoreStrategy1.testCalcolaValore" />
-        <item itemvalue="JUnit.TestBenefitFlow.testControlloScadenzaBP" />
-        <item itemvalue="JUnit.TestBenefitFlow.testCreazioneBuonoPasto" />
-        <item itemvalue="JUnit.TestBenefitFlow.testConfermaAttivazione" />
       </list>
     </recent_temporary>
   </component>
@@ -225,7 +225,7 @@
       <workItem from="1708203469238" duration="750000" />
       <workItem from="1708205407346" duration="1429000" />
       <workItem from="1708208939021" duration="13204000" />
-      <workItem from="1708290255825" duration="2641000" />
+      <workItem from="1708290255825" duration="6241000" />
     </task>
     <task id="LOCAL-00001" summary="eliminato commenti">
       <option name="closed" value="true" />
@@ -347,7 +347,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708367395606</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="refactor nome funzione">
+      <option name="closed" value="true" />
+      <created>1708370371478</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1708370371478</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
